@@ -1,12 +1,12 @@
+module
+
+public import Solution
+
 -- SPDX-License-Identifier: Apache-2.0
 -- Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 --
 -- Non-vacuity witness suite: exhibits concrete physiological instances satisfying every
 -- hypothesis bundle of every headline theorem in Solution.lean (Defensible Playbook §1).
-
-module
-
-public import Solution
 
 public section
 

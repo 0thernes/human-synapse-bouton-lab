@@ -1,19 +1,251 @@
-title: "Formally Verified Human Synaptic Bouton Biophysical Invariants and Bipartite Integration Bounds"
-authors:
-  - name: "Alexander Stephen Donahue"
-    orcid: "0009-0006-8168-9648"
-    affiliation: "Independent Researcher, Spokane, WA, USA"
-repository: "https://github.com/0thernes/human-synapse-bouton-lab"
-license: "Apache-2.0"
-lean_toolchain: "leanprover/lean4:v4.35.0"
-challenge_file: "lean/Challenge.lean"
-solution_file: "lean/Solution.lean"
-non_vacuity_file: "lean/NonVacuity.lean"
-comparator_config: "lean/comparator.json"
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Human Synaptic Bouton Biophysical Invariants and Bipartite Integration Bounds"
+  description: >
+    Pure Lean 4.35.0 (zero Mathlib, zero sorry, zero Classical.choice) formalization of
+    18 exact algebraic invariants across six nanoscale human synaptic bouton domains:
+    (1) Hill n=4 Ca2+ release cooperativity (unit interval, half-maximal exactness, strict
+    monotonicity, 1/82 resting noise floor at c <= Kd/3, and exact 17/2 = 8.5x doubling gain);
+    (2) conductance-based mature KCC2 GABAergic shunting attenuation and pure-shunting divisive
+    identity; (3) exact conservation of presynaptic vesicle pools under conservative exocytosis,
+    priming, and mobilization (instantiated for both rat 374-vesicle and human cortical L1
+    3,500-vesicle baselines); (4) local ATP deficit depletion and resting V-ATPase H+ leak
+    reduction of sustainable firing frequency; (5) exact kinesin-1 processive stoichiometry
+    (125,000 ATP/mm at 8 nm/step) and SNAREpin Syt1/copy-number fusion-barrier monotonicity;
+    (6) RESI 1/sqrt(N*K) localization variance improvement, imager duty-cycle monotonicity,
+    and discrete 2x2 bipartite causal-coupling bounds (zero coupling for factorized states vs.
+    strictly positive coupling for aligned presynaptic-postsynaptic nanocolumns). Paired with
+    19 concrete physiological non-vacuity witnesses in lean/NonVacuity.lean.
+  authors:
+    - name: "Alexander Stephen Donahue"
+      github: "0thernes"
+      orcid: "0009-0006-8168-9648"
+  responsible_maintainers:
+    - name: "Alexander Stephen Donahue"
+      github: "0thernes"
+      orcid: "0009-0006-8168-9648"
+  license: "Apache-2.0"
+
+sources:
+  - title: "A Formally Verified, Multi-Scale Computational Framework for the Human Synaptic Bouton: Exact Biophysics, Stochastic Nanocolumn Coupling, Bioenergetics, and DNA-Origami Metrology"
+    authors:
+      - "Alexander Stephen Donahue"
+    id: "https://github.com/0thernes/human-synapse-bouton-lab/releases/tag/v1.1.0"
+    type: "original-proof"
+    location: "Section 3 (Theorems 3.1-3.2 & Table 2)"
+    relationship: "formalizes"
+    note: "Original formalization of the exact algebraic invariants underlying the human-synapse-bouton-lab biophysical framework; biophysical parameter anchors follow peer-reviewed literature listed in papers/references.bib."
+    license: "CC-BY-4.0"
+    author_endorsement: "participated"
+  - title: "Composition of isolated synaptic boutons reveals the amounts of vesicle trafficking proteins"
+    authors:
+      - "Burkhard G. Wilhelm"
+      - "Silvio O. Rizzoli"
+    id: "doi:10.1126/science.1252884"
+    type: "article"
+    location: "Baseline rat synaptosome vesicle counts (374 vesicles)"
+    relationship: "background"
+    author_endorsement: "not-contacted"
+  - title: "Ultrastructural sublaminar-specific diversity of excitatory synaptic boutons in L1 of human temporal lobe neocortex"
+    authors:
+      - "Astrid Rollenhagen"
+      - "Joachim H. R. Lubke"
+    id: "https://elifesciences.org/reviewed-preprints/99473v1"
+    type: "article"
+    location: "Human cortical L1 excitatory bouton vesicle pools (~3,500 vesicles)"
+    relationship: "background"
+    author_endorsement: "not-contacted"
+  - title: "Synaptic vesicle pools are a major hidden resting metabolic burden of nerve terminals"
+    authors:
+      - "Camila Pulido"
+      - "Timothy A. Ryan"
+    id: "doi:10.1126/sciadv.abi9027"
+    type: "article"
+    location: "Resting V-ATPase H+ leak ATP burden"
+    relationship: "background"
+    author_endorsement: "not-contacted"
+  - title: "Angstrom-resolution fluorescence microscopy"
+    authors:
+      - "Susanne C. M. Reinhardt"
+      - "Ralf Jungmann"
+    id: "doi:10.1038/s41586-023-05925-9"
+    type: "article"
+    location: "RESI 1/sqrt(N*K) localization scaling"
+    relationship: "background"
+    author_endorsement: "not-contacted"
+
+related_formalizations: []
+
+classification:
+  arxiv:
+    - "q-bio.NC"
+    - "cs.LO"
+  msc2020:
+    - "92C20"
+    - "68V15"
+
+status:
+  scope: >
+    Certifies 18 exact algebraic, monotonicity, conservation, stoichiometry, variance-scaling,
+    and discrete 2x2 bipartite-coupling invariants over Nat and Int in pure Lean 4.35.0
+    without Mathlib. Explicitly does NOT formalize continuum 3D Brownian PDEs, float64 RK4
+    Hodgkin-Huxley ODE trajectories (tagged numerical_approximation outside Lean), or
+    phenomenal consciousness/sentience.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - "propext"
+    - "Quot.sound"
+  main_results:
+    - declaration: "SynapseBouton.hill4_unit_interval"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.hill4_half_max_exact"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.hill4_strict_monotone"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: []
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.hill4_resting_noise_floor"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.hill4_ultrasensitive_doubling"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.ei_steady_state_bounds"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.shunting_inhibition_strict_attenuation"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.pure_shunting_divisive_identity"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.vesicle_pool_transition_invariant"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.atp_deficit_strict_depletion"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.resting_leak_strictly_lowers_sustainable_rate"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.kinesin_processive_atp_exact"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.snare_barrier_monotone_in_syt1_ca"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.snare_copy_number_cooperativity"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.resi_variance_strict_improvement"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.resi_duty_cycle_monotone_in_imager"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: []
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.factorized_bipartition_zero_integration"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.correlated_nanocolumn_positive_integration"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext"]
+      comparator_config: "lean/comparator.json"
+
 automation:
-  models:
-    - "Antigravity (Google DeepMind) — Lean 4 proof drafting & scaffolding"
-  human_role: "Problem selection, biophysical modeling scope, statement-fidelity audit, publication review, and final acceptance."
-  verification: "Lean 4.35.0 official kernel, leanchecker, lake check --paranoid, lake comparator --paranoid (leanchecker-paranoid, lean4lean, nanoda, con-leche, con-ron)"
-review_status: "Preprint; not externally peer-reviewed."
-limitations: "Formal theorems certify exact algebraic, monotonicity, conservation, and discrete bipartite-coupling invariants of the biophysical models; continuum PDE reaction-diffusion, Hodgkin-Huxley RK4 trajectories, and phenomenal consciousness remain outside the formal kernel proof scope."
+  methods:
+    - method: "agent"
+      models:
+        - "Antigravity (Google DeepMind)"
+      framework: "Antigravity IDE"
+      tool_setup: "Lean 4.35.0 (elan/lake), lake comparator --paranoid, leanchecker-paranoid, lean4lean, nanoda, con-leche, con-ron"
+      cost:
+        wall_time: "1 day"
+        spend_usd: "subscription-based usage"
+        hardware: "Windows 11 x86_64 workstation + Ubuntu GitHub Actions runners"
+      prompting_notes: "Human author directed scope, biophysical parameter separation (rat vs. human cortical presets), statement fidelity audit, and strict zero-Mathlib / zero-sorry / zero-Classical.choice constraints."
+  spend_usd: "subscription-based usage"
+  notes: "All 18 theorems are replayed by six independent Lean kernels via lake comparator --paranoid and paired with 19 concrete non-vacuity witnesses in lean/NonVacuity.lean."
+
+fidelity:
+  divergences: >
+    Real-valued biophysical rational ratios (Hill n=4, conductance divider, RESI variance,
+    SNARE barrier tenths/fiftieths) are cross-multiplied and integer-scaled over Nat/Int so
+    every theorem is proved exactly without IEEE-754 rounding or Classical.choice. Transcendental
+    Nernst/GHK/Arrhenius/Gaussian expressions are checked externally by a 50-digit mpmath oracle
+    (python/synapse_science/oracle.py) rather than inside Lean.
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - name: "Alexander Stephen Donahue"
+      github: "0thernes"
+      orcid: "0009-0006-8168-9648"
+  notes: "Preprint; not externally peer-reviewed. Passed 10-pass internal adversarial audit (docs/reviews/2026-11-23-redteam.md) and 6-kernel lake comparator --paranoid CI."
+
+alignment:
+  namespace: "SynapseBouton"
+  statements:
+    - source: "White Paper 1 Theorem 3.1 (Hill n=4 cooperativity, 1/82 floor, 8.5x doubling gain)"
+      lean: "SynapseBouton.hill4_unit_interval, hill4_half_max_exact, hill4_strict_monotone, hill4_resting_noise_floor, hill4_ultrasensitive_doubling"
+      module: "Solution"
+      status: "proved"
+    - source: "White Paper 1 Theorem 3.2 (KCC2 shunting attenuation & pure-shunting divisive identity)"
+      lean: "SynapseBouton.ei_steady_state_bounds, shunting_inhibition_strict_attenuation, pure_shunting_divisive_identity"
+      module: "Solution"
+      status: "proved"
+    - source: "White Paper 1 Table 2 (Vesicle pool conservation, ATP depletion, resting leak, kinesin-1 125,000 ATP/mm)"
+      lean: "SynapseBouton.vesicle_pool_transition_invariant, atp_deficit_strict_depletion, resting_leak_strictly_lowers_sustainable_rate, kinesin_processive_atp_exact"
+      module: "Solution"
+      status: "proved"
+    - source: "White Paper 1 Table 2 (SNAREpin Syt1/copy-number cooperativity & RESI metrology)"
+      lean: "SynapseBouton.snare_barrier_monotone_in_syt1_ca, snare_copy_number_cooperativity, resi_variance_strict_improvement, resi_duty_cycle_monotone_in_imager"
+      module: "Solution"
+      status: "proved"
+    - source: "White Paper 2 Theorem 3.1 (Discrete 2x2 bipartite causal coupling zero vs. positive bounds)"
+      lean: "SynapseBouton.factorized_bipartition_zero_integration, correlated_nanocolumn_positive_integration"
+      module: "Solution"
+      status: "proved"
+    - source: "4D Hodgkin-Huxley RK4 ODEs, 3D Brownian PDEs, phenomenal consciousness"
+      lean: "none"
+      module: "none"
+      status: "not-formalized"
+      note: "Explicitly outside Lean proof scope; float64 ODE/Monte Carlo outputs are tagged numerical_approximation."

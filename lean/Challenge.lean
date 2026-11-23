@@ -1,11 +1,11 @@
+module
+
 -- SPDX-License-Identifier: Apache-2.0
 -- Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 --
 -- Isolated Challenge specification (Palomar Registry / `lake comparator` format).
 -- Every theorem statement here uses exact integer/natural arithmetic with zero floating-point
 -- approximations and zero external library dependencies.
-
-module
 
 public section
 

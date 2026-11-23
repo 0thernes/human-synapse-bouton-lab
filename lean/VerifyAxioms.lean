@@ -1,14 +1,14 @@
+module
+
+public import Solution
+public import NonVacuity
+
 -- SPDX-License-Identifier: Apache-2.0
 -- Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 --
 -- Axiom audit module: prints exact axiom dependencies of all 18 exported headline theorems.
 -- Every theorem must use only standard Lean axioms subset of [propext, Classical.choice, Quot.sound]
 -- (and zero custom axioms / zero Lean.ofReduceBool / zero sorryAx).
-
-module
-
-public import Solution
-public import NonVacuity
 
 #print axioms SynapseBouton.hill4_unit_interval
 #print axioms SynapseBouton.hill4_half_max_exact

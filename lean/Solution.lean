@@ -1,10 +1,10 @@
+module
+
 -- SPDX-License-Identifier: Apache-2.0
 -- Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 --
 -- Machine-checked Lean 4.35.0 proofs of all 18 theorems in Challenge.lean.
 -- Zero sorry, zero admit, zero native_decide, zero custom axioms, zero Mathlib.
-
-module
 
 public section
 
