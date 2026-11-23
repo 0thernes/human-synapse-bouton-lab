@@ -5,6 +5,7 @@ A full-stack, formally verified human synaptic bouton biophysical workbench comb
 [![CI](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/ci.yml)
 [![Pages](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/pages.yml/badge.svg)](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/pages.yml)
 [![Release](https://img.shields.io/github/v/release/0thernes/human-synapse-bouton-lab?display_name=tag)](https://github.com/0thernes/human-synapse-bouton-lab/releases)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24477927.svg)](https://doi.org/10.5281/zenodo.24477927)
 [![Code License: Apache-2.0](https://img.shields.io/badge/Code-Apache--2.0-blue.svg)](LICENSE)
 [![Content License: CC-BY-4.0](https://img.shields.io/badge/Papers%20%26%20Media-CC--BY--4.0-lightgrey.svg)](docs/LICENSE-CONTENT.md)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39.svg)](https://orcid.org/0009-0006-8168-9648)

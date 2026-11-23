@@ -14,7 +14,8 @@ Ready-to-send templates following the **5-Sentence Outreach Protocol** (Independ
 >
 > - **Repo (`v1.1.0`, Apache-2.0):** https://github.com/0thernes/human-synapse-bouton-lab (commit `a0fc8f9919139c4a8957c5d9dbbe3e8de39985a8`)
 > - **6-Kernel CI (`lake comparator --paranoid`):** https://github.com/0thernes/human-synapse-bouton-lab/actions/runs/45234241381 (all 6 kernels accept `Solution.lean`; zero `sorry`, zero `Classical.choice`)
-> - **Software Heritage SWHID:** `swh:1:snp:458adcd73c9a78054486147094950e2be6774271`
+> - **Zenodo DataCite DOI:** `10.5281/zenodo.24477928` (concept DOI: `10.5281/zenodo.24477927`, https://zenodo.org/records/24477928)
+- **Software Heritage SWHID:** `swh:1:snp:458adcd73c9a78054486147094950e2be6774271`
 >
 > **Explicitly NOT proved in Lean:** 4D Hodgkin–Huxley float64 RK4 trajectories, 3D Brownian PDEs, or any claim regarding phenomenal consciousness (all numerical/stochastic components are tagged `numerical_approximation` and cross-checked against a 50-digit Python `mpmath` oracle).
 >
