@@ -6,7 +6,7 @@ A full-stack, formally verified human synaptic bouton biophysical workbench comb
 [![Pages](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/pages.yml/badge.svg)](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/pages.yml)
 [![Release](https://img.shields.io/github/v/release/0thernes/human-synapse-bouton-lab?display_name=tag)](https://github.com/0thernes/human-synapse-bouton-lab/releases)
 [![Code License: Apache-2.0](https://img.shields.io/badge/Code-Apache--2.0-blue.svg)](LICENSE)
-[![Content License: CC-BY-4.0](https://img.shields.io/badge/Papers%20%26%20Media-CC--BY--4.0-lightgrey.svg)](LICENSE-CONTENT)
+[![Content License: CC-BY-4.0](https://img.shields.io/badge/Papers%20%26%20Media-CC--BY--4.0-lightgrey.svg)](docs/LICENSE-CONTENT.md)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39.svg)](https://orcid.org/0009-0006-8168-9648)
 
 **Status:** `active` · **Live Interactive Workbench:** https://0thernes.github.io/human-synapse-bouton-lab/ · **Software Heritage SWHID:** [`swh:1:snp:1a278fff55465dbe8d0b870408b6468822eb3e8b`](https://archive.softwareheritage.org/swh:1:snp:1a278fff55465dbe8d0b870408b6468822eb3e8b) · **Supported Locales:** `en-US` (strings externalized in `apps/web/src/i18n/en.json`)
