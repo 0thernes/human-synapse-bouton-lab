@@ -201,20 +201,20 @@ def write_outputs(repo_root: Path, rows: list[dict[str, Any]], summary: dict[str
 
     fieldnames = list(rows[0].keys())
     with csv_path.open("w", newline="", encoding="utf-8") as fh:
-        writer = csv.DictWriter(fh, fieldnames=fieldnames)
+        writer = csv.DictWriter(fh, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
-    json_path.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    json_path.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8", newline="\n")
 
-    # Write Build Standard B39 data/MANIFEST.sha256
+    # Write Build Standard B39 data/MANIFEST.sha256 (LF-normalized for cross-OS SHA-256 identity)
     data_dir = repo_root / "data"
     manifest_lines: list[str] = []
     for p in sorted(data_dir.rglob("*")):
         if p.is_file() and p.name != "MANIFEST.sha256":
             rel = p.relative_to(data_dir).as_posix()
             manifest_lines.append(f"{sha256_file(p)}  {rel}")
-    (data_dir / "MANIFEST.sha256").write_text("\n".join(manifest_lines) + "\n", encoding="utf-8")
+    (data_dir / "MANIFEST.sha256").write_text("\n".join(manifest_lines) + "\n", encoding="utf-8", newline="\n")
 
 
 def main() -> int:
