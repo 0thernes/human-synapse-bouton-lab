@@ -8,6 +8,7 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{xcolor}
+\usepackage{xurl}
 \usepackage{hyperref}
 \usepackage{microtype}
 \usepackage{float}
@@ -31,13 +32,13 @@
 \author{Alexander Stephen Donahue}
 \address{Independent Researcher, Spokane, WA, USA}
 \email{0\_0@0thernes.art}
-\thanks{ORCID: \href{https://orcid.org/0009-0006-8168-9648}{0009-0006-8168-9648}. Companion white paper to \texttt{human-synapse-bouton-lab} v1.0.0 (\url{https://github.com/0thernes/human-synapse-bouton-lab}). Dual-licensed: Apache-2.0 (code/Lean) and CC-BY-4.0 (manuscript/figures). Preprint; not externally peer-reviewed.}
+\thanks{ORCID: \href{https://orcid.org/0009-0006-8168-9648}{0009-0006-8168-9648}. Companion white paper to \texttt{human-synapse-bouton-lab} v1.1.0 (\url{https://github.com/0thernes/human-synapse-bouton-lab}). Dual-licensed: Apache-2.0 (code/Lean) and CC-BY-4.0 (manuscript/figures). Preprint; not externally peer-reviewed.}
 \date{November 23, 2026}
 
 \begin{document}
 
 \begin{abstract}
-Bridging nanoscale synaptic biophysics to human cognition and phenomenal consciousness requires navigating eleven interdependent scientific disciplines—Mathematics, Physics, Chemistry, Biology, Neuroscience, Neuropsychology, NeuroCS, NeuroMath, Neurochemistry, Neurobiology, and Neurophysics—without collapsing into unfalsifiable speculation. We present a disciplined, verifiable open-problems architecture grounded in \texttt{human-synapse-bouton-lab} v1.0.0. Rather than claiming premature solutions to open hard problems, we stratify every claim across four strict epistemic tiers: (1)~\emph{kernel-checked deductive bounds} verified in Lean~4.35.0 across multiple independent kernels (including exact Hill $n=4$ noise floors, KCC2 shunting attenuation, bioenergetic depletion cliffs, and a formal zero-coupling zero-integration theorem on finite bipartitions); (2)~\emph{computational bounds} from pre-registered 30-seed Monte Carlo experiments and a 50-digit exact oracle; (3)~\emph{inductive empirical constraints} from human cortical 3D EM, cryo-EM/ET, pharmacology, and adversarial consciousness collaborations; and (4)~\emph{explicitly demarcated open hard problems and philosophical barriers}, including the explanatory gap of phenomenal experience. Finally, we publish a complete six-class self-audit (\texttt{bug}, \texttt{error}, \texttt{issue}, \texttt{problem}, \texttt{dilemma}, \texttt{conflict}) cataloging every engineering defect, species conflation, legal/attribution conflict, numerical approximation limit, and multi-scale blind spot discovered during construction.
+Bridging nanoscale synaptic biophysics to human cognition and phenomenal consciousness requires navigating eleven interdependent scientific disciplines—Mathematics, Physics, Chemistry, Biology, Neuroscience, Neuropsychology, NeuroCS, NeuroMath, Neurochemistry, Neurobiology, and Neurophysics—without collapsing into unfalsifiable speculation. We present a disciplined, verifiable open-problems architecture grounded in \texttt{human-synapse-bouton-lab} v1.1.0. Rather than claiming premature solutions to open hard problems, we stratify every claim across four strict epistemic tiers: (1)~\emph{kernel-checked deductive bounds} verified in Lean~4.35.0 across six independent kernels (including exact Hill $n=4$ noise floors, KCC2 shunting attenuation, bioenergetic depletion cliffs, and a formal zero-coupling zero-integration theorem on finite bipartitions); (2)~\emph{computational bounds} from pre-registered 30-seed Monte Carlo experiments and a 50-digit exact oracle; (3)~\emph{inductive empirical constraints} from human cortical 3D EM, cryo-EM/ET, pharmacology, and adversarial consciousness collaborations; and (4)~\emph{explicitly demarcated open hard problems and philosophical barriers}, including the explanatory gap of phenomenal experience. Finally, we publish a complete six-class self-audit (\texttt{bug}, \texttt{error}, \texttt{issue}, \texttt{problem}, \texttt{dilemma}, \texttt{conflict}) cataloging every engineering defect, species conflation, legal/attribution conflict, numerical approximation limit, and multi-scale blind spot discovered during construction.
 \end{abstract}
 
 \maketitle
@@ -64,7 +65,7 @@ Table~\ref{tab:op11} maps one concrete open hard problem in each of the eleven r
 \scriptsize
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.95cm}>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}p{3.9cm}>{\raggedright\arraybackslash}p{4.6cm}@{}}
 \toprule
-\textbf{Discipline} & \textbf{Open Hard Problem} & \textbf{Verified Progress (v1.0.0)} & \textbf{Remaining Gap / Blind Spot} \\
+\textbf{Discipline} & \textbf{Open Hard Problem} & \textbf{Verified Progress (v1.1.0)} & \textbf{Remaining Gap / Blind Spot} \\
 \midrule
 \textbf{Math} & Discrete particle reaction--diffusion vs.\ continuum PDE $L^1$ convergence at $N < 100$ $\mathrm{Ca}^{2+}$ ions. & Lean~4 proofs of Hill $n=4$ monotonicity, $1/82$ noise floor, and $8.5\times$ doubling gain. & Full 3D meshed Wasserstein convergence proof between CME and Smoluchowski PDE remains open. \\
 \textbf{Physics} & Warm-wet thermal decoherence ($310.15\,$K, $k_B T = 4.282\,$pN$\cdot$nm, $\lambda_D = 0.79\,$nm) vs.\ speculative quantum effects \cite{tegmark2000decoherence}. & Exact CODATA thermal energy \& classical ATP dissipation bounds verified; unverified quantum-mind claims separated. & In situ atomic-time-resolved measurement of hydrated cleft proton-wire hopping rates remains open. \\
@@ -109,29 +110,30 @@ To uphold ruthless transparency (Build Standard R7), Table~\ref{tab:findings} cl
 
 \begin{table}[H]
 \centering
-\caption{Complete Six-Class Audit of Project Findings and Blind Spots.}
+\caption{Complete Six-Class Audit of Project Findings and Blind Spots (F01--F10).}
 \label{tab:findings}
 \scriptsize
-\begin{tabular}{@{}ll>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{4.2cm}@{}}
+\begin{tabular}{@{}ll>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{4.3cm}@{}}
 \toprule
 \textbf{ID} & \textbf{Class} & \textbf{Finding} & \textbf{Root Cause / Blind Spot} & \textbf{Resolution / Status} \\
 \midrule
-F01 & \texttt{conflict} & Unformed LLC name \& copyright conflict. & Older templates cited ``0thernes LLC'' while Nov~22 Playbook flagged no LLC exists yet. & \textbf{Resolved (R8):} Switched globally to Independent Researcher + Apache-2.0 / CC-BY-4.0. \\
-F02 & \texttt{bug} & Unseeded \texttt{Math.random()} \& raw JSON crash in legacy HTML v9. & Non-deterministic fusion runs and unhandled \texttt{SyntaxError} on malformed trace input. & \textbf{Resolved:} Mulberry32 + \texttt{ChaCha8Rng} + \texttt{TraceParseError} + regression tests. \\
-F03 & \texttt{error} & Rat (374) vs.\ Human (1,500--3,500) vesicle conflation. & Rat synaptosome constant used under a human bouton heading. & \textbf{Resolved:} Explicit Rat baseline + Human L1/L4/L5 presets with Lean conservation. \\
-F04 & \texttt{error} & Broken image link \texttt{4163\_audit.jpg} in legacy Forensic Audit. & Referenced non-existent temporary path. & \textbf{Resolved:} Replaced with code-reproducible blueprint \& MP4/GIF pipeline. \\
-F05 & \texttt{bug} & Upstream \texttt{New-Repo.ps1} failed on bracketed Dev-Drive path. & Missing \texttt{-LiteralPath} on \texttt{Push-Location} for \texttt{Z:\textbackslash[Vibe Coded (AI)]}. & \textbf{Resolved:} Used \texttt{Set-Location -LiteralPath}; documented in \texttt{AGENTS.md}. \\
-F06 & \texttt{problem} & Cloud image-gen 503 capacity \& Windows lack of \texttt{bwrap}. & External service throttling and OS sandbox unavailability. & \textbf{Resolved:} Deterministic Python rendering pipeline + Linux CI \texttt{bwrap} checks. \\
-F07 & \texttt{issue} & Float64 ODEs and MC sweeps are not Lean kernel proofs. & Nonlinear 4D HH trajectories use float64 RK4 integration. & \textbf{Accepted:} Explicitly tagged \texttt{numerical\_approximation} everywhere. \\
-F08 & \texttt{dilemma} & Nanoscale fidelity vs.\ whole-cortex consciousness scale. & $10^{14}$ boutons $\times 3\times 10^5$ proteins exceeds exascale by $>10^9\times$. & \textbf{Accepted:} Multi-scale boundary architecture with explicit open-problem handoffs. \\
-F09 & \texttt{error} & Pre-registered H3 over-estimated mitochondrial $f_{\mathrm{crit}}$. & Assumed mitochondria sustain 40\,Hz, overlooking $f_{\mathrm{crit,mito}} = 29.56\,$Hz. & \textbf{Resolved honestly:} H3 reported refuted; exploratory 20\,Hz H3b logged in \texttt{DEVIATIONS.md}. \\
+F01 & \texttt{conflict} & Unformed LLC name \& copyright conflict. & Older templates cited ``0thernes LLC'' while Nov~22 Playbook flagged no LLC exists yet. & \textbf{Resolved (R8 / ADR~0001):} Independent Researcher + Apache-2.0 / CC-BY-4.0. \\
+F02 & \texttt{bug} & Unseeded \texttt{Math.random()} \& raw JSON crash in HTML v9. & Non-deterministic fusion runs and unhandled \texttt{SyntaxError} on malformed trace input. & \textbf{Resolved:} Mulberry32 + \texttt{ChaCha8Rng} + \texttt{TraceParseError} + regression tests. \\
+F03 & \texttt{error} & Rat (374) vs.\ Human (1,500--3,500) vesicle conflation. & Rat synaptosome constant used under a human bouton heading. & \textbf{Resolved:} Explicit Rat baseline + Human L1/L4/L5 presets with Lean conservation (T09). \\
+F04 & \texttt{issue} & Missing legacy \texttt{4163\_audit.jpg} \& absent proofs/videos. & Prototype referenced non-existent file and shipped no formal proofs or videos. & \textbf{Resolved:} Deterministic blueprint, figs~1--5, GIF, 2 MP4s, and 18 Lean theorems. \\
+F05 & \texttt{problem} & Windows bracketed-path \& CRLF newline tooling failures. & \texttt{New-Repo.ps1} lacked \texttt{-LiteralPath}; \texttt{Audit-Repo.ps1} .NET CWD bug; CRLF CSV hashes. & \textbf{Resolved:} Fixed \texttt{Audit-Repo.ps1}, enforced LF in \texttt{stats\_experiments.py}, documented trap. \\
+F06 & \texttt{problem} & Cloud image-gen 503 capacity \& Windows lack of \texttt{bwrap}. & External service throttling and OS sandbox unavailability. & \textbf{Resolved:} Deterministic Python renderer + Ubuntu CI 6-kernel \texttt{lake comparator}. \\
+F07 & \texttt{dilemma} & Pure Lean core vs.\ float64 RK4 ODE \& MC approximations. & Nonlinear 4D HH trajectories use float64 RK4 rather than formal interval ODE proofs. & \textbf{Resolved / Bounded (ADR~0003):} Pure Lean 6-kernel core + 50-digit oracle + \texttt{numerical\_approximation} tag. \\
+F08 & \texttt{dilemma} & Nanoscale fidelity vs.\ cortex scale \& static Pages vs.\ API. & $10^{14}$ boutons $\times 3\times 10^5$ proteins exceeds exascale by $>10^9\times$; static hosting constraint. & \textbf{Resolved / Bounded:} Multi-scale boundary handoffs + dual-mode Pages / local FastAPI \texttt{/healthz}. \\
+F09 & \texttt{error} & Pre-registered H3 (40\,Hz) exceeded $f_{\mathrm{crit,mito}}$. & Assumed mitochondria sustain 40\,Hz, overlooking $f_{\mathrm{crit,mito}} = 29.5625\,$Hz. & \textbf{Resolved honestly:} H3 reported refuted (C05 / \texttt{ERRATA.md}); exploratory 20\,Hz H3b in \texttt{DEVIATIONS.md}. \\
+F10 & \texttt{issue} & Consciousness gap, dependency alerts \& Playbook hardening. & Sentience remains formally unproved; post-v1.0.0 audit flagged \texttt{pillow}/\texttt{vite} alerts, missing \texttt{ERRATA.md}/DOI/RFC-3161/module headers, R1 vs.\ signing. & \textbf{Handled (v1.1.0):} Upgraded deps (0 npm alerts), added Palomar \texttt{module} headers, 23/23 live Crossref audit, RFC~3161 \texttt{MANIFEST.sha256}, \texttt{Dockerfile}, ADR~0005; sentience explicitly bounded. \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\section{AI-Contribution Statement, Licensing, and Availability}
+\section{AI-Contribution Statement, Licensing, and Provenance}
 
-Author: Alexander Stephen Donahue (ORCID \href{https://orcid.org/0009-0006-8168-9648}{0009-0006-8168-9648}), Independent Researcher, Spokane, WA, USA. Human CRediT roles: Conceptualization; Methodology; Formal analysis (epistemic boundary and statement-fidelity audit); Validation; Writing -- review \& editing. AI tools used: Antigravity (Google DeepMind) assisted with synthesis, Lean~4 proof drafting, and LaTeX preparation on November 23, 2026. No AI system is listed as an author; the author assumes full responsibility for all claims. Conflict of Interest: none declared. All code and proofs are released under Apache-2.0 and all manuscripts, figures, and videos under CC-BY-4.0 at \url{https://github.com/0thernes/human-synapse-bouton-lab}.
+Author: Alexander Stephen Donahue (ORCID \href{https://orcid.org/0009-0006-8168-9648}{0009-0006-8168-9648}), Independent Researcher, Spokane, WA, USA. Human CRediT roles: Conceptualization; Methodology; Formal analysis (epistemic boundary and statement-fidelity audit); Validation; Writing -- review \& editing. AI tools used: Antigravity (Google DeepMind) assisted with synthesis, Lean~4 proof drafting, and LaTeX preparation on November 23, 2026. No AI system is listed as an author; the author assumes full responsibility for all claims. Conflict of Interest: none declared. All 23 bibliography entries pass live Crossref DOI and retraction verification (\texttt{docs/citation-audit.json}). Code and Lean proofs are licensed under Apache-2.0; manuscripts, figures, datasets, and videos under CC-BY-4.0 at \url{https://github.com/0thernes/human-synapse-bouton-lab}, live workbench at \url{https://0thernes.github.io/human-synapse-bouton-lab/}, and Software Heritage snapshot \nolinkurl{swh:1:snp:1a278fff55465dbe8d0b870408b6468822eb3e8b}.
 
 \bibliographystyle{plain}
 \bibliography{../references}

@@ -5,8 +5,10 @@
 -- Every theorem must use only standard Lean axioms subset of [propext, Classical.choice, Quot.sound]
 -- (and zero custom axioms / zero Lean.ofReduceBool / zero sorryAx).
 
-import Solution
-import NonVacuity
+module
+
+public import Solution
+public import NonVacuity
 
 #print axioms SynapseBouton.hill4_unit_interval
 #print axioms SynapseBouton.hill4_half_max_exact

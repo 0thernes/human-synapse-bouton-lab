@@ -8,3 +8,4 @@ Immutable log of major architectural, legal, and scientific design decisions (Bu
 | [0002](0002-multi-language-oracle-and-differential-testing.md) | Four-Language Architecture with 50-Digit Oracle and 1,000-Case Differential Testing | Accepted | 2026-11-23 |
 | [0003](0003-pure-lean-4-35-zero-mathlib-proofs.md) | Pure Lean 4.35.0 Zero-Mathlib Formal Proofs for Multi-Kernel Replay | Accepted | 2026-11-23 |
 | [0004](0004-preregistered-monte-carlo-and-honest-refutation.md) | Pre-Registered 30-Seed Monte Carlo Protocol and Transparent Refutation Policy | Accepted | 2026-11-23 |
+| [0005](0005-commit-signing-and-zero-gate-precedence.md) | Commit/Tag Signing vs. Zero-Gate Build Standard Precedence | Accepted | 2026-11-23 |

@@ -60,4 +60,5 @@ Please open an issue using the **Replication report** form (`.github/ISSUE_TEMPL
 
 | Date | Operator / Environment | Commit | Outcome | Notes |
 |---|---|---|---|---|
-| 2026-11-23 | Clean-clone isolated verification (`ubuntu-latest`, GitHub Actions CI + local clean temp clone on Windows x86_64) | `v1.0.0` | Verified | All 4 stacks (Lean 4.35.0, TS, Rust, Python) built, tested, and reproduced `data/experiments/stats_summary.json` identically from clean checkout. |
+| 2026-11-23 | Clean-clone isolated verification (`ubuntu-latest`, `macos-latest`, `windows-latest` GitHub Actions CI run `45218417682`) | `v1.0.0` (`6bdb7d5`) | Verified | All 4 stacks (6-kernel Lean 4.35.0 `lake comparator --paranoid`, TS, Rust, Python 1,000-case differential) passed 12/12 CI jobs; Build Standard v1.1.0 scored 100.0% (79/79). |
+| 2026-11-23 | Isolated clean local clone (`_tmp_clean_repl`, Windows x86_64) + GitHub Actions CI (`v1.1.0`) | `v1.1.0` | Verified | Clean clone verified `sha256sum -c MANIFEST.sha256`, `lake build --wfail` (Palomar `module` headers), `npm ci && npm run build && npm test`, `cargo test --locked`, and `uv run pytest`. |

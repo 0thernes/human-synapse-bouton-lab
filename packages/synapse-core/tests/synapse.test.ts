@@ -6,6 +6,7 @@ import fc from 'fast-check';
 import {
   BOUTON_PRESETS,
   BiophysicsValidationError,
+  CLASSIFIED_FINDINGS,
   CONSTANTS,
   OPEN_HARD_PROBLEMS,
   TraceParseError,
@@ -241,5 +242,12 @@ describe('Metamorphic & Golden Tests (B08, B14)', () => {
 
     expect(classifyEndocytosisMode(37)).toContain('Ultrafast');
     expect(CONSTANTS.DEBYE_LENGTH_NM).toBe(0.79);
+  });
+
+  it('canonical F01-F10 findings ledger covers all 10 IDs and all 6 finding classes', () => {
+    const ids = CLASSIFIED_FINDINGS.map((f) => f.id);
+    expect(ids).toEqual(['F01', 'F02', 'F03', 'F04', 'F05', 'F06', 'F07', 'F08', 'F09', 'F10']);
+    const classes = new Set(CLASSIFIED_FINDINGS.map((f) => f.findingClass));
+    expect(classes).toEqual(new Set(['bug', 'error', 'issue', 'problem', 'dilemma', 'conflict']));
   });
 });

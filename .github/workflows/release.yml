@@ -37,6 +37,9 @@ jobs:
           fi
           git archive --format=tar.gz --prefix="$name-$GITHUB_REF_NAME/" -o "dist/$name-$GITHUB_REF_NAME-source.tar.gz" "$GITHUB_REF_NAME"
           git archive --format=zip --prefix="$name-$GITHUB_REF_NAME/" -o "dist/$name-$GITHUB_REF_NAME-source.zip" "$GITHUB_REF_NAME"
+          cp docs/lean-axioms-report.txt dist/lean-axioms-report.txt
+          [ -f MANIFEST.sha256 ] && cp MANIFEST.sha256 dist/MANIFEST.sha256 || true
+          [ -f MANIFEST.sha256.tsr ] && cp MANIFEST.sha256.tsr dist/MANIFEST.sha256.tsr || true
 
       - name: SHA256SUMS
         working-directory: dist

@@ -23,5 +23,17 @@
     "open problems",
     "consciousness indicators"
   ],
-  "notes": "Dual-licensed: Apache-2.0 for source code; CC-BY-4.0 for manuscripts, documentation, datasets, figures, and videos. Preprint artifacts; not peer-reviewed."
+  "related_identifiers": [
+    {
+      "identifier": "https://archive.softwareheritage.org/swh:1:snp:1a278fff55465dbe8d0b870408b6468822eb3e8b",
+      "relation": "isIdenticalTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/0thernes/0thernes-research-archive",
+      "relation": "isPartOf",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Dual-licensed: Apache-2.0 for source code; CC-BY-4.0 for manuscripts, documentation, datasets, figures, and videos. Preprint artifacts; not peer-reviewed. Software Heritage SWHID: swh:1:snp:1a278fff55465dbe8d0b870408b6468822eb3e8b."
 }

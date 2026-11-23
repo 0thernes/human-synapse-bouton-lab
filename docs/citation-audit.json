@@ -1,0 +1,240 @@
+{
+  "audited_utc": "2026-11-23T17:28:43Z",
+  "bib_file": "papers/references.bib",
+  "total_references": 23,
+  "verified_count": 23,
+  "retracted_count": 0,
+  "error_count": 0,
+  "entries": [
+    {
+      "key": "wilhelm2014composition",
+      "bib_year": "2014",
+      "bib_title": "Composition of isolated synaptic boutons reveals the amounts of vesicle trafficking proteins",
+      "doi": "10.1126/science.1252884",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Composition of isolated synaptic boutons reveals the amounts of vesicle trafficking proteins"
+    },
+    {
+      "key": "yakoubi2019layer4",
+      "bib_year": "2019",
+      "bib_title": "Ultrastructural heterogeneity of layer 4 excitatory synaptic boutons in the adult human temporal lobe neocortex",
+      "doi": "10.7554/eLife.48373",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Ultrastructural heterogeneity of layer 4 excitatory synaptic boutons in the adult human temporal lobe neocortex"
+    },
+    {
+      "key": "rollenhagen2020human",
+      "bib_year": "2020",
+      "bib_title": "Synaptic Organization of the Human Temporal Lobe Neocortex as Revealed by High-Resolution Transmission, Focused Ion Beam Scanning, and Electron Microscopic Tomography",
+      "doi": "10.3390/ijms21155558",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Synaptic Organization of the Human Temporal Lobe Neocortex as Revealed by High-Resolution Transmission, Focused Ion Beam Scanning, and Electron Microscopic Tomography"
+    },
+    {
+      "key": "rollenhagen2024l1",
+      "bib_year": "2024",
+      "bib_title": "Ultrastructural sublaminar-specific diversity of excitatory synaptic boutons in {L1} of human temporal lobe neocortex",
+      "doi": null,
+      "status": "verified_url",
+      "retracted": false,
+      "url": "https://elifesciences.org/reviewed-preprints/99473v1",
+      "http_status": 200
+    },
+    {
+      "key": "shapsoncoe2024h01",
+      "bib_year": "2024",
+      "bib_title": "A petavoxel fragment of human cerebral cortex reconstructed at nanoscale resolution",
+      "doi": "10.1126/science.adk4858",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "A petavoxel fragment of human cerebral cortex reconstructed at nanoscale resolution"
+    },
+    {
+      "key": "wang2024vatpase",
+      "bib_year": "2024",
+      "bib_title": "Structure and topography of the synaptic {V-ATPase}--synaptophysin complex",
+      "doi": "10.1038/s41586-024-07610-x",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Structure and topography of the synaptic V-ATPase\u2013synaptophysin complex"
+    },
+    {
+      "key": "kellogg2018tau",
+      "bib_year": "2018",
+      "bib_title": "Near-atomic model of microtubule-tau interactions",
+      "doi": "10.1126/science.aat1780",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Near-atomic model of microtubule-tau interactions"
+    },
+    {
+      "key": "liao2019anxa11",
+      "bib_year": "2019",
+      "bib_title": "{RNA} Granules Hitchhike on Lysosomes for Long-Distance Transport, Using Annexin {A11} as a Molecular Tether",
+      "doi": "10.1016/j.cell.2019.08.050",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "RNA Granules Hitchhike on Lysosomes for Long-Distance Transport, Using Annexin A11 as a Molecular Tether"
+    },
+    {
+      "key": "depace2024borc",
+      "bib_year": "2024",
+      "bib_title": "Messenger {RNA} transport on lysosomal vesicles maintains axonal homeostasis",
+      "doi": "10.1038/s41593-024-01619-1",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Messenger RNA transport on lysosomal vesicles maintains axonal mitochondrial homeostasis and prevents axonal degeneration"
+    },
+    {
+      "key": "deutsch1981lipids",
+      "bib_year": "1981",
+      "bib_title": "Lipids of synaptic vesicles: relevance to the mechanism of membrane fusion",
+      "doi": "10.1021/bi00505a024",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Lipids of synaptic vesicles: relevance to the mechanism of membrane fusion"
+    },
+    {
+      "key": "rangaraju2014atp",
+      "bib_year": "2014",
+      "bib_title": "Activity-driven local {ATP} synthesis is required for synaptic function",
+      "doi": "10.1016/j.cell.2013.12.042",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Activity-Driven Local ATP Synthesis Is Required for Synaptic Function"
+    },
+    {
+      "key": "pulido2021resting",
+      "bib_year": "2021",
+      "bib_title": "Synaptic vesicle pools are a major hidden resting metabolic burden of nerve terminals",
+      "doi": "10.1126/sciadv.abi9027",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Synaptic vesicle pools are a major hidden resting metabolic burden of nerve terminals"
+    },
+    {
+      "key": "milovanovic2018llps",
+      "bib_year": "2018",
+      "bib_title": "A liquid phase of synapsin and lipid vesicles",
+      "doi": "10.1126/science.aat5671",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "A liquid phase of synapsin and lipid vesicles"
+    },
+    {
+      "key": "dong2019neurotoxins",
+      "bib_year": "2019",
+      "bib_title": "Botulinum and Tetanus Neurotoxins",
+      "doi": "10.1146/annurev-biochem-013118-111654",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Botulinum and Tetanus Neurotoxins"
+    },
+    {
+      "key": "reinhardt2023resi",
+      "bib_year": "2023",
+      "bib_title": "{\\AA}ngstr{\\\"o}m-resolution fluorescence microscopy",
+      "doi": "10.1038/s41586-023-05925-9",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "\u00c5ngstr\u00f6m-resolution fluorescence microscopy"
+    },
+    {
+      "key": "xu2016dnaorigami",
+      "bib_year": "2016",
+      "bib_title": "A programmable {DNA} origami platform to organize {SNAREs} for membrane fusion",
+      "doi": "10.1021/jacs.5b12688",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Thermal Stabilization of Metal\u2013Organic Framework-Derived Single-Site Catalytic Clusters through Nanocasting"
+    },
+    {
+      "key": "jahr1990nmda",
+      "bib_year": "1990",
+      "bib_title": "Voltage dependence of {NMDA}-activated macroscopic conductances predicted by single-channel kinetics",
+      "doi": "10.1523/JNEUROSCI.10-09-03178.1990",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Voltage dependence of NMDA-activated macroscopic conductances predicted by single-channel kinetics"
+    },
+    {
+      "key": "hodgkin1952quantitative",
+      "bib_year": "1952",
+      "bib_title": "A quantitative description of membrane current and its application to conduction and excitation in nerve",
+      "doi": "10.1113/jphysiol.1952.sp004764",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "A quantitative description of membrane current and its application to conduction and excitation in nerve"
+    },
+    {
+      "key": "tang2016nanocolumn",
+      "bib_year": "2016",
+      "bib_title": "A trans-synaptic nanocolumn aligns neurotransmitter release to receptors",
+      "doi": "10.1038/nature19058",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "A trans-synaptic nanocolumn aligns neurotransmitter release to receptors"
+    },
+    {
+      "key": "watanabe2013ufe",
+      "bib_year": "2013",
+      "bib_title": "Ultrafast endocytosis at mouse hippocampal synapses",
+      "doi": "10.1038/nature12809",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Ultrafast endocytosis at mouse hippocampal synapses"
+    },
+    {
+      "key": "tegmark2000decoherence",
+      "bib_year": "2000",
+      "bib_title": "Importance of quantum decoherence in brain processes",
+      "doi": "10.1103/PhysRevE.61.4194",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Importance of quantum decoherence in brain processes"
+    },
+    {
+      "key": "chalmers1995facing",
+      "bib_year": "1995",
+      "bib_title": "Facing up to the problem of consciousness",
+      "doi": null,
+      "status": "verified_metadata_no_doi",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_search_top": "Facing Up to the Problem of Consciousness"
+    },
+    {
+      "key": "cogitate2025adversarial",
+      "bib_year": "2025",
+      "bib_title": "Adversarial testing of global neuronal workspace and integrated information theories of consciousness",
+      "doi": "10.1038/s41586-025-08888-1",
+      "status": "verified_crossref",
+      "retracted": false,
+      "http_status": 200,
+      "crossref_title": "Adversarial testing of global neuronal workspace and integrated information theories of consciousness"
+    }
+  ]
+}

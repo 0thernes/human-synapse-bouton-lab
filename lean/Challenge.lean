@@ -5,17 +5,21 @@
 -- Every theorem statement here uses exact integer/natural arithmetic with zero floating-point
 -- approximations and zero external library dependencies.
 
+module
+
+public section
+
 namespace SynapseBouton
 
 /-- Exact numerator and denominator components of Hill n=4 release probability P_r = c^4 / (c^4 + Kd^4). -/
-def pow4 (x : Nat) : Nat := x * x * x * x
+@[expose] def pow4 (x : Nat) : Nat := x * x * x * x
 
 /-- Conductance-weighted steady-state numerator: gL*eL + gE*eE + gI*eI. -/
-def eiNum (gL gE gI eL eE eI : Int) : Int :=
+@[expose] def eiNum (gL gE gI eL eE eI : Int) : Int :=
   gL * eL + gE * eE + gI * eI
 
 /-- Total postsynaptic conductance denominator: gL + gE + gI. -/
-def eiDen (gL gE gI : Int) : Int :=
+@[expose] def eiDen (gL gE gI : Int) : Int :=
   gL + gE + gI
 
 /-- Presynaptic vesicle pool state (RRP, Recycling Pool, Reserve/Resting Pool). -/
@@ -25,34 +29,34 @@ structure VesiclePools where
   reserve : Nat
   deriving DecidableEq, Repr
 
-def VesiclePools.total (p : VesiclePools) : Nat :=
+@[expose] def VesiclePools.total (p : VesiclePools) : Nat :=
   p.rrp + p.recycling + p.reserve
 
 /-- Conservative single-step vesicle pool transition:
     `exo` vesicles move from RRP -> Recycling (fused & rapidly recaptured),
     `prime` vesicles move from Recycling -> RRP,
     `mob` vesicles move from Reserve -> Recycling. -/
-def stepVesiclePools (p : VesiclePools) (exo prime mob : Nat) : VesiclePools :=
+@[expose] def stepVesiclePools (p : VesiclePools) (exo prime mob : Nat) : VesiclePools :=
   { rrp := p.rrp - exo + prime
     recycling := p.recycling + exo - prime + mob
     reserve := p.reserve - mob }
 
 /-- Integer-scaled SNAREpin zippering energy (in tenths of k_B T): 115 * nSnare = 11.5 * nSnare k_B T. -/
-def snareZipTenthKbt (nSnare : Nat) : Int :=
+@[expose] def snareZipTenthKbt (nSnare : Nat) : Int :=
   115 * (nSnare : Int)
 
 /-- Integer-scaled unclamped SNARE effective barrier (in fiftieths of k_B T for exact 1/5 Syt1 division):
     Matches `FUSION_BARRIER_KBT (28.0) + (clamp - (nCa/5)*clamp) - 2.4*nCa - 3.2*(nSnare - 1)` scaled by 50. -/
-def snareRawBarrier50 (nSnare nCa clampTenth : Nat) : Int :=
+@[expose] def snareRawBarrier50 (nSnare nCa clampTenth : Nat) : Int :=
   1400 + (5 - (nCa : Int)) * (clampTenth : Int) - 120 * (nCa : Int) - 160 * ((nSnare : Int) - 1)
 
 /-- Clamped effective barrier in fiftieths of k_B T with lower floor 60 (= 1.2 k_B T). -/
-def snareEffBarrier50 (nSnare nCa clampTenth : Nat) : Int :=
+@[expose] def snareEffBarrier50 (nSnare nCa clampTenth : Nat) : Int :=
   max 60 (snareRawBarrier50 nSnare nCa clampTenth)
 
 /-- Exact 2x2 discrete bipartite coupling determinant |w00*w11 - w01*w10| measuring
     departure from statistical/causal factorization on a finite bipartition. -/
-def bipartiteCoupling (w00 w01 w10 w11 : Int) : Int :=
+@[expose] def bipartiteCoupling (w00 w01 w10 w11 : Int) : Int :=
   Int.ofNat (Int.natAbs (w00 * w11 - w01 * w10))
 
 -- ============================================================================
@@ -151,3 +155,5 @@ theorem correlated_nanocolumn_positive_integration (w00 w01 w10 w11 : Int)
     bipartiteCoupling w00 w01 w10 w11 > 0 := by sorry
 
 end SynapseBouton
+
+end

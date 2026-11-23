@@ -47,6 +47,11 @@ jobs:
           lake env con-leche .lake/solution.ndjson
           lake check --paranoid || lake check --paranoid --inadvisably-no-sandbox
           lake comparator --config comparator.json --paranoid || lake comparator --config comparator.json --paranoid --inadvisably-no-sandbox
+      - name: Upload Lean axiom report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-axioms-report
+          path: lean-axioms-ci.txt
 
   node:
     name: TypeScript & WebGL Build (${{ matrix.os }})

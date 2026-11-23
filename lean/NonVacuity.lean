@@ -4,7 +4,11 @@
 -- Non-vacuity witness suite: exhibits concrete physiological instances satisfying every
 -- hypothesis bundle of every headline theorem in Solution.lean (Defensible Playbook §1).
 
-import Solution
+module
+
+public import Solution
+
+public section
 
 namespace SynapseBouton.NonVacuity
 
@@ -97,3 +101,5 @@ theorem witness_correlated_nanocolumn :
   correlated_nanocolumn_positive_integration 85 15 10 90 (by omega)
 
 end SynapseBouton.NonVacuity
+
+end
