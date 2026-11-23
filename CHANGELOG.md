@@ -4,6 +4,16 @@ All notable changes to `human-synapse-bouton-lab` are documented here following 
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-11-23
+
+### Added
+- **Palomar Registry Submission (`submission_id: 68sy455wsdm5`):** Upgraded `lean/formalization.yaml` to the official `v0.4` `mathlib-initiative/formalization.yaml` schema, added `.github/workflows/palomar-preflight.yml`, passed official Palomar mechanical preflight (`45240756860` on `4c0211a`), and submitted via Palomar's sanctioned 5-step `gh` API verification.
+- **Peer & Replication Outreach Kits:** Added `docs/outreach-drafts.md` (Lean Zulip technical review post, 5-sentence arXiv endorsement email, PCI Neuroscience / PREreview blurb, and replication form link).
+- **Zenodo DataCite DOI Minting & ORCID Cleanup:** Enabled Zenodo GitHub integration for automatic CERN DataCite DOI archival on this release, uploaded `social-preview.png` to GitHub repository settings, and updated ORCID `0009-0006-8168-9648` biography to `Independent Researcher, Spokane, WA, USA`.
+
+### Fixed
+- **Canonical SPDX `LICENSE` Detection:** Replaced root `LICENSE` with verbatim canonical Apache-2.0 text and moved the CC-BY-4.0 content license notice to `docs/LICENSE-CONTENT.md` so GitHub and Palomar `licensee` unambiguously detect `Apache-2.0`.
+
 ## [1.1.0] - 2026-11-23
 
 ### Added
