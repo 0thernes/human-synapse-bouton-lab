@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       bash bubblewrap build-essential ca-certificates curl git pkg-config python3 python3-venv xz-utils \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js 22 LTS, uv, Rust stable, and Lean 4.35.0 (pinned by lean/lean-toolchain)
-RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+# Install Node.js 24 LTS, uv, Rust stable, and Lean 4.35.0 (pinned by lean/lean-toolchain)
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/* \
     && curl -LsSf https://astral.sh/uv/install.sh | sh \
