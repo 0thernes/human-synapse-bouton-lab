@@ -10,14 +10,14 @@ public section
 
 namespace SynapseBouton
 
-/-- Exact fourth power x^4 used in Hill n=4 release probability P_r = c^4 / (c^4 + Kd^4). -/
+/-- Exact fourth power `x^4` used in Hill `n = 4` release probability `P_r(c) = c^4 / (c^4 + Kd^4)`. -/
 @[expose] def pow4 (x : Nat) : Nat := x * x * x * x
 
-/-- Conductance-weighted steady-state numerator: gL*eL + gE*eE + gI*eI. -/
+/-- Conductance-weighted steady-state numerator: `gL*eL + gE*eE + gI*eI`. -/
 @[expose] def eiNum (gL gE gI eL eE eI : Int) : Int :=
   gL * eL + gE * eE + gI * eI
 
-/-- Total postsynaptic conductance denominator: gL + gE + gI. -/
+/-- Total postsynaptic conductance denominator: `gL + gE + gI`. -/
 @[expose] def eiDen (gL gE gI : Int) : Int :=
   gL + gE + gI
 
@@ -37,19 +37,24 @@ structure VesiclePools where
     recycling := p.recycling + exo - prime + mob
     reserve := p.reserve - mob }
 
-/-- Integer-scaled SNAREpin zippering energy (in tenths of k_B T). -/
+/-- Nonnegative clamped local ATP store after duration `t` under constant supply `sAtp`
+    and total consumption rate `bLeak + f * cAp` (clamped at 0 via `Nat` subtraction). -/
+@[expose] def atpStoreAfter (a0 bLeak f cAp sAtp t : Nat) : Nat :=
+  (a0 + sAtp * t) - (bLeak + f * cAp) * t
+
+/-- Integer-scaled SNAREpin zippering energy (in tenths of `k_B T`). -/
 @[expose] def snareZipTenthKbt (nSnare : Nat) : Int :=
   115 * (nSnare : Int)
 
-/-- Integer-scaled unclamped SNARE effective barrier (in fiftieths of k_B T). -/
+/-- Integer-scaled unclamped SNARE effective barrier (in fiftieths of `k_B T`). -/
 @[expose] def snareRawBarrier50 (nSnare nCa clampTenth : Nat) : Int :=
   1400 + (5 - (nCa : Int)) * (clampTenth : Int) - 120 * (nCa : Int) - 160 * ((nSnare : Int) - 1)
 
-/-- Clamped effective barrier in fiftieths of k_B T with lower floor 60 (= 1.2 k_B T). -/
+/-- Clamped effective barrier in fiftieths of `k_B T` with lower floor 60 (`= 1.2 k_B T`). -/
 @[expose] def snareEffBarrier50 (nSnare nCa clampTenth : Nat) : Int :=
   max 60 (snareRawBarrier50 nSnare nCa clampTenth)
 
-/-- Exact 2x2 discrete bipartite coupling determinant |w00*w11 - w01*w10|. -/
+/-- Exact 2x2 discrete weight-table cross-coupling determinant `|w00*w11 - w01*w10|`. -/
 @[expose] def bipartiteCoupling (w00 w01 w10 w11 : Int) : Int :=
   Int.ofNat (Int.natAbs (w00 * w11 - w01 * w10))
 
@@ -95,8 +100,9 @@ theorem hill4_strict_monotone (c1 c2 kd : Nat) (hc : c1 < c2) (hkd : kd > 0) :
   rw [Nat.mul_add, Nat.mul_add, hcomm]
   exact Nat.add_lt_add_left hmul (pow4 c2 * pow4 c1)
 
-theorem hill4_resting_noise_floor (c kd : Nat) (h : 3 * c ≤ kd) :
-    82 * pow4 c ≤ pow4 c + pow4 kd := by
+theorem hill4_resting_noise_floor (c kd : Nat) (hkd : kd > 0) (h : 3 * c ≤ kd) :
+    0 < pow4 c + pow4 kd ∧ 82 * pow4 c ≤ pow4 c + pow4 kd := by
+  have hpos : pow4 kd > 0 := pow4_pos hkd
   have hle : pow4 (3 * c) ≤ pow4 kd := pow4_le_pow4 h
   have h81 : pow4 (3 * c) = 81 * pow4 c := by
     unfold pow4
@@ -104,22 +110,28 @@ theorem hill4_resting_noise_floor (c kd : Nat) (h : 3 * c ≤ kd) :
       simp [Nat.mul_assoc, Nat.mul_left_comm, Nat.mul_comm]
     exact this
   rw [h81] at hle
-  omega
+  constructor <;> omega
 
-theorem hill4_ultrasensitive_doubling (kd : Nat) :
-    2 * pow4 (2 * kd) * (pow4 kd + pow4 (2 * kd)) =
-      17 * pow4 kd * (pow4 (2 * kd) + pow4 (2 * kd)) := by
-  have h16 : pow4 (2 * kd) = 16 * pow4 kd := by
+theorem hill4_ultrasensitive_doubling (halfKd : Nat) (hh : halfKd > 0) :
+    0 < pow4 halfKd + pow4 (2 * halfKd) ∧
+      0 < pow4 (2 * halfKd) + pow4 (2 * halfKd) ∧
+      2 * pow4 (2 * halfKd) * (pow4 halfKd + pow4 (2 * halfKd)) =
+        17 * pow4 halfKd * (pow4 (2 * halfKd) + pow4 (2 * halfKd)) := by
+  have hpos : pow4 halfKd > 0 := pow4_pos hh
+  have h16 : pow4 (2 * halfKd) = 16 * pow4 halfKd := by
     unfold pow4
     simp [Nat.mul_assoc, Nat.mul_left_comm, Nat.mul_comm]
+  refine ⟨by rw [h16]; omega, by rw [h16]; omega, ?_⟩
   rw [h16]
-  have hleft : 2 * (16 * pow4 kd) * (pow4 kd + 16 * pow4 kd) = 544 * (pow4 kd * pow4 kd) := by
-    have hsum : pow4 kd + 16 * pow4 kd = 17 * pow4 kd := by omega
+  have hleft : 2 * (16 * pow4 halfKd) * (pow4 halfKd + 16 * pow4 halfKd) =
+      544 * (pow4 halfKd * pow4 halfKd) := by
+    have hsum : pow4 halfKd + 16 * pow4 halfKd = 17 * pow4 halfKd := by omega
     rw [hsum]
     simp [Nat.mul_left_comm, Nat.mul_comm]
     omega
-  have hright : 17 * pow4 kd * (16 * pow4 kd + 16 * pow4 kd) = 544 * (pow4 kd * pow4 kd) := by
-    have hsum : 16 * pow4 kd + 16 * pow4 kd = 32 * pow4 kd := by omega
+  have hright : 17 * pow4 halfKd * (16 * pow4 halfKd + 16 * pow4 halfKd) =
+      544 * (pow4 halfKd * pow4 halfKd) := by
+    have hsum : 16 * pow4 halfKd + 16 * pow4 halfKd = 32 * pow4 halfKd := by omega
     rw [hsum]
     simp [Nat.mul_left_comm, Nat.mul_comm]
     omega
@@ -171,11 +183,20 @@ theorem shunting_inhibition_strict_attenuation (gL gE gI eL eE eI : Int)
     omega
   omega
 
-theorem pure_shunting_divisive_identity (gL gE gI eL eE : Int) :
-    eiNum gL gE gI eL eE eL - eL * eiDen gL gE gI = gE * (eE - eL) := by
+theorem pure_shunting_divisive_identity (gL gE gI eL eE : Int)
+    (hgL : gL > 0) (hgE : gE > 0) (hgI : gI > 0) (hLE : eL < eE) :
+    0 < eiDen gL gE gI ∧
+      0 < gL + gE ∧
+      0 < gE * (eE - eL) ∧
+      eiNum gL gE gI eL eE eL - eL * eiDen gL gE gI = gE * (eE - eL) ∧
+      eiNum gL gE 0 eL eE eL - eL * (gL + gE) = gE * (eE - eL) := by
   unfold eiNum eiDen
-  simp [Int.mul_add, Int.mul_sub, Int.mul_comm]
-  omega
+  have hDrive : 0 < gE * (eE - eL) := Int.mul_pos hgE (Int.sub_pos.mpr hLE)
+  refine ⟨by omega, by omega, hDrive, ?_, ?_⟩
+  · simp [Int.mul_add, Int.mul_sub, Int.mul_comm]
+    omega
+  · simp [Int.mul_add, Int.mul_sub, Int.mul_comm]
+    omega
 
 -- ============================================================================
 -- DOMAIN III: Presynaptic Vesicle Conservation & Bioenergetics (4 Theorems)
@@ -191,14 +212,26 @@ theorem vesicle_pool_transition_invariant (p : VesiclePools) (exo prime mob : Na
   omega
 
 theorem atp_deficit_strict_depletion (a0 bLeak f cAp sAtp t : Nat)
-    (hDeficit : sAtp < bLeak + f * cAp) (ht : t > 0) :
-    a0 + sAtp * t < a0 + (bLeak + f * cAp) * t := by
+    (ha0 : a0 > 0) (hDeficit : sAtp < bLeak + f * cAp) (ht : t > 0) :
+    a0 + sAtp * t < a0 + (bLeak + f * cAp) * t ∧
+      atpStoreAfter a0 bLeak f cAp sAtp t < a0 := by
+  unfold atpStoreAfter
   have hmul : sAtp * t < (bLeak + f * cAp) * t := Nat.mul_lt_mul_of_pos_right hDeficit ht
-  omega
+  constructor <;> omega
 
 theorem resting_leak_strictly_lowers_sustainable_rate (bLeak f cAp sAtp : Nat)
-    (hLeak : bLeak > 0) (hSust : bLeak + f * cAp ≤ sAtp) :
-    f * cAp < sAtp := by
+    (hLeak : bLeak > 0) (hCap : cAp > 0) (hSust : bLeak + f * cAp ≤ sAtp) :
+    f * cAp < sAtp ∧
+      (sAtp - bLeak) * cAp < sAtp * cAp ∧
+      (cAp ≤ bLeak → (sAtp - bLeak) / cAp < sAtp / cAp) := by
+  have hSubLt : sAtp - bLeak < sAtp := by omega
+  have hRat : (sAtp - bLeak) * cAp < sAtp * cAp := Nat.mul_lt_mul_of_pos_right hSubLt hCap
+  refine ⟨by omega, hRat, ?_⟩
+  intro hGe
+  have hAddLe : sAtp - bLeak + cAp ≤ sAtp := by omega
+  have hDivStep : (sAtp - bLeak) / cAp + 1 = (sAtp - bLeak + cAp) / cAp := by
+    rw [Nat.add_div_right _ hCap]
+  have hDivLe : (sAtp - bLeak + cAp) / cAp ≤ sAtp / cAp := Nat.div_le_div_right hAddLe
   omega
 
 theorem kinesin_processive_atp_exact (steps : Nat) :
@@ -261,7 +294,7 @@ theorem resi_duty_cycle_monotone_in_imager (kOn kOff c1 c2 : Nat)
   exact Nat.add_lt_add_left h2 ((kOn * c2) * (kOn * c1))
 
 -- ============================================================================
--- DOMAIN VI: Bipartite Causal Integration / Consciousness-Indicator Bounds (2 Theorems)
+-- DOMAIN VI: 2x2 Discrete Bipartition Algebraic Factorization Bounds (2 Theorems)
 -- ============================================================================
 
 theorem factorized_bipartition_zero_integration (a0 a1 b0 b1 : Int) :

@@ -68,7 +68,7 @@ steps:
   P7.05: {status: done, note: "reports/security/2026-11-23-audit.md + CI gitleaks + osv-scanner + 0 Dependabot alerts"}
   P7.06: {status: done, note: "docs/accessibility.md + 3-OS CI matrix"}
   P7.07: {status: n/a, note: "No ML models trained or runtime AI inference"}
-  P7.08: {status: done, note: "docs/reviews/2026-11-23-redteam.md (10 passes) + Palomar verification 45241561032"}
+  P7.08: {status: done, note: "docs/reviews/2026-11-23-redteam.md (10 passes + v1.2.0 statement-fidelity hardening F15-F20)"}
   P7.09: {status: done, note: "LIMITATIONS.md + README Limitations"}
   P8.01: {status: done, note: ".github/workflows/ci.yml (informational, zero gates)"}
   P8.02: {status: done, note: "dist/ PDFs, tarballs, and apps/web/dist built reproducibly"}
@@ -96,7 +96,7 @@ steps:
   P10.06: {status: done, note: "docs/ops/cost.md + docs/cost-model.md ($0/mo static hosting + open public GitHub CI)"}
   P10.07: {status: done, note: "SECURITY.md + Private Vulnerability Reporting + 0 open Dependabot alerts"}
   P10.08: {status: done, note: "Status: active in README.md"}
-  P11.01: {status: done, note: "GitHub CI, Palomar 68sy455wsdm5, Zenodo DOI, Build Standard 100%"}
+  P11.01: {status: done, note: "GitHub 12-job CI (6 Lean kernels), Zenodo DOI, ORCID, SWHID, Build Standard 100%"}
   P11.02: {status: done, note: "GitHub Issues + replication.yml issue template"}
   P11.03: {status: done, note: "docs/plan/review-2026-11.md"}
   P11.04: {status: done, note: "docs/plan/experiments.md (PREREGISTRATION.md + DEVIATIONS.md)"}

@@ -10,7 +10,7 @@ authors:
     orcid: "https://orcid.org/0009-0006-8168-9648"
     email: "0_0@0thernes.art"
     affiliation: "Independent Researcher, Spokane, WA, USA"
-version: "1.1.2"
+version: "1.2.0"
 doi: "10.5281/zenodo.24477927"
 date-released: "2026-11-23"
 license: "Apache-2.0"
@@ -19,13 +19,13 @@ url: "https://0thernes.github.io/human-synapse-bouton-lab/"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.24477927"
-    description: "Zenodo concept DOI (all versions)"
+    description: "Zenodo concept DOI (always resolves to latest release)"
   - type: doi
-    value: "10.5281/zenodo.24477928"
-    description: "Zenodo version DOI (v1.1.1)"
+    value: "10.5281/zenodo.24478612"
+    description: "Zenodo version DOI (v1.1.2)"
   - type: swh
-    value: "swh:1:snp:458adcd73c9a78054486147094950e2be6774271"
-    description: "Software Heritage permanent archival snapshot (v1.1.0)"
+    value: "swh:1:snp:d922faec88e60f6f950f98eb6572b55f7b450bc7"
+    description: "Software Heritage permanent archival snapshot (v1.1.2)"
 keywords:
   - computational-neuroscience
   - synaptic-bouton

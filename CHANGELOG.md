@@ -4,6 +4,16 @@ All notable changes to `human-synapse-bouton-lab` are documented here following 
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-11-23
+
+### Changed (Lean 4.35.0 Statement-Fidelity & Positive-Domain Hardening — `ERRATA.md` `E05`)
+- **Hill $n=4$ Positive-Domain Guarantees (`F15`):** Added explicit `kd > 0` to `hill4_resting_noise_floor` and `halfKd > 0` (clarifying true dissociation constant $K_d = 2\,\text{halfKd}$ for $K_d/2 \to K_d$ doubling) to `hill4_ultrasensitive_doubling`, proving strict positivity of all denominators.
+- **Pure-Shunting Well-Definedness (`F16`):** Added `gL, gE, gI > 0` and `eL < eE` to `pure_shunting_divisive_identity`, certifying `0 < eiDen gL gE gI`, `0 < gL + gE`, and `0 < gE * (eE - eL)` alongside both cleared-denominator identities.
+- **Clamped Positive ATP Store Depletion (`F17`):** Added `atpStoreAfter`, required `a0 > 0` in `atp_deficit_strict_depletion`, and proved strict depletion of the nonnegative clamped store (`atpStoreAfter < a0`).
+- **Resting V-ATPase Leak Rational & Integer-Floor Rate Bounds (`F18`):** Added `cAp > 0` to `resting_leak_strictly_lowers_sustainable_rate`, proving BOTH exact rational critical-frequency reduction `(sAtp - bLeak) * cAp < sAtp * cAp` AND strict integer-floor reduction whenever `cAp ≤ bLeak`, plus a 20th concrete witness (`witness_resting_leak_integer_drop`) in `lean/NonVacuity.lean`.
+- **Observational $2\times 2$ Factorization Scope (`F19`):** Restricted Domain VI docstrings, `README.md`, `LIMITATIONS.md`, and White Papers 1 & 2 strictly to observational $2\times 2$ weight-table algebraic factorization (`= 0`) vs. strict diagonal product dominance (`> 0`), explicitly disclaiming interventional causality or geometric nanocolumn derivation inside Lean.
+- **Provenance & Verification Scope Clarity (`F20`):** Updated `lean/formalization.yaml` source relationships to `formalizes`/`adapts`, separated repository Ubuntu CI 6-kernel verification cleanly from external registries, and withdrew the earlier Palomar Registry submission prior to registration.
+
 ## [1.1.2] - 2026-11-23
 
 ### Added

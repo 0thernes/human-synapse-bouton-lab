@@ -5,8 +5,8 @@ Prepared per Build Pipeline Models v1.0.0 (`P2.05`). Next scheduled metric revie
 ## North-Star Metric
 
 - **Independent Verification & Archival Completeness Score:** Percentage of independent machine-verifiable reproducibility and integrity gates passing simultaneously across all 4 languages, 6 Lean kernels, Build Standard v1.1.0, cryptographic manifests, and external scholarly registries.
-  - **Target:** `100%` of automated internal gates green + live DOI, SWHID, ORCID, and Palomar Registry acceptance.
-  - **Current Measured Value (2026-11-23):** Internal automated gates `100%` (12/12 CI jobs, 6/6 Lean kernels, 79/79 Build Standard, 0/2,000 differential errors, 6/6 mutants killed, 23/23 DOIs live, 0 open Dependabot alerts); Zenodo DOI (`10.5281/zenodo.24477928`), ORCID Works, and SWHID live; Palomar `68sy455wsdm5` passed mechanical verification (`45241561032`, awaiting editorial review).
+  - **Target:** `100%` of automated internal gates green + live Zenodo Concept/Version DOI, ORCID public works, Software Heritage SWHID, and `0thernes-research-archive` cryptographic verification.
+  - **Current Measured Value (2026-11-23):** Internal automated gates `100%` (12/12 CI jobs, 6/6 Lean kernels in repository CI, 79/79 Build Standard, 0/2,000 differential errors, 6/6 mutants killed, 23/23 DOIs live, 0 open Dependabot alerts); Zenodo Concept DOI (`10.5281/zenodo.24477927`), ORCID Works, Software Heritage, and `0thernes-research-archive` live. Pre-registration Palomar submission withdrawn prior to registration (scope targets pure mathematics rather than applied computational biophysics).
 
 ## Input Metrics
 

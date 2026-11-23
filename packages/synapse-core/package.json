@@ -1,6 +1,6 @@
 {
   "name": "@synapse/core",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Strict TypeScript biophysical computation, electrophysiology, SNARE thermodynamics, DNA-PAINT/RESI metrology, and 11-discipline open problems registry.",
   "license": "Apache-2.0",
   "type": "module",

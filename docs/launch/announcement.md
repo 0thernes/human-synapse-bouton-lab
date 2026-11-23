@@ -6,11 +6,11 @@ Prepared per Build Pipeline Models v1.0.0 (`P9.04`). Every quantitative claim be
 
 ## Short Summary (For Lean Zulip, Computational Neuroscience Lists & GitHub Release)
 
-**`human-synapse-bouton-lab` v1.1.2 — Formally Verified Human Synaptic Bouton Biophysics & 11-Discipline Open Hard Problems Workbench**
+**`human-synapse-bouton-lab` v1.2.0 — Formally Verified Human Synaptic Bouton Biophysics & 11-Discipline Open Hard Problems Workbench**
 
 We have published `human-synapse-bouton-lab` (`Apache-2.0` code & proofs; `CC-BY-4.0` manuscripts, figures, and datasets):
 
-- **Pure Lean 4.35.0 Proofs (`C01`):** 18 zero-Mathlib biophysical and discrete bipartite-coupling theorems (`0` `sorry`, `0` `Classical.choice`, `19` non-vacuity witnesses) verified across **6 independent kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda`, `con-leche`, `con-ron`) and mechanically verified by the Palomar Registry CI (`68sy455wsdm5`, run `45241561032`).
+- **Pure Lean 4.35.0 Proofs (`C01`):** 18 zero-Mathlib elementary biophysical and $2\times 2$ weight-table algebraic factorization invariants with explicit positive-domain guarantees (`0` `sorry`, `0` `Classical.choice`, `20` non-vacuity witnesses) verified across **6 independent kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda`, `con-leche`, `con-ron`) in public repository Ubuntu CI.
 - **Four-Language Differential Oracle (`C02`, `C08`):** Strict TypeScript, Rust (`ChaCha8Rng`, `5.94x` speedup over Node: `0.3093 ms` vs. `1.8362 ms`), and a 50-digit Python `mpmath`/rational oracle agree within `1e-10` across `2,000` cross-checks (`0` mismatches), with `6/6` targeted mutants killed.
 - **Pre-Registered 30-Seed Monte Carlo With Honest Refutation (`C03`–`C07`):** Committed `PREREGISTRATION.md` before execution. Trans-synaptic nanocolumn alignment (`H1`, `p_Holm = 0.0005`, Cliff's delta `+1.00`), tight `17 nm` `Ca2+` nanodomains (`H2`, `p_Holm = 0.0005`), and the disjoint-seed null control (`H4`, `p_Holm = 0.9963`) passed; pre-registered `40 Hz` mitochondrial sustenance (`H3`) was **honestly refuted** (`40 > 29.5625 Hz` critical ceiling) and preserved verbatim alongside a separately logged `20 Hz` exploratory follow-up (`H3b`).
 - **Two Reproducible AMS-LaTeX White Papers & Interactive 3D/2D Workbench:** Live 9-tab browser workbench, deterministic figures, animated GIF, and HD H.264 MP4 videos.
