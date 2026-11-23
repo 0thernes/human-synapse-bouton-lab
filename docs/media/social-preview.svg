@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
-  <!-- TODO(fill): replace with a real screenshot or result, export to a 1280x640 PNG under 1 MB, and upload it in Settings > Social preview. -->
-  <rect width="1280" height="640" fill="#0f172a"/>
-  <rect x="64" y="64" width="1152" height="512" rx="24" fill="#111827" stroke="#334155" stroke-width="2"/>
-  <text x="120" y="290" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="84" font-weight="700" fill="#f8fafc">human-synapse-bouton-lab</text>
-  <text x="120" y="370" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="34" fill="#94a3b8">Full-stack, formally verified human synaptic bouton biophysical workbench, Lean 4.35.0 proofs, stochastic Monte Carlo nanocolumn simulator, and 11-discipline open hard problems & consciousness frontier monograph.</text>
-  <text x="120" y="500" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="26" fill="#64748b">github.com/0thernes/human-synapse-bouton-lab</text>
-</svg>

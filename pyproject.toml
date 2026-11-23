@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "human-synapse-bouton-lab"
+version = "1.0.0"
+description = "Exact arbitrary-precision biophysical oracle, pre-registered Monte Carlo statistical suite, FastAPI backend, and deterministic media pipeline for human-synapse-bouton-lab."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+authors = [
+  { name = "Alexander Stephen Donahue", email = "0_0@0thernes.art" },
+]
+keywords = ["neuroscience", "biophysics", "synapse", "formal-verification", "monte-carlo"]
+dependencies = [
+  "fastapi>=0.115.0,<1.0",
+  "uvicorn>=0.32.0,<1.0",
+  "pydantic>=2.9.0,<3.0",
+  "pydantic-settings>=2.6.0,<3.0",
+  "numpy>=2.0.0,<3.0",
+  "scipy>=1.14.0,<2.0",
+  "sympy>=1.13.0,<2.0",
+  "mpmath>=1.3.0,<2.0",
+  "matplotlib>=3.9.0,<4.0",
+  "pillow>=10.4.0,<12.0",
+  "imageio>=2.36.0,<3.0",
+  "imageio-ffmpeg>=0.5.1,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0,<9.0",
+  "hypothesis>=6.115.0,<7.0",
+  "httpx>=0.27.0,<1.0",
+  "ruff>=0.8.0,<1.0",
+  "mypy>=1.13.0,<2.0",
+  "mutmut>=2.5.1,<4.0",
+]
+
+[project.scripts]
+synapse-api = "synapse_science.server:main"
+synapse-stats = "synapse_science.stats_experiments:main"
+synapse-media = "synapse_science.generate_media:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["python/synapse_science"]
+
+[tool.pytest.ini_options]
+testpaths = ["python/tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 128
+src = ["python"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_configs = true
+files = ["python/synapse_science"]
+
+[[tool.mypy.overrides]]
+module = ["mpmath.*", "imageio.*"]
+ignore_missing_imports = true

@@ -1,0 +1,19 @@
+title: "Formally Verified Human Synaptic Bouton Biophysical Invariants and Bipartite Integration Bounds"
+authors:
+  - name: "Alexander Stephen Donahue"
+    orcid: "0009-0006-8168-9648"
+    affiliation: "Independent Researcher, Spokane, WA, USA"
+repository: "https://github.com/0thernes/human-synapse-bouton-lab"
+license: "Apache-2.0"
+lean_toolchain: "leanprover/lean4:v4.35.0"
+challenge_file: "lean/Challenge.lean"
+solution_file: "lean/Solution.lean"
+non_vacuity_file: "lean/NonVacuity.lean"
+comparator_config: "lean/comparator.json"
+automation:
+  models:
+    - "Antigravity (Google DeepMind) — Lean 4 proof drafting & scaffolding"
+  human_role: "Problem selection, biophysical modeling scope, statement-fidelity audit, publication review, and final acceptance."
+  verification: "Lean 4.35.0 official kernel, leanchecker, lake check --paranoid, lake comparator --paranoid (leanchecker-paranoid, lean4lean, nanoda, con-leche, con-ron)"
+review_status: "Preprint; not externally peer-reviewed."
+limitations: "Formal theorems certify exact algebraic, monotonicity, conservation, and discrete bipartite-coupling invariants of the biophysical models; continuum PDE reaction-diffusion, Hodgkin-Huxley RK4 trajectories, and phenomenal consciousness remain outside the formal kernel proof scope."

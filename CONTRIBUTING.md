@@ -1,30 +1,26 @@
-# Contributing to human-synapse-bouton-lab
+# Contributing to `human-synapse-bouton-lab`
 
-Thanks for your interest. This is a one-person project run lean.
+This is a lean, one-person, AI-native scientific software and formal-verification repository governed by the **Build Standard for LLMs v1.1.0** (`docs/build-standard.md`).
 
-## Workflow
+## Direct-to-`main`, Zero-Gates Workflow (Hard Rules R1–R3)
 
-- Work goes straight to `main`. There are no pull-request gates, required checks, hooks or signing requirements, and none will be added.
-- CI runs on every push and is informational: a red run is a finding to fix in a follow-up commit, never a barrier.
-- Outside contributions: open an issue first (bug, feature or question form). Small fixes can be sent as a patch or fork link in the issue.
+- Work is committed and pushed **straight to `main`** (no feature branches, no pull-request merge gates, no git hooks, no required status checks).
+- CI runs on every push to `main` as **informational reporting**. A red CI job is fixed with a follow-up commit to `main`.
+- Use GitHub Issues (structured forms with the six finding classes: `bug`, `error`, `issue`, `problem`, `dilemma`, `conflict`) and Discussions for questions, critiques, replication reports, and proposals.
 
-## Setup and commands
+## Local Setup & Commands
 
 ```bash
-just setup   # install toolchain and dependencies
-just test    # run tests
-just lint    # linters and type checks, report-only
-just audit   # score the repo against the Build Standard
+bash scripts/dev.sh setup    # Install Node, Python (uv), Rust, and Lean dependencies
+bash scripts/dev.sh build    # Build TS/Vite, Rust release binary, and Lean 4.35.0 (--wfail)
+bash scripts/dev.sh test     # Run Vitest, Cargo proptest, Pytest + 1,000-case differential, Lean
+bash scripts/dev.sh lint     # Report-only ESLint, Clippy, Ruff, Mypy strict
+bash scripts/audit-repo.sh   # Score repo against the 90-item Build Standard
 ```
 
-Without `just`, run `bash scripts/dev.sh <setup|build|test|lint>` directly.
+## Scientific & Epistemic Standards
 
-## Expectations
-
-- Every behavior change comes with a test; every fixed bug gets a regression test named after its issue.
-- Every number or claim in the README has a row in [CLAIMS.md](CLAIMS.md).
-- Update [CHANGELOG.md](CHANGELOG.md) under Unreleased in the same commit.
-- Commit messages are short and imperative (for example `fix: reject empty config`).
-- Classify each finding as exactly one of bug, error, issue, problem, dilemma or conflict (definitions in [AGENTS.md](AGENTS.md)).
-
-AI agents: read [AGENTS.md](AGENTS.md) first.
+1. Never fabricate numbers, benchmarks, or citations (`R6`).
+2. Every quantitative claim added to `README.md` or a white paper must have a corresponding row in `CLAIMS.md` with an explicit falsification condition.
+3. Lean 4 proofs must contain zero `sorry`, zero `admit`, zero `native_decide`, zero custom axioms, and a concrete non-vacuity witness in `lean/NonVacuity.lean`.
+4. All commits carry real author identity and imperative commit messages (`feat:`, `fix:`, `docs:`, `test:`, `chore:`).

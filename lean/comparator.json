@@ -1,0 +1,30 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "SynapseBouton.hill4_unit_interval",
+    "SynapseBouton.hill4_half_max_exact",
+    "SynapseBouton.hill4_strict_monotone",
+    "SynapseBouton.hill4_resting_noise_floor",
+    "SynapseBouton.hill4_ultrasensitive_doubling",
+    "SynapseBouton.ei_steady_state_bounds",
+    "SynapseBouton.shunting_inhibition_strict_attenuation",
+    "SynapseBouton.pure_shunting_divisive_identity",
+    "SynapseBouton.vesicle_pool_transition_invariant",
+    "SynapseBouton.atp_deficit_strict_depletion",
+    "SynapseBouton.resting_leak_strictly_lowers_sustainable_rate",
+    "SynapseBouton.kinesin_processive_atp_exact",
+    "SynapseBouton.snare_barrier_monotone_in_syt1_ca",
+    "SynapseBouton.snare_copy_number_cooperativity",
+    "SynapseBouton.resi_variance_strict_improvement",
+    "SynapseBouton.resi_duty_cycle_monotone_in_imager",
+    "SynapseBouton.factorized_bipartition_zero_integration",
+    "SynapseBouton.correlated_nanocolumn_positive_integration"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

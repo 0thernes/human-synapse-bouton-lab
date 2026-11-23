@@ -1,7 +1,7 @@
 # Deviations Log
 
-Append-only record of any deviations from `PREREGISTRATION.md` (Build Standard B32 / Defensible AI Research Playbook §2).
+Append-only record of any deviations or post-hoc exploratory additions relative to `PREREGISTRATION.md` (committed at root SHA `a1919f2a8a002c0ef0f69cb065e4381bf045c6fd`, prior to execution). Build Standard B32 / Defensible AI Research Playbook §2.
 
-| Date | Pre-Reg Commit | Deviation | Rationale | Impact on Conclusions |
+| Date | Pre-Reg Commit | Deviation / Exploratory Addition | Rationale | Impact on Conclusions |
 |---|---|---|---|---|
-| 2026-11-23 | Initial preregistration commit | None | Executed exactly as pre-specified (`N=30` seeds, `1000..1029`, null control `2000..2029`, 10,000 permutations & bootstrap resamples, Holm–Bonferroni correction). | None |
+| 2026-11-23 | `a1919f2` | **Pre-registered H3 (40 Hz) retained verbatim and reported as REFUTED.** Added clearly labeled post-hoc exploratory arm `H3b_exploratory_20Hz` (`firing_rate_hz = 20 Hz`) in `stats_experiments.py` and `per_seed_results.csv`. | At 40 Hz, mean active + resting ATP burn is $4{,}000 + 40 \times 32{,}000 = 1{,}284{,}000\,\text{ATP/s}$, exceeding *both* glycolysis ($280{,}000\,\text{ATP/s}$, $f_{\text{crit}} = 8.625\,\text{Hz}$) and mitochondrial OxPhos ($950{,}000\,\text{ATP/s}$, $f_{\text{crit}} = 29.5625\,\text{Hz}$). Both arms therefore depleted to 0.0 over 60 s ($p_{\text{Holm}} = 1.0$, Cliff's $\delta = 0.0$), cleanly refuting our pre-registered 40 Hz directional prediction and empirically confirming Lean theorem `atp_deficit_strict_depletion`. | Pre-registered H3 is reported honestly as **REFUTED** in `CLAIMS.md` and White Paper 1. Exploratory `H3b` at 20 Hz (strictly inside the $8.625\text{–}29.5625\,\text{Hz}$ regime) is reported separately and explicitly marked **exploratory / post-hoc**. |

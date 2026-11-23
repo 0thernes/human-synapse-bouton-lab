@@ -1,0 +1,16 @@
+{
+  "locale": "en-US",
+  "title": "Human Synapse Bouton Lab",
+  "subtitle": "Formally verified nanoscale synaptic biophysics, deterministic 3D/2D exocytosis simulation, forensic structural audit, and an 11-discipline open hard problems & consciousness frontier workbench.",
+  "tabs": {
+    "sim": "1. Bouton Simulator & Videos",
+    "lab3d": "2. 3D WebGL Bouton",
+    "hh": "3. HH RK4, NMDAR & E/I",
+    "chem": "4. SNARE, Nernst & ATP",
+    "nano": "5. DNA-PAINT & RESI",
+    "audit": "6. Forensic Audit",
+    "verify": "7. Proofs & Literature",
+    "open-problems": "8. 11-Discipline Open Problems & Consciousness",
+    "findings": "9. Bugs, Errors, Conflicts & Gaps"
+  }
+}

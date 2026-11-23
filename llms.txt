@@ -1,20 +1,24 @@
 # human-synapse-bouton-lab
 
-> Full-stack, formally verified human synaptic bouton biophysical workbench, Lean 4.35.0 proofs, stochastic Monte Carlo nanocolumn simulator, and 11-discipline open hard problems & consciousness frontier monograph. Built and verified to the Build Standard for LLMs v1.1.0.
+> Full-stack, formally verified human synaptic bouton biophysical workbench (Lean 4.35.0, Rust, TypeScript, Python 50-digit oracle), pre-registered 30-seed Monte Carlo nanocolumn simulator, interactive 9-tab WebGL workbench, and two AMS-LaTeX white papers mapping 11 disciplines of open hard problems toward the consciousness frontier.
 
-Start with AGENTS.md for commands and rules. llms-full.txt contains everything in one file.
+## Agent & Governance Entry Points
 
-## Agent instructions
+- [AGENTS.md](AGENTS.md): Canonical instructions, commands, hard rules (R1–R8), six finding classes, and known traps
+- [README.md](README.md): Overview, verified Lean fidelity table, Monte Carlo summary, quickstart, and usage examples
+- [CLAIMS.md](CLAIMS.md): Numbered claims ledger with commands, tests, and refutation criteria
+- [LIMITATIONS.md](LIMITATIONS.md): Honest limits, untested paths, literal-vs-metaphor boundary, and corrections
+- [REPLICATION.md](REPLICATION.md): Clean-clone replication protocol and recorded replication log
+- [PREREGISTRATION.md](PREREGISTRATION.md): Pre-registered Monte Carlo hypotheses committed prior to execution
+- [DEVIATIONS.md](DEVIATIONS.md): Transparent log of H3 refutation and exploratory 20 Hz H3b
 
-- [AGENTS.md](AGENTS.md): canonical agent instructions, hard rules, finding classes, checklist
-- [Build standard](docs/build-standard.md): all 90 items with why, how, examples, done-when checks and evidence
+## Formal Verification & Architecture
 
-## Project docs
-
-- [README](README.md): purpose, quickstart, usage, results, limitations
-- [Claims ledger](CLAIMS.md): every claim mapped to its command and test
-- [Replication](REPLICATION.md): how to reproduce the headline results
-
-## Optional
-
-- [Full context](llms-full.txt): AGENTS.md plus the full standard in one file
+- [lean/Challenge.lean](lean/Challenge.lean): Isolated 18-theorem Palomar-format challenge specification
+- [lean/Solution.lean](lean/Solution.lean): Zero-sorry, zero-Mathlib Lean 4.35.0 proofs
+- [lean/NonVacuity.lean](lean/NonVacuity.lean): 19 physiological non-vacuity witnesses
+- [docs/architecture.md](docs/architecture.md): Multi-language system architecture and Mermaid diagram
+- [docs/benchmarks.md](docs/benchmarks.md): Honest Rust vs Node benchmarks and performance budgets
+- [docs/reviews/2026-11-23-redteam.md](docs/reviews/2026-11-23-redteam.md): 10-pass adversarial red-team review and six-class findings ledger
+- [docs/faq.md](docs/faq.md): Frequently asked questions
+- [docs/glossary.md](docs/glossary.md): Alphabetized scientific and engineering glossary

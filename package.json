@@ -1,0 +1,36 @@
+{
+  "name": "human-synapse-bouton-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack, formally verified human synaptic bouton biophysical workbench, Lean 4.35.0 proofs, stochastic Monte Carlo nanocolumn simulator, and 11-discipline open hard problems monograph.",
+  "license": "Apache-2.0",
+  "author": "Alexander Stephen Donahue <0_0@0thernes.art> (https://orcid.org/0009-0006-8168-9648)",
+  "homepage": "https://0thernes.github.io/human-synapse-bouton-lab/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0thernes/human-synapse-bouton-lab.git"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=@synapse/core && npm run build --workspace=@synapse/web",
+    "test": "npm run test --workspace=@synapse/core",
+    "lint": "npm run lint --workspace=@synapse/core && npm run lint --workspace=@synapse/web",
+    "typecheck": "npm run typecheck --workspace=@synapse/core && npm run typecheck --workspace=@synapse/web",
+    "bench": "npm run bench --workspace=@synapse/core",
+    "dev": "npm run dev --workspace=@synapse/web",
+    "start": "npm run preview --workspace=@synapse/web"
+  },
+  "devDependencies": {
+    "eslint": "9.22.0",
+    "fast-check": "3.23.2",
+    "typescript": "5.8.2",
+    "typescript-eslint": "8.26.1",
+    "vitest": "3.0.9"
+  }
+}

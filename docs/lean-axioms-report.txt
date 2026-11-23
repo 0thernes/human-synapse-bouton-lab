@@ -1,0 +1,18 @@
+'SynapseBouton.hill4_unit_interval' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.hill4_half_max_exact' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.hill4_strict_monotone' does not depend on any axioms
+'SynapseBouton.hill4_resting_noise_floor' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.hill4_ultrasensitive_doubling' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.ei_steady_state_bounds' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.shunting_inhibition_strict_attenuation' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.pure_shunting_divisive_identity' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.vesicle_pool_transition_invariant' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.atp_deficit_strict_depletion' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.resting_leak_strictly_lowers_sustainable_rate' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.kinesin_processive_atp_exact' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.snare_barrier_monotone_in_syt1_ca' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.snare_copy_number_cooperativity' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.resi_variance_strict_improvement' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.resi_duty_cycle_monotone_in_imager' does not depend on any axioms
+'SynapseBouton.factorized_bipartition_zero_integration' depends on axioms: [propext, Quot.sound]
+'SynapseBouton.correlated_nanocolumn_positive_integration' depends on axioms: [propext]

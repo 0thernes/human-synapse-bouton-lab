@@ -1,6 +1,6 @@
 # Task runner (https://just.systems). Run `just` to list recipes.
-# Every recipe delegates to a plain script, so nothing here is required: bash scripts/dev.sh <action> works too.
-# No recipe installs git hooks or gates a commit or push.
+# Every recipe delegates to plain scripts so `bash scripts/dev.sh <action>` works identically.
+# Hard Rule R1: No recipe installs git hooks or gates a commit or push.
 
 set shell := ["bash", "-euo", "pipefail", "-c"]
 set windows-shell := ["bash", "-euo", "pipefail", "-c"]
@@ -9,56 +9,69 @@ set windows-shell := ["bash", "-euo", "pipefail", "-c"]
 default:
     @just --list
 
-# Install the pinned toolchain and dependencies for every detected stack
+# Install pinned dependencies across Node, Python (uv), Rust, and Lean
 setup:
     bash scripts/dev.sh setup
 
-# Build every detected stack
+# Build TypeScript core + WebGL app, Rust release binary, and Lean 4.35.0 proofs
 build:
     bash scripts/dev.sh build
 
-# Run all tests
+# Run all unit, property, differential, API contract, and Lean proof checks
 test:
     bash scripts/dev.sh test
 
-# Linters and type checks (report-only)
+# Linters and strict type checks (report-only)
 lint:
     bash scripts/dev.sh lint
 
-# Benchmarks: report median and spread over repeated runs (define per stack when speed is claimed)
+# Honest warmup + 10-run benchmarks (Rust vs Node)
 bench:
     bash scripts/dev.sh bench
 
-# Run the project
-run *ARGS:
-    bash scripts/dev.sh run {{ARGS}}
+# Run the FastAPI 50-digit exact oracle backend locally
+run:
+    uv run synapse-api
 
-# Clean clone to headline results (extend with the commands that produce README numbers)
-reproduce: setup build test
-    @echo "reproduce: setup, build and test passed. Add the commands that regenerate headline results here."
+# Run pre-registered 30-seed Monte Carlo sweep and regenerate data/MANIFEST.sha256
+stats:
+    uv run synapse-stats
 
-# Score this repo against the Build Standard (report-only; writes audit.json)
+# Regenerate all publication figures, audited blueprint, social preview, GIF, and MP4 videos
+media:
+    uv run synapse-media
+
+# Compile both AMS-LaTeX white papers and verify standalone arXiv source tarballs
+papers:
+    uv run python scripts/build_papers.py
+
+# Build static GitHub Pages bundle into _site/
+site:
+    npm run build
+    rm -rf _site
+    cp -r apps/web/dist _site
+
+# Clean clone to headline verified results (Build Standard B01)
+reproduce: setup build test stats
+    node examples/nanocolumn_example.mjs
+    uv run python examples/exact_oracle_example.py
+
+# Score this repo against Build Standard v1.1.0 (report-only; writes audit.json)
 audit *ARGS:
     bash scripts/audit-repo.sh --json audit.json {{ARGS}}
 
-# Show which stacks scripts/dev.sh detects
+# Detect active stacks
 detect:
     bash scripts/dev.sh detect
 
-# Release: bump VERSION, CITATION and CHANGELOG heading, commit, tag vX.Y.Z and push to main
+# Release: bump VERSION, CITATION and CHANGELOG, commit, tag vX.Y.Z, push straight to main
 release VERSION:
     bash scripts/dev.sh release {{VERSION}}
 
-# Push an offsite mirror (set a remote named backup first; see docs/operations.md)
+# Push offsite git mirror
 mirror:
     git push backup --mirror
 
-# Remove build output
+# Remove local build outputs
 clean:
     bash scripts/dev.sh clean
-
-# Deploy and rollback: uncomment and fill in if the project is deployed (A36)
-# deploy VERSION:
-#     <your deploy command for VERSION>
-# rollback:
-#     <your rollback command>

@@ -41,7 +41,8 @@ jobs:
       - name: SHA256SUMS
         working-directory: dist
         run: |
-          find . -maxdepth 1 -type f -printf '%f\n' | sort > ../artifact-list.txt
+          rm -f SHA256SUMS
+          find . -maxdepth 1 -type f ! -name 'SHA256SUMS' -printf '%f\n' | sort > ../artifact-list.txt
           xargs sha256sum < ../artifact-list.txt > ../SHA256SUMS
           mv ../SHA256SUMS SHA256SUMS
           cat SHA256SUMS

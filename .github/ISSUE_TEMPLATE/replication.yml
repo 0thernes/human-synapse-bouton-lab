@@ -1,0 +1,51 @@
+name: Replication report
+description: Report an independent clean-clone replication (success or failure) following REPLICATION.md
+labels: ["replication"]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for running an independent replication of `human-synapse-bouton-lab` (Build Standard B44). Failed replications are equally valuable as successes.
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Replication outcome
+      options:
+        - Full match (all checks and checksums matched)
+        - Partial match (some discrepancies)
+        - Failed replication
+    validations:
+      required: true
+  - type: dropdown
+    id: finding_class
+    attributes:
+      label: Finding class (if any discrepancy occurred)
+      options:
+        - none (clean replication)
+        - bug (program logic defect)
+        - error (wrong number, claim, doc, config or build)
+        - issue (missing item or gap)
+        - problem (external obstacle or environment mismatch)
+        - dilemma (design trade-off)
+        - conflict (contradictory requirements)
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit SHA or release tag tested
+      placeholder: v1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: OS, CPU, and toolchain versions
+      placeholder: "Ubuntu 24.04, Lean 4.35.0, Node 25.8.2, Rust 1.94.1, Python 3.12"
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Output summary & any differences observed
+    validations:
+      required: true

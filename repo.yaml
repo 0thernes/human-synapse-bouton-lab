@@ -1,118 +1,117 @@
 # yaml-language-server: $schema=./repo-standard.schema.json
-# Project manifest for the Build Standard for LLMs v1.1.0. Read by scripts/audit-repo.sh and Audit-Repo.ps1.
-# Keep each item on one line. status: done | todo | partial | n/a (n/a needs a note).
+# Project manifest for Build Standard for LLMs v1.1.0. Read by scripts/audit-repo.sh and Audit-Repo.ps1.
 standard: "1.1.0"
 name: "human-synapse-bouton-lab"
 description: "Full-stack, formally verified human synaptic bouton biophysical workbench, Lean 4.35.0 proofs, stochastic Monte Carlo nanocolumn simulator, and 11-discipline open hard problems & consciousness frontier monograph."
 owner: "0thernes"
 year: "2026"
-project_type: research  # library | cli | service | web-app | desktop-app | mobile-app | data | ml | ai-app | research | docs | infra | game | other
-stack: [node, python, rust, lean]  # e.g. [python, node]; scripts/dev.sh also auto-detects
-flags:  # true | false | auto
-  public: true  # published openly (community files, About, citation)
-  package: true  # installable library or tool (auto: a package manifest exists)
-  visual: true  # has visible output worth a screenshot or GIF (auto: ui)
-  ui: true  # has a user interface (auto: tsx/jsx/vue/svelte/html/xaml/swift files outside docs)
-  native: false  # native or unsafe code (auto: C/C++/asm sources)
-  ai: false  # calls or ships an AI model (auto: AI SDK names in code or manifests)
-  personal_data: false  # collects, stores, processes or logs personal data
-  service: true  # long-running service, server or job
-  deployed: false  # deployed somewhere
-  api: true  # exposes or consumes an API, file format or protocol
-  perf: true  # makes speed or efficiency claims
-  concurrent: false  # concurrent, parallel or async code
-  numeric: true  # numeric, scientific, financial, ML or simulation code
-  experimental: true  # makes experimental, statistical or research claims
-  ml: false  # trains, fine-tunes or selects ML models
-  formal: true  # has a critical core worth formal methods
+project_type: research
+stack: [node, python, rust, lean]
+flags:
+  public: true
+  package: true
+  visual: true
+  ui: true
+  native: false
+  ai: false
+  personal_data: false
+  service: true
+  deployed: false
+  api: true
+  perf: true
+  concurrent: false
+  numeric: true
+  experimental: true
+  ml: false
+  formal: true
 items:
-  A01: {status: todo}  # README with a one-line purpose [core]
-  A02: {status: todo}  # Badge ribbon [recommended]
-  A03: {status: todo}  # Quickstart that works from a clean clone [core]
-  A04: {status: todo}  # Usage examples [core]
-  A05: {status: todo}  # Demo media [recommended]
-  A06: {status: todo}  # LICENSE [core]
-  A07: {status: todo}  # CHANGELOG [core]
-  A08: {status: todo}  # Semantic version, tags and a single version source [core]
-  A09: {status: todo}  # Automated tests that pass [core]
-  A10: {status: todo}  # Informational CI [core]
-  A11: {status: todo}  # Releases [recommended]
-  A12: {status: todo}  # .gitignore [core]
-  A13: {status: todo}  # .gitattributes and .editorconfig [recommended]
-  A14: {status: todo}  # CONTRIBUTING guide [recommended]
-  A15: {status: todo}  # CODE_OF_CONDUCT [recommended]
-  A16: {status: todo}  # SECURITY.md [core]
-  A17: {status: todo}  # SUPPORT.md [recommended]
-  A18: {status: todo}  # Issue templates [recommended]
-  A19: {status: todo}  # About description and topics [core]
-  A20: {status: todo}  # docs/ folder [recommended]
-  A21: {status: todo}  # Architecture Decision Records [recommended]
-  A22: {status: todo}  # CITATION.cff [advanced]
-  A23: {status: todo}  # Clean history and correct identity [core]
-  A24: {status: todo}  # No secrets, build output or huge files committed [core]
-  A25: {status: todo}  # Cross-platform CI [recommended]
-  A26: {status: todo}  # Social preview image [recommended]
-  A27: {status: todo}  # Pages demo or docs site [advanced]
-  A28: {status: todo}  # Package manifest [recommended]
-  A29: {status: todo}  # ROADMAP.md [recommended]
-  A30: {status: todo}  # Labels including the six finding classes [recommended]
-  A31: {status: todo}  # Task runner with one-word commands [core]
-  A32: {status: todo}  # Agent entry points: AGENTS.md canonical, plus CLAUDE.md, GEMINI.md, Cursor rules, llms.txt [core]
-  A33: {status: todo}  # Environment and configuration documented [core]
-  A34: {status: todo}  # Observability basics: logs, errors, health [recommended]
-  A35: {status: todo}  # Data, migrations, backups and an offsite repo mirror [recommended]
-  A36: {status: todo}  # One-command deploy and rollback [recommended]
-  A37: {status: todo}  # Performance budgets [advanced]
-  A38: {status: todo}  # Accessibility and internationalization [core]
-  A39: {status: todo}  # Third-party licensing and attribution [recommended]
-  A40: {status: todo}  # AI components pinned, evaluated and budgeted [core]
-  A41: {status: todo}  # Deprecation and upgrade path [advanced]
-  A42: {status: todo}  # Maintenance status [recommended]
-  A43: {status: todo}  # examples/ directory [recommended]
-  A44: {status: todo}  # FAQ and glossary [recommended]
-  A45: {status: todo}  # Privacy and personal-data handling [core]
-  B01: {status: todo}  # Reproducible build from a clean clone [core]
-  B02: {status: todo}  # Pinned toolchains and lockfiles [core]
-  B03: {status: todo}  # Determinism checks [core]
-  B04: {status: todo}  # CLAIMS.md ledger [core]
-  B05: {status: todo}  # Falsifiable tests per claim [core]
-  B06: {status: todo}  # Negative tests [core]
-  B07: {status: todo}  # Regression test per fixed bug [core]
-  B08: {status: todo}  # Golden and snapshot tests [recommended]
-  B09: {status: todo}  # Contract and API tests [recommended]
-  B10: {status: todo}  # Property-based tests [core]
-  B11: {status: todo}  # Differential testing [recommended]
-  B12: {status: todo}  # Reference implementation as test oracle [recommended]
-  B13: {status: todo}  # Mutation testing [recommended]
-  B14: {status: todo}  # Metamorphic testing [advanced]
-  B15: {status: todo}  # Fuzzing [recommended]
-  B16: {status: todo}  # Sanitizers and runtime checkers [core]
-  B17: {status: todo}  # Static analysis and linters, report-only [recommended]
-  B18: {status: todo}  # Strict type checking [recommended]
-  B19: {status: todo}  # Concurrency and race testing [advanced]
-  B20: {status: todo}  # Numeric and floating-point stability [advanced]
-  B21: {status: todo}  # Failure injection [advanced]
-  B22: {status: todo}  # Formal specification and proof [advanced]
-  B23: {status: todo}  # Design model checking [advanced]
-  B24: {status: todo}  # Verified implementation language [advanced]
-  B25: {status: todo}  # Bounded model checking of real code [advanced]
-  B26: {status: todo}  # Honest benchmarks [core]
-  B27: {status: todo}  # Performance tracking over time, report-only [advanced]
-  B28: {status: todo}  # Controls and multiple seeds [core]
-  B29: {status: todo}  # Significance testing [core]
-  B30: {status: todo}  # Effect sizes and confidence intervals [core]
-  B31: {status: todo}  # Multiple-comparison correction [recommended]
-  B32: {status: todo}  # Pre-registration of hypotheses [advanced]
-  B33: {status: todo}  # ML evaluation on held-out data [core]
-  B34: {status: todo}  # AI hallucination and regression evals [core]
-  B35: {status: todo}  # Security scanning, report-only, with optional SBOM [recommended]
-  B36: {status: todo}  # Threat model [recommended]
-  B37: {status: todo}  # Release hashes and checksums [core]
-  B38: {status: todo}  # Build provenance and attestations [recommended]
-  B39: {status: todo}  # Data checksums and dataset versioning [recommended]
-  B40: {status: todo}  # Audit trail [recommended]
-  B41: {status: todo}  # Limitations and real-vs-metaphor [core]
-  B42: {status: todo}  # What would prove us wrong [core]
-  B43: {status: todo}  # Replication protocol [core]
-  B44: {status: todo}  # Independent replication [advanced]
-  B45: {status: todo}  # Peer and red-team review [recommended]
+  A01: {status: done, note: "README.md with one-line purpose and full verified summary"}
+  A02: {status: done, note: "Live CI, Pages, Release, Apache-2.0, CC-BY-4.0, ORCID badges"}
+  A03: {status: done, note: "Verified clean-clone quickstart in README.md"}
+  A04: {status: done, note: "Runnable usage examples including B06 error case"}
+  A05: {status: done, note: "Code-generated GIF, HD MP4 videos, and blueprint in docs/media/"}
+  A06: {status: done, note: "Apache-2.0 LICENSE + CC-BY-4.0 LICENSE-CONTENT"}
+  A07: {status: done, note: "Keep a Changelog CHANGELOG.md synced to v1.0.0"}
+  A08: {status: done, note: "VERSION 1.0.0 synced with package.json, Cargo.toml, pyproject.toml, CITATION.cff"}
+  A09: {status: done, note: "Vitest (12), Cargo (5), Pytest (9 incl. 2,000 differential checks), Lean (18)"}
+  A10: {status: done, note: "Informational .github/workflows/ci.yml on push to main"}
+  A11: {status: done, note: "Tag-triggered .github/workflows/release.yml with SHA256SUMS + SLSA"}
+  A12: {status: done, note: ".gitignore covering Node, Python, Rust, Lean, LaTeX, .env"}
+  A13: {status: done, note: ".gitattributes and .editorconfig"}
+  A14: {status: done, note: "CONTRIBUTING.md with direct-to-main zero-gates workflow"}
+  A15: {status: done, note: "CODE_OF_CONDUCT.md (Contributor Covenant 2.1)"}
+  A16: {status: done, note: "SECURITY.md + GitHub Private Vulnerability Reporting"}
+  A17: {status: done, note: "SUPPORT.md"}
+  A18: {status: done, note: ".github/ISSUE_TEMPLATE/ bug, feature, question, replication, config (no PR template)"}
+  A19: {status: done, note: "GitHub About description, homepage URL, and topics set via gh repo edit"}
+  A20: {status: done, note: "docs/architecture.md with Mermaid diagram and topic docs"}
+  A21: {status: done, note: "docs/adr/0001-0004 ADRs and index"}
+  A22: {status: done, note: "CITATION.cff (CFF 1.2.0) + .zenodo.json synced to v1.0.0"}
+  A23: {status: done, note: "Clean main branch with Alexander S. Donahue <0_0@0thernes.art>"}
+  A24: {status: done, note: "No secrets, build outputs, or files > 5 MB committed"}
+  A25: {status: done, note: "Cross-platform ubuntu/macos/windows CI matrix (fail-fast: false)"}
+  A26: {status: done, note: "1280x640 docs/media/social-preview.png (74 KB)"}
+  A27: {status: done, note: ".github/workflows/pages.yml deploys apps/web/dist to GitHub Pages"}
+  A28: {status: done, note: "package.json, Cargo.toml, pyproject.toml"}
+  A29: {status: done, note: "ROADMAP.md with Now/Next/Later/Not planned"}
+  A30: {status: done, note: ".github/labels.tsv with 6 finding classes applied via gh label create"}
+  A31: {status: done, note: "justfile + scripts/dev.sh"}
+  A32: {status: done, note: "AGENTS.md canonical + CLAUDE.md, GEMINI.md, Cursor .mdc, llms.txt, llms-full.txt"}
+  A33: {status: done, note: ".env.example + docs/configuration.md + pydantic-settings"}
+  A34: {status: done, note: "FastAPI structured JSON logging middleware and /healthz endpoint verified by pytest"}
+  A35: {status: done, note: "docs/operations.md with git bundle test, Software Heritage SWHID, and archive mirror"}
+  A36: {status: n/a, note: "Static Pages site and local scientific workbench; no stateful cloud server deployed"}
+  A37: {status: done, note: "Performance budgets documented and measured in docs/benchmarks.md"}
+  A38: {status: done, note: "WCAG 2.2 AA accessibility pass, reduced-motion support, and en.json catalog in docs/accessibility.md"}
+  A39: {status: done, note: "THIRD_PARTY_NOTICES.md + sbom.cdx.json"}
+  A40: {status: n/a, note: "Runtime software makes zero LLM/AI API calls and ships no AI model weights"}
+  A41: {status: done, note: "UPGRADING.md with SemVer deprecation policy and v9->v1.0.0 migration"}
+  A42: {status: done, note: "Status: active declared in README.md"}
+  A43: {status: done, note: "Runnable examples/nanocolumn_example.mjs & examples/exact_oracle_example.py tested in CI"}
+  A44: {status: done, note: "docs/faq.md (6 Q&As) and alphabetized docs/glossary.md"}
+  A45: {status: n/a, note: "Zero personal data collected, stored, or logged"}
+  B01: {status: done, note: "just reproduce runs clean-clone setup, build, tests, stats, and examples"}
+  B02: {status: done, note: "package-lock.json, Cargo.lock, uv.lock, lean-toolchain, .nvmrc, .python-version"}
+  B03: {status: done, note: "Seeded determinism tests pass in TS (Mulberry32), Rust (ChaCha8Rng), and Python (default_rng)"}
+  B04: {status: done, note: "CLAIMS.md ledger covering C01-C09 including honestly retracted C05"}
+  B05: {status: done, note: "Falsifiable automated tests linked to every claim in CLAIMS.md"}
+  B06: {status: done, note: "Negative boundary tests in TS, Rust, and Python/FastAPI (HTTP 422)"}
+  B07: {status: done, note: "Named regression tests for F02 and F03 mapped in CHANGELOG.md"}
+  B08: {status: done, note: "Golden baseline tests in TS and Python verified against 50-digit oracle"}
+  B09: {status: done, note: "FastAPI OpenAPI contract & endpoint validation tests in test_oracle_and_api.py"}
+  B10: {status: done, note: "fast-check (3,600+ cases), proptest (2,000 cases), Hypothesis (1,500 cases)"}
+  B11: {status: done, note: "1,000-case differential tests: Python 50-digit oracle vs TS and vs Rust (0 mismatches)"}
+  B12: {status: done, note: "python/synapse_science/oracle.py 50-digit mpmath & Fraction reference oracle"}
+  B13: {status: done, note: "mutmut configured in pyproject.toml; core invariant mutation audit in docs/verification.md"}
+  B14: {status: done, note: "Metamorphic scaling tests for vesicle linearity and RESI subset K scaling"}
+  B15: {status: n/a, note: "No unsafe native C/C++/asm code; Rust has zero unsafe blocks"}
+  B16: {status: n/a, note: "No unsafe native C/C++/asm code"}
+  B17: {status: done, note: "ESLint 9, cargo clippy, ruff check (all report-only, 0 findings)"}
+  B18: {status: done, note: "tsc --strict, mypy --strict, cargo check (0 errors)"}
+  B19: {status: n/a, note: "Deterministic single-threaded simulation kernels; no shared-memory concurrency"}
+  B20: {status: done, note: "Edge-value numeric tests, 50-digit mpmath comparison, explicit numerical_approximation labeling"}
+  B21: {status: done, note: "Graceful FastAPI unavailable fallback in apps/web + malformed input rejection tests"}
+  B22: {status: done, note: "18 pure Lean 4.35.0 theorems in lean/Solution.lean + 19 non-vacuity witnesses + multi-kernel replay"}
+  B23: {status: n/a, note: "No distributed/concurrent protocol requiring TLA+/Alloy model checking"}
+  B24: {status: n/a, note: "Core algebraic invariants verified in Lean 4; simulation code written in Rust/TS/Python"}
+  B25: {status: n/a, note: "No C/C++ or unsafe Rust requiring Kani/CBMC bounded model checking"}
+  B26: {status: done, note: "Honest warmup+10-run Rust vs Node benchmarks with median, IQR, and checksums in docs/benchmarks.md"}
+  B27: {status: done, note: "Report-only benchmark history table tracked in docs/benchmarks.md"}
+  B28: {status: done, note: "30 fixed seeds/arm (1000..1029) + disjoint null control (2000..2029) in data/experiments/per_seed_results.csv"}
+  B29: {status: done, note: "10,000-permutation paired & two-sample significance tests in stats_experiments.py"}
+  B30: {status: done, note: "Cliff delta, Cohen d, and 10,000-resample seeded 95% bootstrap CIs"}
+  B31: {status: done, note: "Holm-Bonferroni multiple-comparison correction across all hypotheses"}
+  B32: {status: done, note: "PREREGISTRATION.md committed at root SHA a1919f2 prior to sweep; DEVIATIONS.md logs H3 refutation & H3b"}
+  B33: {status: n/a, note: "No machine-learning models trained or evaluated"}
+  B34: {status: n/a, note: "No generative AI runtime features"}
+  B35: {status: done, note: "gitleaks + osv-scanner in CI + CycloneDX sbom.cdx.json"}
+  B36: {status: done, note: "STRIDE threat model in docs/threat-model.md"}
+  B37: {status: done, note: "dist/SHA256SUMS + release workflow SHA256SUMS generation"}
+  B38: {status: done, note: "actions/attest-build-provenance@v2 in .github/workflows/release.yml"}
+  B39: {status: done, note: "data/MANIFEST.sha256 pinning all raw experiment CSV/JSON outputs"}
+  B40: {status: done, note: "Append-only docs/run-log.md audit trail"}
+  B41: {status: done, note: "LIMITATIONS.md + README Limitations section with real-vs-metaphor table"}
+  B42: {status: done, note: "Explicit Refuted if column for every claim in CLAIMS.md"}
+  B43: {status: done, note: "REPLICATION.md clean-clone protocol"}
+  B44: {status: done, note: "Clean-clone replication executed and logged in REPLICATION.md"}
+  B45: {status: done, note: "10-pass adversarial red-team review in docs/reviews/2026-11-23-redteam.md"}

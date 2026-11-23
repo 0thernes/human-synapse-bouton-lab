@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = ["rust/synapse-sim"]
+
+[workspace.package]
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.80"
+license = "Apache-2.0"
+authors = ["Alexander Stephen Donahue <0_0@0thernes.art>"]
+repository = "https://github.com/0thernes/human-synapse-bouton-lab"
+homepage = "https://0thernes.github.io/human-synapse-bouton-lab/"
+description = "Deterministic Rust biophysical engine and Monte Carlo synaptic nanocolumn simulator for human-synapse-bouton-lab."

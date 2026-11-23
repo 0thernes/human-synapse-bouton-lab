@@ -1,16 +1,21 @@
-# Security policy
+# Security Policy
 
-## Supported versions
+## Supported Versions
 
 | Version | Supported |
 |---|---|
-| latest release | yes |
-| older releases | no, upgrade to the latest |
+| `1.0.x` | Yes |
+| `< 1.0.0` | No (legacy prototype) |
 
-## Reporting a vulnerability
+## Reporting a Vulnerability
 
-Please do not open a public issue. Use GitHub private vulnerability reporting: https://github.com/0thernes/human-synapse-bouton-lab/security/advisories/new
+Please report security issues **privately** rather than opening a public issue:
 
-Include affected version, reproduction steps and impact. Expect an acknowledgement within 7 days. This is a one-person project, so fixes ship on a best-effort basis; you will be credited unless you ask not to be.
+1. **GitHub Private Vulnerability Reporting** (enabled on `https://github.com/0thernes/human-synapse-bouton-lab/security/advisories/new`), or
+2. **Email:** `0_0@0thernes.art` with subject `[SECURITY] human-synapse-bouton-lab`.
 
-The threat model is in [docs/threat-model.md](docs/threat-model.md).
+### What to Expect
+
+- Initial acknowledgement within 72 hours.
+- Triage and remediation plan within 7 days for confirmed vulnerabilities affecting the FastAPI backend (`python/synapse_science/server.py`), trace parser (`traceAnalyzer.ts`), or dependency supply chain.
+- See [`docs/threat-model.md`](docs/threat-model.md) for our STRIDE threat model and DoS/validation boundaries.

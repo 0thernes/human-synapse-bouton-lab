@@ -1,5 +1,4 @@
-# Publishes docs/ (or a project-built _site/) to GitHub Pages on every push to main.
-# Skips gracefully when Pages is not enabled (Settings > Pages > Source: GitHub Actions).
+# Builds the static Vite + Three.js interactive workbench and deploys to GitHub Pages (Build Standard A27).
 name: Pages
 
 on:
@@ -19,31 +18,19 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      enabled: ${{ steps.pages.outcome == 'success' }}
     steps:
       - uses: actions/checkout@v4
-      - id: pages
-        uses: actions/configure-pages@v5
-        continue-on-error: true
-      - uses: extractions/setup-just@v2
-        if: steps.pages.outcome == 'success'
-        continue-on-error: true
-      - name: Project site (just site, if defined)
-        if: steps.pages.outcome == 'success'
-        run: |
-          if command -v just >/dev/null && just --summary 2>/dev/null | tr ' ' '\n' | grep -qx site; then just site; fi
-      - name: Build docs/ with Jekyll
-        if: steps.pages.outcome == 'success' && hashFiles('_site/index.html') == ''
-        uses: actions/jekyll-build-pages@v1
-        with: { source: ./docs, destination: ./_site }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
-        if: steps.pages.outcome == 'success'
-        with: { path: ./_site }
+        with:
+          path: apps/web/dist
 
   deploy:
     needs: build
-    if: needs.build.outputs.enabled == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

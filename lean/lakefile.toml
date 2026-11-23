@@ -1,0 +1,15 @@
+name = "SynapseBoutonProofs"
+version = "1.0.0"
+defaultTargets = ["Solution", "NonVacuity", "VerifyAxioms"]
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"
+
+[[lean_lib]]
+name = "NonVacuity"
+
+[[lean_lib]]
+name = "VerifyAxioms"

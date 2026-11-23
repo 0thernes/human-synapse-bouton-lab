@@ -1,33 +1,41 @@
-# Limitations
+# Limitations and Real-vs-Metaphor Boundary
 
-Honest limits of human-synapse-bouton-lab. Overclaiming costs more credibility than any limitation. (Build Standard B41.)
+Honest epistemic limits of `human-synapse-bouton-lab` (Build Standard B41). Overclaiming destroys scientific credibility; every boundary below is stated explicitly.
 
-## Not tested
+## Not Tested / Outside Current Verification Scope
 
-- TODO(fill): features, inputs or paths with no automated test.
+- **3D Brownian particle reaction–diffusion:** Active-zone $\mathrm{Ca}^{2+}$ gradients use a stationary Naraghi–Neher linearized buffer approximation rather than meshed 3D MCell4/BioNetGen particle trajectories.
+- **Formal ODE enclosures:** 4D Hodgkin–Huxley RK4 trajectories and stochastic Monte Carlo runs use IEEE-754 float64 (`numerical_approximation`), not formal interval arithmetic inside Lean 4.
+- **Browser end-to-end WebGL pixel tests:** Headless Three.js GPU rendering is not tested in headless CI runners without WebGL hardware; TypeScript compilation, Vite bundling, and `@synapse/core` computation are tested across all OS runners.
+- **Atomic-coordinate 16K rendering:** Generating 16K EXR/TIFF atomic renders via cellPACK/ChimeraX/Blender requires downloading multi-gigabyte PDB/EMDB/H01 assets outside this repository.
 
 ## Platforms
 
-| OS | Status |
-|---|---|
-| Linux | TODO(fill): tested in CI / untested |
-| macOS | TODO(fill) |
-| Windows | TODO(fill) |
-
-## Sample sizes and statistics
-
-- TODO(fill) or "No statistical claims."
-
-## Literal versus metaphor
-
-| Term used | Literal meaning | Metaphor or marketing? |
+| OS | Status | Notes |
 |---|---|---|
-| TODO(fill) | | |
+| Windows 11 (x86_64) | Tested locally & in CI | All TS, Rust, Python, Lean (`leanchecker-paranoid`, `nanoda_bin`, `con-ron`, `con-leche`), Tectonic, and media generators pass. `bwrap` sandbox for `lake comparator` is Linux-only. |
+| Linux (`ubuntu-latest`) | Tested in CI | Full TS, Rust, Python, Lean (`lake check --paranoid` + `lake comparator` with `bubblewrap`), security scans, and Pages deploy. |
+| macOS (`macos-latest`) | Tested in CI | Cross-platform matrix tests Node, Python, and Rust stacks. |
 
-## Known bugs
+## Sample Sizes and Statistics
 
-See open issues labeled `bug`.
+- Pre-registered Monte Carlo sweeps (`PREREGISTRATION.md`) run $N = 30$ fixed seeds per arm (`1000..1029`; null control `2000..2029`), with 10,000 permutations, 10,000 bootstrap resamples, and Holm–Bonferroni correction.
+- Statistical significance tests properties of our deterministic biophysical simulator, **not** wet-lab human cortical patch-clamp recordings.
 
-## Corrections to past claims
+## Literal versus Metaphor
 
-None yet. Corrections are recorded here and in CHANGELOG.md.
+| Term used | Literal meaning in this repo | Metaphor or marketing? |
+|---|---|---|
+| **Formally verified / kernel-checked** | Strictly applies ONLY to the 18 exact algebraic/conservation/coupling theorems in `lean/Solution.lean` accepted by Lean 4.35.0 and independent checkers. | Literal for `lean/`; NEVER applies to float64 ODEs or prose conjectures. |
+| **Consciousness / sentience frontier** | Structured epistemic map separating formally proved necessary coupling bounds, empirical neuroscience correlates, abductive hypotheses, and the unsolved Hard Problem. | **NOT** a claim of proving, measuring, or creating consciousness or sentience. |
+| **Audited schematic blueprint** | Deterministic Python-rendered biophysical cross-section enforcing verified structural topology (longitudinal tau, intracellular PSD-95, lateral CaV2.1). | Schematic model — **NOT** atomic-coordinate PDB/EMDB cryo-ET data. |
+| **50-digit exact oracle** | Arbitrary-precision `mpmath` (`dps=50`) and Python `fractions.Fraction` reference solver for algebraic/transcendental formulas. | Literal for `oracle.py`; does not remove model-simplification error relative to real biology. |
+
+## Known Bugs
+
+See open GitHub issues labeled `bug` and the classified Six-Class Audit Ledger in `docs/reviews/2026-11-23-redteam.md`.
+
+## Corrections to Past Claims
+
+- **2026-11-23 (`C05` / `F09`):** Pre-registered hypothesis H3 predicted mitochondria sustain $>90\%$ ATP at 40 Hz over 60 s. Actual simulation refuted H3 because 40 Hz exceeds $f_{\text{crit,mito}} = 29.5625\,$Hz, depleting both arms to 0.0. Kept permanently in `CLAIMS.md` as `retracted` and documented in `DEVIATIONS.md` and `CHANGELOG.md`.
+- **2026-11-23 (`F01`, `F03`):** Corrected legacy prototype v9 / Edition 2 PDF defects: replaced unformed "0thernes LLC" affiliation with Independent Researcher, and separated rat synaptosome baseline (`374` vesicles) from human cortical L1/L4/L5 presets (`1,500–3,500` vesicles).

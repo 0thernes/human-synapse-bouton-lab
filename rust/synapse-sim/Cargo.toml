@@ -1,0 +1,19 @@
+[package]
+name = "synapse-sim"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description.workspace = true
+
+[dependencies]
+rand = "0.8.5"
+rand_chacha = "0.3.1"
+serde = { version = "1.0.217", features = ["derive"] }
+serde_json = "1.0.135"
+
+[dev-dependencies]
+proptest = "1.6.0"
