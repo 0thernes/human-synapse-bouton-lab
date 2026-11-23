@@ -1,0 +1,10 @@
+# P0 Kill & Pivot Criteria (`kill-criteria.md`)
+
+Measurable stop, reshape, and pivot thresholds established per Build Pipeline Models v1.0.0 (`P0.07`).
+
+| ID | Condition | Measurable Threshold | Evaluation Date | Action if Triggered | Current Status (2026-11-23) |
+|---|---|---|---|---|---|
+| `KC01` | **Formal Kernel Failure** | Any of the 18 Lean 4.35.0 theorems requires `sorry`, `admit`, custom axioms, or fails `lake comparator --paranoid` across the 6 kernels. | 2026-11-24 | **Stop / Cut:** Remove any unproved theorem from `Challenge.lean` and `CLAIMS.md` before publishing; never weaken kernel checks (`AI13`). | **Clear:** 18/18 theorems pass 6 kernels + Palomar run `45241561032`. |
+| `KC02` | **Cross-Language Numerical Drift** | Differential mismatch rate `> 0` out of `1,000` seeded random inputs at `rtol = 1e-10` between TypeScript, Rust, and 50-digit Python oracle. | 2026-11-24 | **Stop / Fix Forward:** Block release tagging until root cause is fixed and covered by a regression test (`B07`). | **Clear:** `0 / 2,000` mismatches (`test_differential.py`). |
+| `KC03` | **Unreproducible Clean Clone or Open Critical CVE** | Clean-clone reproduction fails on Ubuntu CI, OR `npm audit` / GitHub Dependabot reports `>= 1` open High/Critical alert on shipped packages. | 2026-11-25 | **Stop / Patch:** Upgrade lockfiles and re-run full 3-OS CI before publishing release or Zenodo archive. | **Clear:** 12/12 CI jobs green; `0` npm vulnerabilities; `0` open Dependabot alerts. |
+| `KC04` | **Registry / Archive Rejection Without Repair Path** | Palomar Registry editorial review rejects the submission for a fundamental soundness defect rather than a repairable formatting issue, OR Zenodo/SWH archiving fails permanently. | 2026-12-23 | **Pivot:** Move `lean/` to an errata-annotated maintenance branch, publish correction in `ERRATA.md`, and re-scope to verified computational benchmark suite. | **Monitoring:** Zenodo DOI minted (`10.5281/zenodo.24477928`), SWH archived, Palomar `68sy455wsdm5` passed mechanical verification (`awaiting-review`). |

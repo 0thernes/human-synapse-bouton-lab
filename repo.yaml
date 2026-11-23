@@ -30,7 +30,7 @@ items:
   A03: {status: done, note: "Verified clean-clone quickstart in README.md"}
   A04: {status: done, note: "Runnable usage examples including B06 error case"}
   A05: {status: done, note: "Code-generated GIF, HD MP4 videos, and blueprint in docs/media/"}
-  A06: {status: done, note: "Apache-2.0 LICENSE + CC-BY-4.0 LICENSE-CONTENT"}
+  A06: {status: done, note: "Canonical Apache-2.0 LICENSE + CC-BY-4.0 docs/LICENSE-CONTENT.md"}
   A07: {status: done, note: "Keep a Changelog CHANGELOG.md synced to v1.0.0"}
   A08: {status: done, note: "VERSION 1.0.0 synced with package.json, Cargo.toml, pyproject.toml, CITATION.cff"}
   A09: {status: done, note: "Vitest (12), Cargo (5), Pytest (9 incl. 2,000 differential checks), Lean (18)"}

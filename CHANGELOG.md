@@ -4,6 +4,18 @@ All notable changes to `human-synapse-bouton-lab` are documented here following 
 
 ## [Unreleased]
 
+## [1.1.2] - 2026-11-23
+
+### Added
+- **Build Pipeline Models v1.0.0 Full Lifecycle Artifacts (`F13`):** Added `project.yaml`, `project.schema.json`, `.cursor/rules/build-pipeline-models.mdc`, `scripts/pipeline-audit.py`, `scripts/pipeline-checks.tsv`, `api/openapi.yaml` & `api/openapi.json`, `docs/plan/` (`00-idea.md`, `00-redteam.md`, `kill-criteria.md`, `ideas.md`, `01-validation.md`, `01-spikes.md`, `decision-log.md`, `02-requirements.md`, `02-metrics.md`, `slices.md`, `experiments.md`, `review-2026-11.md`, `checklist.md`), `docs/data-model.md`, `docs/cost-model.md`, `docs/failure-modes.md`, `docs/stack-matrix.md`, `docs/ai-choices.md`, `docs/deploy.md`, `docs/adr/0006-deploy-target-and-rollback.md`, `docs/launch/` (`release-checklist.md`, `announcement.md`, `channels.md`, `launch-log.md`), `docs/ops/` (`slos.md`, `runbook.md`, `backup-restore.md` with recorded `git bundle` restore drill, `cost.md`), and `reports/security/2026-11-23-audit.md`; expanded `docs/architecture.md` with C4 Level 1/2 diagrams, Scaling, and Observability.
+- **White Papers Updated with Live External Provenance (`F13`):** Embedded CERN Zenodo Concept DOI (`10.5281/zenodo.24477927`), Version DOI (`10.5281/zenodo.24477928`), Software Heritage SWHID (`swh:1:snp:458adcd73c9a78054486147094950e2be6774271`), and Palomar Registry mechanical pass (`68sy455wsdm5`, run `45241561032`) in both AMS-LaTeX white papers and recompiled frozen PDFs & standalone arXiv tarballs.
+
+### Fixed
+- **Stale `LICENSE-CONTENT` References (`F11`):** Updated remaining links in `AGENTS.md`, `README.md`, `docs/literature-and-checklist.md`, `repo.yaml`, and regenerated `llms-full.txt` to point exclusively to `docs/LICENSE-CONTENT.md`.
+- **Cryptographic Manifest Re-Seal (`F12`):** Regenerated root `MANIFEST.sha256` after Palomar `lean/` metadata updates and re-stamped live DigiCert RFC 3161 `MANIFEST.sha256.tsr` (`0` checksum failures).
+- **Bracket-Safe Wildcard Globbing (`F14`):** Patched `scripts/pipeline-audit.py` to call `glob.escape(root)` so wildcard checks (`docs/adr/0001-*.md`, `.cursor/rules/*.mdc`, `docs/plan/review-*.md`) succeed on Dev-Drive paths containing literal brackets (`Z:\[Vibe Coded (AI)]\...`).
+- **Package & SBOM Version Parity:** Synchronized `python/synapse_science/__init__.py` (`__version__`) and `sbom.cdx.json` root component version with `VERSION` (`1.1.2`).
+
 ## [1.1.1] - 2026-11-23
 
 ### Added

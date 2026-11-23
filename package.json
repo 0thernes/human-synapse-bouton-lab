@@ -1,6 +1,6 @@
 {
   "name": "human-synapse-bouton-lab",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": true,
   "description": "Full-stack, formally verified human synaptic bouton biophysical workbench, Lean 4.35.0 proofs, stochastic Monte Carlo nanocolumn simulator, and 11-discipline open hard problems monograph.",
   "license": "Apache-2.0",

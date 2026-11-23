@@ -1,0 +1,8 @@
+---
+description: Build Pipeline Models. Canonical rules live in AGENTS.md
+alwaysApply: true
+---
+
+Follow AGENTS.md at the repository root; it is the single source of truth for the current phase, hard rules, AI guardrails and finding classes.
+For phase details load docs/chunks/core.md and the current docs/chunks/phase-NN chunk; the full process is docs/build-pipeline-models.md.
+Do not duplicate or override those rules here.

@@ -1,0 +1,11 @@
+# Dated Go / Pivot / Double-Down Decision Log (`decision-log.md`)
+
+Append-only record of major scope, architecture, scientific, and release decisions (`P1.07`, `P11.05`).
+
+| Date | Phase | Decision | Evidence & Rationale | Outcome |
+|---|---|---|---|---|
+| 2026-11-23 | `P0`–`P1` | **Go (Reshape to Dual License + Independent Researcher)** | `F01`: Resolved conflict between legacy `"0thernes LLC"` strings and Nov 22 Playbook via owner decision under `R8` (`ADR 0001`). Verbatim `Apache-2.0` at repo root + `CC-BY-4.0` in `docs/LICENSE-CONTENT.md`. | Clean GitHub & Palomar `licensee` SPDX detection; ORCID bio aligned. |
+| 2026-11-23 | `P4` | **Go (Four-Language Pure-Lean Stack)** | Spikes `SP01`–`SP05` retired technical risk (`0/2,000` differential mismatches, `5.94x` Rust speedup, 6-kernel Lean replay). Recorded in `ADR 0002` & `ADR 0003`. | Full-stack monorepo passes 12/12 CI jobs on 3 OSes. |
+| 2026-11-23 | `P7` | **Hold Integrity (Preserve Refuted `H3` Verbatim)** | Pre-registered `H3` (`40 Hz`, committed at `a1919f2`) failed (`40 > 29.5625 Hz` mitochondrial ceiling; `p_Holm = 1.0`). Rather than silently editing `H3`, kept `C05` retracted (`ERRATA.md`) and logged post-hoc `20 Hz` `H3b` in `DEVIATIONS.md` (`ADR 0004`). | Maximum scientific credibility; zero p-hacking. |
+| 2026-11-23 | `P9` | **Ship & Harden (`v1.0.0` -> `v1.1.0` -> `v1.1.1`)** | Patched `pillow` (`13.0.0`) & `vite`/`vitest` (`0` Dependabot alerts), added Palomar `module` headers & `v0.4` `formalization.yaml`, passed Palomar verification (`45241561032`), minted Zenodo DOI (`10.5281/zenodo.24477928`), synced ORCID & Software Heritage. | All external archival & verification systems green. |
+| 2026-11-23 | `P11` | **Double Down (`v1.1.2` Build Pipeline Models & Provenance Closure)** | Final sweep uncovered `Build Pipeline Models v1.0.0` artifacts (`F13`), stale `LICENSE-CONTENT` links (`F11`), stale `MANIFEST.sha256` after Palomar edits (`F12`), and a Python `glob.glob()` bracket bug in `scripts/pipeline-audit.py` (`F14`). Decided to close all gaps, embed Zenodo DOI + Palomar pass in both PDFs, re-seal `MANIFEST.sha256` + RFC 3161 `.tsr`, and cut `v1.1.2`. | Completed and re-verified across all local & CI suites. |

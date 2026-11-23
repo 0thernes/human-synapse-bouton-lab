@@ -1,0 +1,11 @@
+# Per-Release Checklist — `v1.1.2` (`release-checklist.md`)
+
+Prepared per Build Pipeline Models v1.0.0 (`P9.01`).
+
+- [x] **Version synced across all manifests:** `VERSION`, `CITATION.cff`, `CHANGELOG.md`, `package.json`, `packages/synapse-core/package.json`, `apps/web/package.json`, `apps/web/index.html`, `package-lock.json`, `Cargo.toml`, `Cargo.lock`, `pyproject.toml`, `uv.lock`, `sbom.cdx.json`, `papers/wp1_synaptic_bouton/main.tex`, `papers/wp2_open_problems_consciousness/main.tex`.
+- [x] **Formal proofs green:** `cd lean && lake build --wfail && lake env lean VerifyAxioms.lean` (`0` `sorry`, `0` `Classical.choice`, `0` warnings; 6-kernel `lake comparator --paranoid` green in Ubuntu CI; Palomar `68sy455wsdm5` passed run `45241561032`).
+- [x] **All multi-language test & lint suites green:** Vitest (`13/13`), ESLint (`0`), `npm audit` (`0`), Cargo test (`5/5`), Clippy (`0`), Pytest (`9/9`, `2,000` differential checks `0` mismatches), Ruff (`0`), Mypy strict (`0`), Mutation audit (`6/6`), Crossref DOI audit (`23/23`).
+- [x] **White papers & arXiv tarballs recompiled and visually inspected:** `dist/Donahue_2026_human_synaptic_bouton_verification.pdf`, `dist/Donahue_2026_open_hard_problems_consciousness_frontier.pdf`, `dist/arxiv_wp1_synaptic_bouton.tar.gz`, `dist/arxiv_wp2_open_hard_problems.tar.gz`, `dist/SHA256SUMS`.
+- [x] **Cryptographic seals verified 100%:** `sha256sum -c MANIFEST.sha256` (`0` failures), `cd data && sha256sum -c MANIFEST.sha256` (`4/4`), DigiCert RFC 3161 `MANIFEST.sha256.tsr` freshly stamped.
+- [x] **Build Standard & Build Pipeline audits verified:** `Audit-Repo.ps1` `100.0% (79/79, Core 33/33)`, `audit-repo.sh` `100.0% (79/79)`, `pipeline-audit.py` clean across all applicable artifacts, `git grep LICENSE-CONTENT` returns only `docs/LICENSE-CONTENT.md`.
+- [x] **Release notes & archival sync:** Annotated tag `v1.1.2` pushed -> GitHub SLSA Release + automatic Zenodo Concept DOI update (`10.5281/zenodo.24477927`) + Software Heritage snapshot + `0thernes-research-archive` sync.

@@ -1,0 +1,105 @@
+# yaml-language-server: $schema=./project.schema.json
+# Build Pipeline Models v1.0.0 project manifest. status: todo | doing | done | n/a (n/a needs a note).
+standard: "1.0.0"
+name: "human-synapse-bouton-lab"
+owner: "0thernes"
+current_phase: P11
+profile: T02
+deploy_targets: [D04]
+process_models: [M04, M07, M10, M14]
+steps:
+  P0.01: {status: done, note: "docs/plan/00-idea.md"}
+  P0.02: {status: done, note: "docs/plan/00-idea.md"}
+  P0.03: {status: done, note: "docs/plan/00-idea.md"}
+  P0.04: {status: done, note: "docs/plan/00-idea.md"}
+  P0.05: {status: done, note: "docs/plan/00-idea.md"}
+  P0.06: {status: done, note: "docs/plan/00-redteam.md"}
+  P0.07: {status: done, note: "docs/plan/kill-criteria.md"}
+  P0.08: {status: done, note: "docs/plan/00-idea.md"}
+  P1.01: {status: done, note: "docs/plan/01-validation.md"}
+  P1.02: {status: n/a, note: "Open-science independent research preprint & workbench; not a commercial SaaS customer-discovery build"}
+  P1.03: {status: done, note: "docs/plan/01-validation.md"}
+  P1.04: {status: n/a, note: "Non-commercial open research publication; demand measured via external replication and registry passes"}
+  P1.05: {status: done, note: "docs/plan/01-spikes.md"}
+  P1.06: {status: done, note: "docs/plan/01-validation.md + ADR 0001"}
+  P1.07: {status: done, note: "docs/plan/decision-log.md"}
+  P2.01: {status: done, note: "docs/plan/02-requirements.md"}
+  P2.02: {status: done, note: "docs/plan/02-requirements.md"}
+  P2.03: {status: done, note: "docs/plan/02-requirements.md"}
+  P2.04: {status: done, note: "docs/plan/02-requirements.md"}
+  P2.05: {status: done, note: "docs/plan/02-metrics.md"}
+  P2.06: {status: done, note: "docs/plan/02-requirements.md"}
+  P2.07: {status: done, note: "CLAIMS.md"}
+  P3.01: {status: done, note: "docs/architecture.md"}
+  P3.02: {status: done, note: "docs/data-model.md"}
+  P3.03: {status: done, note: "api/openapi.yaml + api/openapi.json"}
+  P3.04: {status: done, note: "docs/threat-model.md"}
+  P3.05: {status: done, note: "docs/cost-model.md"}
+  P3.06: {status: done, note: "docs/architecture.md"}
+  P3.07: {status: done, note: "docs/failure-modes.md"}
+  P3.08: {status: done, note: "docs/adr/0001-0006"}
+  P3.09: {status: done, note: "docs/architecture.md + FastAPI /healthz"}
+  P4.01: {status: done, note: "docs/stack-matrix.md"}
+  P4.02: {status: done, note: "docs/stack-matrix.md"}
+  P4.03: {status: done, note: "docs/adr/0002 + 0003 + 0006"}
+  P4.04: {status: done, note: "docs/stack-matrix.md"}
+  P4.05: {status: n/a, note: "Runtime software makes zero LLM/AI API calls and ships no AI model weights (docs/ai-choices.md)"}
+  P4.06: {status: done, note: "docs/adr/0006-deploy-target-and-rollback.md + docs/deploy.md"}
+  P4.07: {status: done, note: "THIRD_PARTY_NOTICES.md + sbom.cdx.json + 0 open alerts"}
+  P5.01: {status: done, note: "https://github.com/0thernes/human-synapse-bouton-lab"}
+  P5.02: {status: done, note: "Build Standard v1.1.0 100.0% (79/79, Core 33/33)"}
+  P5.03: {status: done, note: "lean-toolchain, Cargo.lock, uv.lock, package-lock.json"}
+  P5.04: {status: done, note: "just setup && just test verified from clean clone"}
+  P5.05: {status: done, note: ".env.example + gitleaks 0 findings"}
+  P5.06: {status: done, note: "AGENTS.md + CLAUDE.md + GEMINI.md + .cursor/rules/"}
+  P5.07: {status: done, note: "Digest-pinned Dockerfile"}
+  P6.01: {status: done, note: "docs/plan/slices.md"}
+  P6.02: {status: done, note: "https://0thernes.github.io/human-synapse-bouton-lab/"}
+  P6.03: {status: done, note: "Vitest (13), Rust (5), Pytest (9), Lean (18)"}
+  P6.04: {status: done, note: "docs/run-log.md"}
+  P6.05: {status: n/a, note: "No runtime generative-AI features"}
+  P6.06: {status: n/a, note: "All 9 workbench modules shipped complete; no hidden feature flags"}
+  P6.07: {status: done, note: "Direct small commits to main; zero PRs/branches"}
+  P6.08: {status: done, note: "CHANGELOG.md"}
+  P7.01: {status: done, note: "docs/verification.md"}
+  P7.02: {status: done, note: "CLAIMS.md (C05 honestly retracted)"}
+  P7.03: {status: done, note: "FastAPI contract + 2,000 cross-language differential checks"}
+  P7.04: {status: done, note: "docs/benchmarks.md (Rust 5.94x over Node)"}
+  P7.05: {status: done, note: "reports/security/2026-11-23-audit.md + CI gitleaks + osv-scanner + 0 Dependabot alerts"}
+  P7.06: {status: done, note: "docs/accessibility.md + 3-OS CI matrix"}
+  P7.07: {status: n/a, note: "No ML models trained or runtime AI inference"}
+  P7.08: {status: done, note: "docs/reviews/2026-11-23-redteam.md (10 passes) + Palomar verification 45241561032"}
+  P7.09: {status: done, note: "LIMITATIONS.md + README Limitations"}
+  P8.01: {status: done, note: ".github/workflows/ci.yml (informational, zero gates)"}
+  P8.02: {status: done, note: "dist/ PDFs, tarballs, and apps/web/dist built reproducibly"}
+  P8.03: {status: done, note: "docs/deploy.md"}
+  P8.04: {status: done, note: "GitHub Pages live deploy on every main push"}
+  P8.05: {status: done, note: "GitHub Actions YAML workflows + digest-pinned Dockerfile"}
+  P8.06: {status: done, note: "Zero committed secrets; OIDC tokenless SLSA attestations"}
+  P8.07: {status: n/a, note: "Stateless static workbench and pure computational API; no SQL database"}
+  P8.08: {status: n/a, note: "No paid runtime flags; static client degrades gracefully if local FastAPI is absent"}
+  P8.09: {status: done, note: "docs/deploy.md explains static GitHub Pages atomic swap"}
+  P8.10: {status: done, note: "docs/deploy.md rollback via git revert + Pages atomic redeploy"}
+  P8.11: {status: done, note: ".github/workflows/release.yml (v1.0.0, v1.1.0, v1.1.1, v1.1.2)"}
+  P9.01: {status: done, note: "docs/launch/release-checklist.md"}
+  P9.02: {status: done, note: "REPLICATION.md verified from isolated clean clone"}
+  P9.03: {status: done, note: "v1.0.0 -> v1.1.0 -> v1.1.1 staged hardening before outreach"}
+  P9.04: {status: done, note: "docs/launch/announcement.md + docs/outreach-drafts.md"}
+  P9.05: {status: done, note: "docs/launch/channels.md"}
+  P9.06: {status: done, note: "GitHub Releases + Zenodo DOI 10.5281/zenodo.24477928 + SWHID + ORCID"}
+  P9.07: {status: done, note: "docs/launch/launch-log.md"}
+  P10.01: {status: done, note: "FastAPI /healthz + structured JSON logs + GitHub Actions weekly schedule"}
+  P10.02: {status: done, note: "docs/ops/slos.md"}
+  P10.03: {status: done, note: "docs/ops/runbook.md"}
+  P10.04: {status: n/a, note: "Zero production outages to date; blameless template documented in docs/ops/runbook.md"}
+  P10.05: {status: done, note: "docs/ops/backup-restore.md (git bundle verify + Software Heritage + 0thernes-research-archive)"}
+  P10.06: {status: done, note: "docs/ops/cost.md + docs/cost-model.md ($0/mo static hosting + open public GitHub CI)"}
+  P10.07: {status: done, note: "SECURITY.md + Private Vulnerability Reporting + 0 open Dependabot alerts"}
+  P10.08: {status: done, note: "Status: active in README.md"}
+  P11.01: {status: done, note: "GitHub CI, Palomar 68sy455wsdm5, Zenodo DOI, Build Standard 100%"}
+  P11.02: {status: done, note: "GitHub Issues + replication.yml issue template"}
+  P11.03: {status: done, note: "docs/plan/review-2026-11.md"}
+  P11.04: {status: done, note: "docs/plan/experiments.md (PREREGISTRATION.md + DEVIATIONS.md)"}
+  P11.05: {status: done, note: "docs/plan/decision-log.md"}
+  P11.06: {status: done, note: "Registered in 0thernes-research-archive (0TH-2026-007 & 0TH-2026-008)"}
+  P11.07: {status: done, note: "ROADMAP.md"}

@@ -37,7 +37,7 @@ Prepared per the Defensible Independent AI Research Playbook (§2 items 6–8, �
 - **Dataset:** `data/experiments/per_seed_results.csv` (30 paired simulation rows) and `data/experiments/stats_summary.json`.
 - **Motivation & Creation:** Created deterministically on 2026-11-23 by `synapse-sim sweep` (`ChaCha8Rng`, fixed seeds `1000..1029` and null control `2000..2029`) and `uv run synapse-stats` (`STAT_SEED=20261123`) to test pre-registered hypotheses `H1`–`H4` (plus exploratory `H3b`).
 - **Composition & Privacy:** 100% synthetic computational biophysical outputs; zero human subjects, zero clinical records, zero PII.
-- **Integrity & Licensing:** LF-normalized and SHA-256 pinned in `data/MANIFEST.sha256` and root `MANIFEST.sha256`; licensed under **CC-BY-4.0** (`LICENSE-CONTENT`).
+- **Integrity & Licensing:** LF-normalized and SHA-256 pinned in `data/MANIFEST.sha256` and root `MANIFEST.sha256`; licensed under **CC-BY-4.0** (`docs/LICENSE-CONTENT.md`).
 
 ---
 

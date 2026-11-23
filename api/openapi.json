@@ -1,0 +1,614 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Human Synapse Bouton Lab API",
+    "description": "50-digit exact biophysical oracle and computational neuroscience REST API.",
+    "license": {
+      "name": "Apache-2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "version": "1.1.2"
+  },
+  "paths": {
+    "/healthz": {
+      "get": {
+        "summary": "Healthz",
+        "operationId": "healthz_healthz_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Healthz Healthz Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/electrochemistry": {
+      "post": {
+        "summary": "Post Electrochemistry",
+        "operationId": "post_electrochemistry_api_v1_electrochemistry_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ElectrochemistryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Post Electrochemistry Api V1 Electrochemistry Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/nanodomain": {
+      "post": {
+        "summary": "Post Nanodomain",
+        "operationId": "post_nanodomain_api_v1_nanodomain_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NanodomainRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Post Nanodomain Api V1 Nanodomain Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/snare": {
+      "post": {
+        "summary": "Post Snare",
+        "operationId": "post_snare_api_v1_snare_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SnareRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Post Snare Api V1 Snare Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/bioenergetics": {
+      "post": {
+        "summary": "Post Bioenergetics",
+        "operationId": "post_bioenergetics_api_v1_bioenergetics_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BioenergeticsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Post Bioenergetics Api V1 Bioenergetics Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ei-balance": {
+      "post": {
+        "summary": "Post Ei",
+        "operationId": "post_ei_api_v1_ei_balance_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EiRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Post Ei Api V1 Ei Balance Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/metrology": {
+      "post": {
+        "summary": "Post Metrology",
+        "operationId": "post_metrology_api_v1_metrology_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetrologyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Post Metrology Api V1 Metrology Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BioenergeticsRequest": {
+        "properties": {
+          "luminal_ph": {
+            "type": "number",
+            "maximum": 14.0,
+            "minimum": 1.0,
+            "title": "Luminal Ph",
+            "default": 5.5
+          },
+          "cytosolic_ph": {
+            "type": "number",
+            "maximum": 14.0,
+            "minimum": 1.0,
+            "title": "Cytosolic Ph",
+            "default": 7.2
+          },
+          "delta_psi_mv": {
+            "type": "number",
+            "maximum": 250.0,
+            "minimum": -200.0,
+            "title": "Delta Psi Mv",
+            "default": 40.0
+          },
+          "firing_rate_hz": {
+            "type": "number",
+            "maximum": 500.0,
+            "minimum": 0.0,
+            "title": "Firing Rate Hz",
+            "default": 10.0
+          },
+          "mito_active": {
+            "type": "boolean",
+            "title": "Mito Active",
+            "default": true
+          },
+          "temp_c": {
+            "type": "number",
+            "minimum": -273.15,
+            "title": "Temp C",
+            "default": 37.0
+          }
+        },
+        "type": "object",
+        "title": "BioenergeticsRequest"
+      },
+      "EiRequest": {
+        "properties": {
+          "g_exc_ns": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "G Exc Ns",
+            "default": 3.0
+          },
+          "g_inh_ns": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "G Inh Ns",
+            "default": 4.0
+          },
+          "cl_in_mm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Cl In Mm",
+            "default": 7.0
+          },
+          "cl_out_mm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Cl Out Mm",
+            "default": 125.0
+          },
+          "temp_c": {
+            "type": "number",
+            "minimum": -273.15,
+            "title": "Temp C",
+            "default": 37.0
+          }
+        },
+        "type": "object",
+        "title": "EiRequest"
+      },
+      "ElectrochemistryRequest": {
+        "properties": {
+          "na_out_mm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Na Out Mm",
+            "default": 145.0
+          },
+          "na_in_mm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Na In Mm",
+            "default": 12.0
+          },
+          "k_out_mm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "K Out Mm",
+            "default": 4.0
+          },
+          "k_in_mm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "K In Mm",
+            "default": 140.0
+          },
+          "ca_out_mm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Ca Out Mm",
+            "default": 2.0
+          },
+          "ca_in_um": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Ca In Um",
+            "default": 0.08
+          },
+          "cl_out_mm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Cl Out Mm",
+            "default": 120.0
+          },
+          "cl_in_mm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Cl In Mm",
+            "default": 9.0
+          },
+          "p_na_rel": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "P Na Rel",
+            "default": 0.04
+          },
+          "p_cl_rel": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "P Cl Rel",
+            "default": 0.45
+          },
+          "temp_c": {
+            "type": "number",
+            "minimum": -273.15,
+            "title": "Temp C",
+            "default": 37.0
+          }
+        },
+        "type": "object",
+        "title": "ElectrochemistryRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "MetrologyRequest": {
+        "properties": {
+          "photons": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Photons",
+            "default": 2500.0
+          },
+          "psf_sigma_nm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Psf Sigma Nm",
+            "default": 110.0
+          },
+          "imager_conc_nm": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Imager Conc Nm",
+            "default": 2.0
+          },
+          "k_on": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "K On",
+            "default": 2.0
+          },
+          "k_off": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "K Off",
+            "default": 5.0
+          },
+          "spacing_nm": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Spacing Nm",
+            "default": 3.0
+          },
+          "resi_subsets_k": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Resi Subsets K",
+            "default": 9.0
+          }
+        },
+        "type": "object",
+        "title": "MetrologyRequest"
+      },
+      "NanodomainRequest": {
+        "properties": {
+          "ca_ext_mm": {
+            "type": "number",
+            "maximum": 20.0,
+            "minimum": 0.0,
+            "title": "Ca Ext Mm",
+            "default": 2.0
+          },
+          "coupling_nm": {
+            "type": "number",
+            "maximum": 500.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Coupling Nm",
+            "default": 17.0
+          },
+          "fused_vesicles": {
+            "type": "number",
+            "maximum": 50.0,
+            "minimum": 0.0,
+            "title": "Fused Vesicles",
+            "default": 1.0
+          },
+          "cleft_width_nm": {
+            "type": "number",
+            "maximum": 200.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Cleft Width Nm",
+            "default": 22.0
+          },
+          "nanocolumn_offset_nm": {
+            "type": "number",
+            "maximum": 500.0,
+            "minimum": 0.0,
+            "title": "Nanocolumn Offset Nm",
+            "default": 0.0
+          },
+          "temp_c": {
+            "type": "number",
+            "minimum": -273.15,
+            "title": "Temp C",
+            "default": 37.0
+          }
+        },
+        "type": "object",
+        "title": "NanodomainRequest"
+      },
+      "SnareRequest": {
+        "properties": {
+          "snare_count": {
+            "type": "number",
+            "maximum": 6.0,
+            "minimum": 1.0,
+            "title": "Snare Count",
+            "default": 4.0
+          },
+          "clamp_energy_kbt": {
+            "type": "number",
+            "maximum": 40.0,
+            "minimum": 0.0,
+            "title": "Clamp Energy Kbt",
+            "default": 15.0
+          },
+          "syt1_ca_bound": {
+            "type": "number",
+            "maximum": 5.0,
+            "minimum": 0.0,
+            "title": "Syt1 Ca Bound",
+            "default": 5.0
+          },
+          "temp_c": {
+            "type": "number",
+            "minimum": -273.15,
+            "title": "Temp C",
+            "default": 37.0
+          }
+        },
+        "type": "object",
+        "title": "SnareRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

@@ -9,7 +9,8 @@ Full standard: `docs/build-standard.md` (Build Standard for LLMs v1.1.0, 90 item
 - **Name:** `human-synapse-bouton-lab`
 - **Purpose:** Full-stack, formally verified human synaptic bouton biophysical workbench, Lean 4.35.0 proofs, pre-registered stochastic Monte Carlo simulator, and 11-discipline open hard problems & consciousness frontier monograph.
 - **Author & Owner:** Alexander Stephen Donahue (`0thernes`, Independent Researcher, Spokane, WA, USA; ORCID `https://orcid.org/0009-0006-8168-9648`; `0_0@0thernes.art`). Do **not** cite an unformed LLC entity.
-- **License:** Dual-licensed — Apache-2.0 for code/proofs (`LICENSE`), CC-BY-4.0 for manuscripts/docs/datasets/media (`LICENSE-CONTENT`).
+- **License:** Dual-licensed — canonical Apache-2.0 for code/proofs (`LICENSE`), CC-BY-4.0 for manuscripts/docs/datasets/media (`docs/LICENSE-CONTENT.md`).
+- **Build Pipeline Models v1.0.0:** Current phase `P9/P11` (Shipped & Iterating), profile `T02` + `T05` (full-stack web workbench + verified scientific library), deploy target `D04` (GitHub Pages), manifest `project.yaml`, auditor `python scripts/pipeline-audit.py`, extra rule **R9** (deploy safety without gates), and AI guardrails **AI01–AI15**.
 - **Manifest:** `repo.yaml` (schema in `repo-standard.schema.json`).
 - **Stack:**
   - Lean `4.35.0` (`lean/`, zero Mathlib, `lake build --wfail`, `leanchecker-paranoid`, `nanoda_bin`, `con-ron`, `con-leche`, `lake comparator`)
