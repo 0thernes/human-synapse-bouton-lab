@@ -103,7 +103,7 @@ def main() -> int:
         if p.is_file() and p.name != "SHA256SUMS":
             digest = hashlib.sha256(p.read_bytes()).hexdigest()
             sums.append(f"{digest}  {p.name}")
-    (dist_dir / "SHA256SUMS").write_text("\n".join(sums) + "\n", encoding="utf-8")
+    (dist_dir / "SHA256SUMS").write_text("\n".join(sums) + "\n", encoding="utf-8", newline="\n")
     print("\n=== dist/SHA256SUMS ===")
     print("\n".join(sums))
     return 0
