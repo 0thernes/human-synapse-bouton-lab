@@ -1,0 +1,67 @@
+# Runs after a v* tag is pushed. Publishes notes from CHANGELOG.md, artifacts, SHA256SUMS and build provenance attestations.
+# It never gates a push: the tag is already pushed when this starts.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Check version consistency
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          file="$(tr -d '[:space:]' < VERSION 2>/dev/null || true)"
+          [ "$file" = "$tag" ] || echo "::warning::VERSION ($file) does not match tag ($tag)"
+          grep -Eq "^## \[$tag\]" CHANGELOG.md || echo "::warning::CHANGELOG.md has no section for $tag"
+
+      - uses: extractions/setup-just@v2
+        continue-on-error: true
+
+      - name: Build artifacts
+        run: |
+          mkdir -p dist
+          name="${GITHUB_REPOSITORY#*/}"
+          if command -v just >/dev/null && just --summary 2>/dev/null | tr ' ' '\n' | grep -qx dist; then
+            just dist            # a project-defined recipe that writes release artifacts into dist/
+          fi
+          git archive --format=tar.gz --prefix="$name-$GITHUB_REF_NAME/" -o "dist/$name-$GITHUB_REF_NAME-source.tar.gz" "$GITHUB_REF_NAME"
+          git archive --format=zip --prefix="$name-$GITHUB_REF_NAME/" -o "dist/$name-$GITHUB_REF_NAME-source.zip" "$GITHUB_REF_NAME"
+
+      - name: SHA256SUMS
+        working-directory: dist
+        run: |
+          find . -maxdepth 1 -type f -printf '%f\n' | sort > ../artifact-list.txt
+          xargs sha256sum < ../artifact-list.txt > ../SHA256SUMS
+          mv ../SHA256SUMS SHA256SUMS
+          cat SHA256SUMS
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: "dist/*"
+
+      - name: Release notes from CHANGELOG.md
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          awk -v v="$tag" '$0 ~ "^## \\[" v "\\]" {f=1; next} f && /^## \[/ {exit} f' CHANGELOG.md > notes.md
+          [ -s notes.md ] || echo "Release $GITHUB_REF_NAME" > notes.md
+          {
+            echo
+            echo "Verify: \`sha256sum -c SHA256SUMS\` and \`gh attestation verify <file> --repo $GITHUB_REPOSITORY\`."
+          } >> notes.md
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/* --title "$GITHUB_REF_NAME" --notes-file notes.md --verify-tag

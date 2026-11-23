@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software, formal proofs, datasets, or white papers, please cite them using these metadata."
+title: "human-synapse-bouton-lab: Formally Verified Human Synaptic Bouton Biophysics, Stochastic Nanocolumn Simulator, and 11-Discipline Open Hard Problems Framework"
+abstract: "A full-stack, multi-language (TypeScript, Rust, Python, Lean 4.35.0) computational workbench, exact biophysical reference oracle, pre-registered Monte Carlo synaptic release simulator, and AMS-LaTeX white-paper suite covering human cortical synaptic bouton biophysics, microtubules, bioenergetics, DNA-origami metrology, and an 11-discipline map of open hard problems toward the consciousness frontier."
+type: software
+authors:
+  - family-names: "Donahue"
+    given-names: "Alexander Stephen"
+    alias: "0thernes"
+    orcid: "https://orcid.org/0009-0006-8168-9648"
+    email: "0_0@0thernes.art"
+    affiliation: "Independent Researcher, Spokane, WA, USA"
+version: "1.0.0"
+date-released: "2026-11-23"
+license: "Apache-2.0"
+repository-code: "https://github.com/0thernes/human-synapse-bouton-lab"
+url: "https://0thernes.github.io/human-synapse-bouton-lab/"
+keywords:
+  - computational-neuroscience
+  - synaptic-bouton
+  - biophysics
+  - lean4
+  - formal-verification
+  - monte-carlo-simulation
+  - hodgkin-huxley
+  - snare-complex
+  - dna-origami
+  - open-problems
+  - consciousness-research

@@ -1,0 +1,20 @@
+# human-synapse-bouton-lab
+
+> Full-stack, formally verified human synaptic bouton biophysical workbench, Lean 4.35.0 proofs, stochastic Monte Carlo nanocolumn simulator, and 11-discipline open hard problems & consciousness frontier monograph. Built and verified to the Build Standard for LLMs v1.1.0.
+
+Start with AGENTS.md for commands and rules. llms-full.txt contains everything in one file.
+
+## Agent instructions
+
+- [AGENTS.md](AGENTS.md): canonical agent instructions, hard rules, finding classes, checklist
+- [Build standard](docs/build-standard.md): all 90 items with why, how, examples, done-when checks and evidence
+
+## Project docs
+
+- [README](README.md): purpose, quickstart, usage, results, limitations
+- [Claims ledger](CLAIMS.md): every claim mapped to its command and test
+- [Replication](REPLICATION.md): how to reproduce the headline results
+
+## Optional
+
+- [Full context](llms-full.txt): AGENTS.md plus the full standard in one file

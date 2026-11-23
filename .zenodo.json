@@ -1,0 +1,27 @@
+{
+  "title": "human-synapse-bouton-lab: Formally Verified Human Synaptic Bouton Biophysics, Stochastic Nanocolumn Simulator, and 11-Discipline Open Hard Problems Framework",
+  "description": "Full-stack, formally verified human synaptic bouton biophysical workbench (TypeScript, Rust, Python, Lean 4.35.0), pre-registered stochastic Monte Carlo nanocolumn simulator, and two AMS-LaTeX white papers covering nanoscale synaptic biophysics and an 11-discipline map of open hard problems toward consciousness.",
+  "upload_type": "software",
+  "license": "Apache-2.0",
+  "creators": [
+    {
+      "name": "Donahue, Alexander Stephen",
+      "orcid": "0009-0006-8168-9648",
+      "affiliation": "Independent Researcher, Spokane, WA, USA"
+    }
+  ],
+  "keywords": [
+    "computational neuroscience",
+    "synaptic bouton",
+    "biophysics",
+    "Lean 4",
+    "formal verification",
+    "Monte Carlo simulation",
+    "Hodgkin-Huxley",
+    "SNARE complex",
+    "DNA-PAINT",
+    "open problems",
+    "consciousness indicators"
+  ],
+  "notes": "Dual-licensed: Apache-2.0 for source code; CC-BY-4.0 for manuscripts, documentation, datasets, figures, and videos. Preprint artifacts; not peer-reviewed."
+}

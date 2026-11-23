@@ -1,0 +1,118 @@
+# yaml-language-server: $schema=./repo-standard.schema.json
+# Project manifest for the Build Standard for LLMs v1.1.0. Read by scripts/audit-repo.sh and Audit-Repo.ps1.
+# Keep each item on one line. status: done | todo | partial | n/a (n/a needs a note).
+standard: "1.1.0"
+name: "human-synapse-bouton-lab"
+description: "Full-stack, formally verified human synaptic bouton biophysical workbench, Lean 4.35.0 proofs, stochastic Monte Carlo nanocolumn simulator, and 11-discipline open hard problems & consciousness frontier monograph."
+owner: "0thernes"
+year: "2026"
+project_type: research  # library | cli | service | web-app | desktop-app | mobile-app | data | ml | ai-app | research | docs | infra | game | other
+stack: [node, python, rust, lean]  # e.g. [python, node]; scripts/dev.sh also auto-detects
+flags:  # true | false | auto
+  public: true  # published openly (community files, About, citation)
+  package: true  # installable library or tool (auto: a package manifest exists)
+  visual: true  # has visible output worth a screenshot or GIF (auto: ui)
+  ui: true  # has a user interface (auto: tsx/jsx/vue/svelte/html/xaml/swift files outside docs)
+  native: false  # native or unsafe code (auto: C/C++/asm sources)
+  ai: false  # calls or ships an AI model (auto: AI SDK names in code or manifests)
+  personal_data: false  # collects, stores, processes or logs personal data
+  service: true  # long-running service, server or job
+  deployed: false  # deployed somewhere
+  api: true  # exposes or consumes an API, file format or protocol
+  perf: true  # makes speed or efficiency claims
+  concurrent: false  # concurrent, parallel or async code
+  numeric: true  # numeric, scientific, financial, ML or simulation code
+  experimental: true  # makes experimental, statistical or research claims
+  ml: false  # trains, fine-tunes or selects ML models
+  formal: true  # has a critical core worth formal methods
+items:
+  A01: {status: todo}  # README with a one-line purpose [core]
+  A02: {status: todo}  # Badge ribbon [recommended]
+  A03: {status: todo}  # Quickstart that works from a clean clone [core]
+  A04: {status: todo}  # Usage examples [core]
+  A05: {status: todo}  # Demo media [recommended]
+  A06: {status: todo}  # LICENSE [core]
+  A07: {status: todo}  # CHANGELOG [core]
+  A08: {status: todo}  # Semantic version, tags and a single version source [core]
+  A09: {status: todo}  # Automated tests that pass [core]
+  A10: {status: todo}  # Informational CI [core]
+  A11: {status: todo}  # Releases [recommended]
+  A12: {status: todo}  # .gitignore [core]
+  A13: {status: todo}  # .gitattributes and .editorconfig [recommended]
+  A14: {status: todo}  # CONTRIBUTING guide [recommended]
+  A15: {status: todo}  # CODE_OF_CONDUCT [recommended]
+  A16: {status: todo}  # SECURITY.md [core]
+  A17: {status: todo}  # SUPPORT.md [recommended]
+  A18: {status: todo}  # Issue templates [recommended]
+  A19: {status: todo}  # About description and topics [core]
+  A20: {status: todo}  # docs/ folder [recommended]
+  A21: {status: todo}  # Architecture Decision Records [recommended]
+  A22: {status: todo}  # CITATION.cff [advanced]
+  A23: {status: todo}  # Clean history and correct identity [core]
+  A24: {status: todo}  # No secrets, build output or huge files committed [core]
+  A25: {status: todo}  # Cross-platform CI [recommended]
+  A26: {status: todo}  # Social preview image [recommended]
+  A27: {status: todo}  # Pages demo or docs site [advanced]
+  A28: {status: todo}  # Package manifest [recommended]
+  A29: {status: todo}  # ROADMAP.md [recommended]
+  A30: {status: todo}  # Labels including the six finding classes [recommended]
+  A31: {status: todo}  # Task runner with one-word commands [core]
+  A32: {status: todo}  # Agent entry points: AGENTS.md canonical, plus CLAUDE.md, GEMINI.md, Cursor rules, llms.txt [core]
+  A33: {status: todo}  # Environment and configuration documented [core]
+  A34: {status: todo}  # Observability basics: logs, errors, health [recommended]
+  A35: {status: todo}  # Data, migrations, backups and an offsite repo mirror [recommended]
+  A36: {status: todo}  # One-command deploy and rollback [recommended]
+  A37: {status: todo}  # Performance budgets [advanced]
+  A38: {status: todo}  # Accessibility and internationalization [core]
+  A39: {status: todo}  # Third-party licensing and attribution [recommended]
+  A40: {status: todo}  # AI components pinned, evaluated and budgeted [core]
+  A41: {status: todo}  # Deprecation and upgrade path [advanced]
+  A42: {status: todo}  # Maintenance status [recommended]
+  A43: {status: todo}  # examples/ directory [recommended]
+  A44: {status: todo}  # FAQ and glossary [recommended]
+  A45: {status: todo}  # Privacy and personal-data handling [core]
+  B01: {status: todo}  # Reproducible build from a clean clone [core]
+  B02: {status: todo}  # Pinned toolchains and lockfiles [core]
+  B03: {status: todo}  # Determinism checks [core]
+  B04: {status: todo}  # CLAIMS.md ledger [core]
+  B05: {status: todo}  # Falsifiable tests per claim [core]
+  B06: {status: todo}  # Negative tests [core]
+  B07: {status: todo}  # Regression test per fixed bug [core]
+  B08: {status: todo}  # Golden and snapshot tests [recommended]
+  B09: {status: todo}  # Contract and API tests [recommended]
+  B10: {status: todo}  # Property-based tests [core]
+  B11: {status: todo}  # Differential testing [recommended]
+  B12: {status: todo}  # Reference implementation as test oracle [recommended]
+  B13: {status: todo}  # Mutation testing [recommended]
+  B14: {status: todo}  # Metamorphic testing [advanced]
+  B15: {status: todo}  # Fuzzing [recommended]
+  B16: {status: todo}  # Sanitizers and runtime checkers [core]
+  B17: {status: todo}  # Static analysis and linters, report-only [recommended]
+  B18: {status: todo}  # Strict type checking [recommended]
+  B19: {status: todo}  # Concurrency and race testing [advanced]
+  B20: {status: todo}  # Numeric and floating-point stability [advanced]
+  B21: {status: todo}  # Failure injection [advanced]
+  B22: {status: todo}  # Formal specification and proof [advanced]
+  B23: {status: todo}  # Design model checking [advanced]
+  B24: {status: todo}  # Verified implementation language [advanced]
+  B25: {status: todo}  # Bounded model checking of real code [advanced]
+  B26: {status: todo}  # Honest benchmarks [core]
+  B27: {status: todo}  # Performance tracking over time, report-only [advanced]
+  B28: {status: todo}  # Controls and multiple seeds [core]
+  B29: {status: todo}  # Significance testing [core]
+  B30: {status: todo}  # Effect sizes and confidence intervals [core]
+  B31: {status: todo}  # Multiple-comparison correction [recommended]
+  B32: {status: todo}  # Pre-registration of hypotheses [advanced]
+  B33: {status: todo}  # ML evaluation on held-out data [core]
+  B34: {status: todo}  # AI hallucination and regression evals [core]
+  B35: {status: todo}  # Security scanning, report-only, with optional SBOM [recommended]
+  B36: {status: todo}  # Threat model [recommended]
+  B37: {status: todo}  # Release hashes and checksums [core]
+  B38: {status: todo}  # Build provenance and attestations [recommended]
+  B39: {status: todo}  # Data checksums and dataset versioning [recommended]
+  B40: {status: todo}  # Audit trail [recommended]
+  B41: {status: todo}  # Limitations and real-vs-metaphor [core]
+  B42: {status: todo}  # What would prove us wrong [core]
+  B43: {status: todo}  # Replication protocol [core]
+  B44: {status: todo}  # Independent replication [advanced]
+  B45: {status: todo}  # Peer and red-team review [recommended]

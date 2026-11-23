@@ -1,0 +1,53 @@
+# OS & Editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Secrets & local env
+.env
+.env.local
+.env.*.local
+
+# Node / TypeScript / Vite
+node_modules/
+apps/web/dist/
+packages/synapse-core/dist/
+coverage/
+*.tsbuildinfo
+
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.mutmut-cache/
+
+# Rust
+target/
+
+# Lean 4
+lean/.lake/
+
+# LaTeX build intermediates (frozen PDFs live in dist/)
+papers/**/build/
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Temporary outputs & bundles
+_site/
+*.bundle
+audit.json
+gitleaks.json
+osv.txt
