@@ -18,6 +18,7 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+
 from synapse_science.oracle import (
     exact_cleft_glu_peak_mm,
     exact_ei_balance,

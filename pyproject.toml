@@ -59,6 +59,9 @@ src = ["python"]
 select = ["E", "F", "W", "I", "B", "UP"]
 ignore = ["E501"]
 
+[tool.ruff.lint.isort]
+known-first-party = ["synapse_science"]
+
 [tool.mypy]
 python_version = "3.12"
 strict = true

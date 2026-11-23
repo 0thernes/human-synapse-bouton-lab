@@ -14,6 +14,7 @@ import pytest
 from fastapi.testclient import TestClient
 from hypothesis import given, settings
 from hypothesis import strategies as st
+
 from synapse_science.oracle import (
     exact_bioenergetics,
     exact_cleft_glu_peak_mm,

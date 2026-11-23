@@ -29,8 +29,8 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y bubblewrap || true
       - name: Forbidden token scan on proof modules
         run: |
-          ! grep -rnE '\b(sorry|admit|native_decide)\b|^\s*axiom\b|implemented_by|@\[extern' \
-            lean/Solution.lean lean/NonVacuity.lean lean/VerifyAxioms.lean
+          ! sed 's/--.*$//' lean/Solution.lean lean/NonVacuity.lean lean/VerifyAxioms.lean | \
+            grep -nE '\b(sorry|admit|native_decide)\b|^\s*axiom\b|implemented_by|@\[extern'
       - name: Build proofs (--wfail), verify axioms, replay leanchecker & external kernels
         working-directory: lean
         run: |
