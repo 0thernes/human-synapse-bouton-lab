@@ -6,7 +6,7 @@ Prepared per Build Pipeline Models v1.0.0 (`P2.05`). Next scheduled metric revie
 
 - **Independent Verification & Archival Completeness Score:** Percentage of independent machine-verifiable reproducibility and integrity gates passing simultaneously across all 4 languages, 6 Lean kernels, Build Standard v1.1.0, cryptographic manifests, and external scholarly registries.
   - **Target:** `100%` of automated internal gates green + live Zenodo Concept/Version DOI, ORCID public works, Software Heritage SWHID, and `0thernes-research-archive` cryptographic verification.
-  - **Current Measured Value (2026-11-23):** Internal automated gates `100%` (12/12 CI jobs, 6/6 Lean kernels in repository CI, 79/79 Build Standard, 0/2,000 differential errors, 6/6 mutants killed, 23/23 DOIs live, 0 open Dependabot alerts); Zenodo Concept DOI (`10.5281/zenodo.24477927`), ORCID Works, Software Heritage, and `0thernes-research-archive` live. Pre-registration Palomar submission withdrawn prior to registration (scope targets pure mathematics rather than applied computational biophysics).
+  - **Current Measured Value (2026-11-23):** Internal automated gates `100%` (12/12 CI jobs, 6/6 Lean kernels in repository CI, 79/79 Build Standard, 0/2,000 differential errors, 6/6 mutants killed, 21 DOIs resolve (one to an unrelated paper; see ERRATA.md), 0 open Dependabot alerts); Zenodo Concept DOI (`10.5281/zenodo.24477927`), ORCID Works, Software Heritage, and `0thernes-research-archive` live. Pre-registration Palomar submission withdrawn prior to registration (scope targets pure mathematics rather than applied computational biophysics).
 
 ## Input Metrics
 
@@ -16,7 +16,7 @@ Prepared per Build Pipeline Models v1.0.0 (`P2.05`). Next scheduled metric revie
 | Independent Lean kernels passing | `6 / 6` | `6 / 6` | Ubuntu CI `lake comparator --paranoid` (`45234241381`) |
 | Cross-language differential checks (`rtol <= 1e-10`) | `>= 2,000` checks, `0` mismatches | `2,000 / 2,000` pass | `uv run pytest python/tests/test_differential.py` |
 | Targeted mutation-kill ratio | `100%` (`6 / 6`) | `100%` (`6 / 6`) | `uv run python scripts/mutation_audit.py` |
-| Bibliography live DOI & retraction audit | `100%` verified, `0` retractions | `23 / 23` verified, `0` retractions | `uv run python scripts/verify_citations.py` |
+| Bibliography live DOI & retraction audit | `100%` verified, `0` retractions | 21 DOIs resolve, one to an unrelated paper; titles, authors and `updated-by` not checked (see `ERRATA.md`) | `uv run python scripts/verify_citations.py` |
 | Build Standard v1.1.0 audit score | `100.0%` (`79 / 79`, Core `33 / 33`) | `100.0%` (`79 / 79`, Core `33 / 33`) | `pwsh -File scripts/Audit-Repo.ps1 -Path .` |
 | External human replications logged | `>= 1` by 2027-02-23 | `0` (outreach templates staged in `docs/outreach-drafts.md`) | GitHub Issues (`replication` label) |
 

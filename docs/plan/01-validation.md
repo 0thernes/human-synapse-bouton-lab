@@ -28,7 +28,7 @@ Prepared per Build Pipeline Models v1.0.0 (`P1.01`–`P1.06`).
 
 | External Dependency / Asset | License / Terms Status | Access & Risk Notes |
 |---|---|---|
-| Published biophysical constants (Wilhelm 2014; Rollenhagen 2019–2024; Wang 2024; Reinhardt 2023) | Scientific facts / peer-reviewed citations (23/23 Crossref-verified, `docs/citation-audit.json`) | Properly cited with DOIs; zero scraped proprietary datasets or human-subject PII. |
+| Published biophysical constants (Wilhelm 2014; Rollenhagen 2019–2024; Wang 2024; Reinhardt 2023) | Scientific facts / peer-reviewed citations (21 DOIs resolve on Crossref, one of them to an unrelated paper; titles and authors not compared; see `ERRATA.md`) | Properly cited with DOIs; zero scraped proprietary datasets or human-subject PII. |
 | Lean 4.35.0 toolchain (`leanprover/lean4`) | Apache-2.0 | Zero Mathlib dependency; minimal trusted computing base (`ADR 0003`). |
 | Rust crates (`rand`, `rand_chacha`, `serde`, `proptest`) | MIT / Apache-2.0 dual-licensed | Pinned in `Cargo.lock`; zero open advisories. |
 | Python packages (`mpmath`, `fastapi`, `pydantic`, `matplotlib`, `pillow`, `pytest`, `ruff`, `mypy`) | BSD / MIT / PSF compatible | Pinned in `uv.lock`; `pillow 13.0.0`, `pytest 9.2.0`; zero open advisories. |

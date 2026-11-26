@@ -48,7 +48,7 @@ Computational neuroscience demos and exploratory monographs routinely mix unveri
 ### J3 — Cross-Language Differential & Pre-Registered Statistical Reproduction
 - **Start:** Replicator runs `just reproduce` (or individual `pytest`, `cargo test`, `npm test` commands per `REPLICATION.md`).
 - **Steps:** Run Rust Monte Carlo sweep, Python stats/differential/mutation audits, and checksum verification.
-- **Visible Outcome:** `0` differential mismatches across `2,000` checks, `6/6` mutants killed, `23/23` DOIs verified, and `sha256sum -c MANIFEST.sha256` passes 100%.
+- **Visible Outcome:** `0` differential mismatches across `2,000` checks, `6/6` mutants killed, 21 DOIs resolving (one to an unrelated paper, see `ERRATA.md`), and `sha256sum -c MANIFEST.sha256` passes 100%.
 - **Acceptance Criteria:**
   - *Given* pinned lockfiles, *When* `uv run pytest python/tests/test_differential.py` runs, *Then* all 1,000 TS and 1,000 Rust inputs agree with the 50-digit Python oracle within `1e-10`.
 

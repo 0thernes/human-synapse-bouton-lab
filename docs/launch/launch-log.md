@@ -9,7 +9,7 @@ Prepared per Build Pipeline Models v1.0.0 (`P9.07`).
    - Caught & fixed `npm ci` `EBADPLATFORM` (`optional: true` on 26 platform packages) and Lean comment scan false positive in CI; verified `12/12` CI jobs green and Software Heritage snapshot `swh:1:snp:1a278fff55465dbe8d0b870408b6468822eb3e8b`.
 2. **`v1.1.0` (Playbook & Security Hardening):**
    - Upgraded `pillow` (`13.0.0`), `vite` (`6.4.6`), `vitest` (`4.1.12`), `pytest` (`9.2.0`), reducing open GitHub Dependabot alerts from `156` to **`0`** and `npm audit` to **`0`**.
-   - Added Palomar `module` headers & `@[expose]`, `ERRATA.md`, digest-pinned `Dockerfile`, 23/23 live Crossref citation audit (`docs/citation-audit.json`), root `MANIFEST.sha256` + DigiCert RFC 3161 `.tsr`, and 6-kernel `lake comparator --paranoid` CI pass (`45234241381`).
+   - Added Palomar `module` headers & `@[expose]`, `ERRATA.md`, digest-pinned `Dockerfile`, 23/23 live Crossref citation audit (`docs/citation-audit.json`) *[Corrected 2026-11-26: 21 DOIs resolve on Crossref, one of them to an unrelated paper; titles and authors not compared; see `ERRATA.md`.]*, root `MANIFEST.sha256` + DigiCert RFC 3161 `.tsr`, and 6-kernel `lake comparator --paranoid` CI pass (`45234241381`).
    - Archived `v1.1.0` in Software Heritage (`swh:1:snp:458adcd73c9a78054486147094950e2be6774271`).
 3. **`v1.1.1` (Palomar Compliance, Zenodo DOI, ORCID & Social Preview):**
    - Replaced mixed root `LICENSE` with verbatim canonical `Apache-2.0` and moved `CC-BY-4.0` to `docs/LICENSE-CONTENT.md`; updated `lean/formalization.yaml` to official `v0.4` schema (`relationship: "other"`).
