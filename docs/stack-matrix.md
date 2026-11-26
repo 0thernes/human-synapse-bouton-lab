@@ -50,5 +50,5 @@ Prepared per Build Pipeline Models v1.0.0 (`P4.01`–`P4.04`). Scores are `1` (p
 | Biophysical core & formal proofs | **Build** | Custom Apache-2.0 monorepo | Fully self-owned; zero vendor lock-in. |
 | Git hosting, CI, Pages | **Buy (Free Open-Source)** | GitHub (`0thernes/human-synapse-bouton-lab`) | Standard Git repo + `Dockerfile` + static Vite `dist/` deploy identically to GitLab/Codeberg/Cloudflare Pages. |
 | Persistent DOI archival | **Buy (Public Science)** | CERN Zenodo (`10.5281/zenodo.24477927`) | DataCite DOIs are permanent; mirrored in Software Heritage SWHID & `0thernes-research-archive`. |
-| Formal proof registry | **Buy (Public Science)** | Palomar Registry (`68sy455wsdm5`) | `lean/Challenge.lean` & `Solution.lean` remain independently checkable offline by any Lean 4.35.0 kernel. |
+| Formal proof registry | **Buy (Public Science)** | Palomar Registry ((prior Palomar submission cleanly withdrawn in v1.2.0)) | `lean/Challenge.lean` & `Solution.lean` remain independently checkable offline by any Lean 4.35.0 kernel. |
 | RFC 3161 Timestamping | **Buy (Public Free TSA)** | DigiCert TSA (`timestamp.digicert.com`) | Standard RFC 3161 `.tsr` verifiable offline; swappable to FreeTSA or Sectigo TSA with one URL flag. |

@@ -1,13 +1,13 @@
 {
   "title": "human-synapse-bouton-lab: Formally Verified Human Synaptic Bouton Biophysics, Stochastic Nanocolumn Simulator, and 11-Discipline Open Hard Problems Framework",
-  "description": "Full-stack, formally verified human synaptic bouton biophysical workbench (TypeScript, Rust, Python, Lean 4.35.0), pre-registered stochastic Monte Carlo nanocolumn simulator, and two AMS-LaTeX white papers covering nanoscale synaptic biophysics and an 11-discipline map of open hard problems toward consciousness.",
+  "description": "Full-stack multi-language (Lean 4.35.0, Rust, TypeScript, Python) scientific repository with 24 sorry-free zero-Classical.choice formal biophysical invariants (26 concrete witnesses + 6 adversarial counterexample checks across 6 independent kernels in CI), a 50-digit exact reference oracle, 1,000-case cross-language differential verification, a pre-registered 30-seed Monte Carlo experiment (including honest refutation of H3 at 40 Hz), interactive WebGL 3D workbench + live Lean Proof Blueprint DAG, and two AMS-LaTeX white papers with an honest 1,900-problem Mega-Atlas crosswalk.",
   "upload_type": "software",
-  "license": "Apache-2.0",
+  "license": "apache-2.0",
   "creators": [
     {
       "name": "Donahue, Alexander Stephen",
-      "orcid": "0009-0006-8168-9648",
-      "affiliation": "Independent Researcher, Spokane, WA, USA"
+      "affiliation": "Independent Researcher, Spokane, WA, USA",
+      "orcid": "0009-0006-8168-9648"
     }
   ],
   "keywords": [
@@ -16,24 +16,35 @@
     "biophysics",
     "Lean 4",
     "formal verification",
-    "Monte Carlo simulation",
     "Hodgkin-Huxley",
+    "Monte Carlo simulation",
     "SNARE complex",
     "DNA-PAINT",
+    "RESI metrology",
     "open problems",
-    "consciousness indicators"
+    "consciousness research"
   ],
+  "notes": "Code and Lean 4.35.0 proofs are licensed under Apache-2.0; manuscripts, figures, blueprint, datasets, and simulation videos are licensed under CC-BY-4.0. Independent research preprint; not externally journal peer-reviewed. Human CRediT roles: Conceptualization, Methodology, Formal analysis, Validation, Writing - review & editing. AI tools (Antigravity / Google DeepMind) assisted with multi-language software engineering, Lean tactic drafting, and LaTeX typesetting; all proofs are independently certified by Lean 4.35.0 and five external kernels. Prior v1.2.0 Software Heritage SWHID: swh:1:snp:8ef70f745fae4f91f040720b28e21560c73deffc.",
   "related_identifiers": [
     {
-      "identifier": "https://archive.softwareheritage.org/swh:1:snp:1a278fff55465dbe8d0b870408b6468822eb3e8b",
-      "relation": "isIdenticalTo",
+      "identifier": "https://github.com/0thernes/human-synapse-bouton-lab",
+      "relation": "isSupplementTo",
       "scheme": "url"
     },
     {
-      "identifier": "https://github.com/0thernes/0thernes-research-archive",
-      "relation": "isPartOf",
+      "identifier": "https://0thernes.github.io/human-synapse-bouton-lab/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://0thernes.github.io/human-synapse-bouton-lab/blueprint/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://archive.softwareheritage.org/swh:1:snp:8ef70f745fae4f91f040720b28e21560c73deffc",
+      "relation": "isIdenticalTo",
       "scheme": "url"
     }
-  ],
-  "notes": "Dual-licensed: Apache-2.0 for source code; CC-BY-4.0 for manuscripts, documentation, datasets, figures, and videos. Preprint artifacts; not peer-reviewed. Software Heritage SWHID: swh:1:snp:1a278fff55465dbe8d0b870408b6468822eb3e8b."
+  ]
 }

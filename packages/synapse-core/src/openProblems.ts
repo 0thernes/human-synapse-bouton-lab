@@ -148,8 +148,8 @@ export const OPEN_HARD_PROBLEMS: readonly OpenHardProblem[] = [
     discipline: 'NeuroMath',
     title: 'Mechanized Formal Verification of Nonlinear Biophysical ODEs and Stochastic Master Equations',
     formalStatement: 'Close the gap between exact discrete algebraic invariants checked in Lean 4 and rigorous verified numerical enclosures (interval ODE integrators) for 4D Hodgkin-Huxley spiking trajectories.',
-    ourProgress: 'Delivered 18 sorry-free, non-vacuous Lean 4.35.0 theorems replayed across 6 independent kernels (official kernel, leanchecker-paranoid, nanoda, lean4lean, con-leche, con-ron) + 50-digit mpmath oracle.',
-    leanOrCodeAnchor: 'lean/Challenge.lean; lean/Solution.lean; lean/NonVacuity.lean; python/synapse_science/oracle.py',
+    ourProgress: 'Delivered 24 sorry-free, non-vacuous Lean 4.35.0 theorems (26 witnesses + 6 adversarial counterexample checks) replayed across 6 independent kernels (official kernel, leanchecker-paranoid, nanoda, lean4lean, con-leche, con-ron) + 50-digit mpmath oracle.',
+    leanOrCodeAnchor: 'lean/Challenge.lean; lean/Solution.lean; lean/NonVacuity.lean; lean/AdversarialChecks.lean; python/synapse_science/oracle.py',
     epistemicStatus: 'kernel-checked-partial',
     falsificationCriterion: 'Any theorem refuted if any of the 6 independent kernels rejects the proof export or if differential testing finds a counterexample against the exact oracle.',
     remainingGap: 'Formalizing validated interval arithmetic for the full 4D Hodgkin-Huxley RK4 trajectory inside Lean 4 remains future work.',
@@ -193,10 +193,10 @@ export const CONSCIOUSNESS_CLUES: readonly ConsciousnessClue[] = [
   {
     id: 'CS-DED-01',
     mode: 'deductive',
-    domain: 'Formal Information Geometry (Lean 4.35.0)',
-    proposition: 'Any causally factorized bipartition P(A,B) = P_A(A)*P_B(B) has strictly zero bipartite coupling (|w00*w11 - w01*w10| = 0), whereas aligned correlated synaptic nanocolumns yield strictly positive coupling (> 0).',
-    evidenceOrProof: 'Kernel-checked in lean/Solution.lean (factorized_bipartition_zero_integration, correlated_nanocolumn_positive_integration) and replayed by 6 independent kernels.',
-    whatIsNotClaimed: 'Does NOT prove Integrated Information Theory (IIT) is true, nor that positive coupling implies sentience or phenomenal qualia.',
+    domain: 'Formal 2x2 Algebraic Factorization (Lean 4.35.0)',
+    proposition: 'Any product-factorized 2x2 weight table (w_ij = a_i * b_j) has strictly zero cross-coupling determinant (|w00*w11 - w01*w10| = 0), whereas tables with strict diagonal product dominance or positive diagonal excess yield strictly positive determinant (> 0).',
+    evidenceOrProof: 'Kernel-checked in lean/Solution.lean (factorized_bipartition_zero_integration, correlated_nanocolumn_positive_integration, diagonal_excess_implies_positive_coupling) + common-cause counterexample in lean/AdversarialChecks.lean.',
+    whatIsNotClaimed: 'Restricts strictly to observational 2x2 weight-table factorization (NOT interventional causal disconnection under latent common causes, NOT geometric nanocolumn derivation inside Lean, NOT proof of IIT or phenomenal qualia).',
   },
   {
     id: 'CS-DED-02',
@@ -270,7 +270,7 @@ export const CLASSIFIED_FINDINGS: readonly ClassifiedFinding[] = [
     findingClass: 'issue',
     title: 'Missing Legacy Asset (4163_audit.jpg) & Lack of Proofs/Videos in Prototype',
     description: 'Prototype HTML referenced non-existent user_uploaded_files/ttl=63d/tool_generated/4163_audit.jpg and shipped neither formal Lean proofs nor reproducible simulation figures/videos.',
-    resolution: 'Resolved: replaced with deterministic code-rendered tripartite_bouton_blueprint.png, 5 vector figures (fig1-fig5), animated GIF, two H.264 MP4 simulation videos, and 18 Lean 4.35.0 theorems.',
+    resolution: 'Resolved: replaced with deterministic code-rendered tripartite_bouton_blueprint.png, 5 vector figures (fig1-fig5), animated GIF, two H.264 MP4 simulation videos, and 24 Lean 4.35.0 theorems.',
     status: 'resolved',
   },
   {
@@ -294,7 +294,7 @@ export const CLASSIFIED_FINDINGS: readonly ClassifiedFinding[] = [
     findingClass: 'dilemma',
     title: 'Zero-Mathlib Pure Lean Core vs. Float64 RK4 ODE & Monte Carlo Approximations',
     description: 'Full Mathlib real-analysis proofs of 4D Hodgkin-Huxley ODEs and stochastic Monte Carlo sweeps trade speed and multi-kernel portability for heavier trust bases, while float64 integration is not a kernel proof.',
-    resolution: 'Resolved (ADR 0003): proved 18 algebraic invariants in zero-Mathlib Lean 4.35.0 (6 kernels, Palomar module headers), verified exact transcendentals with a 50-digit mpmath oracle (1,000-case differential test, 0 mismatches), and tagged all float64 ODE/MC trajectories numerical_approximation.',
+    resolution: 'Resolved (ADR 0003): proved 24 algebraic & dynamical invariants in zero-Mathlib Lean 4.35.0 (6 kernels, 26 witnesses, 6 adversarial checks), verified exact transcendentals with a 50-digit mpmath oracle (1,000-case differential test, 0 mismatches), and tagged all float64 ODE/MC trajectories numerical_approximation.',
     status: 'accepted-limitation',
   },
   {

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 
-import { assertFinite, assertNonNegative, assertPositive } from './electrophysiology.js';
+import { BiophysicsValidationError, assertFinite, assertNonNegative, assertPositive } from './electrophysiology.js';
 
 export interface HodgkinHuxleyInput {
   iInjUaCm2: number;
@@ -155,6 +155,9 @@ export function computeNmdaMgUnblock(vPostMv: number, mgExtMm: number): number {
 /** Deterministic Tsodyks-Markram (1997) short-term synaptic plasticity recurrence. */
 export function simulateTsodyksMarkram(inp: TsodyksMarkramInput): TsodyksMarkramStep[] {
   assertPositive(inp.u0, 'u0');
+  if (inp.u0 > 1) {
+    throw new BiophysicsValidationError(`u0 must be <= 1 (received ${inp.u0})`);
+  }
   assertPositive(inp.tauRecMs, 'tauRecMs');
   assertPositive(inp.tauFacilMs, 'tauFacilMs');
 

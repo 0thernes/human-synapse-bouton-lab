@@ -22,7 +22,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parent.parent
 BIB_PATH = ROOT / "papers" / "references.bib"
 OUT_PATH = ROOT / "docs" / "citation-audit.json"
-USER_AGENT = "human-synapse-bouton-lab/1.1.0 (mailto:0_0@0thernes.art)"
+VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "1.3.0"
+USER_AGENT = f"human-synapse-bouton-lab/{VERSION} (mailto:0_0@0thernes.art)"
 
 
 def parse_bib(text: str) -> list[dict[str, str]]:

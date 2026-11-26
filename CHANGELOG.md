@@ -4,6 +4,21 @@ All notable changes to `human-synapse-bouton-lab` are documented here following 
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-11-25
+
+### Added
+- **24 Pure Lean 4.35.0 Theorems + 26 Witnesses + 6 Adversarial Counterexample Checks (`F29`, `F30`):** Added 6 new constructive theorems (`hill4_ultrasensitive_crossover_vs_linear`, `tsodyks_markram_step_unit_bounds`, `nmda_mg_unblock_unit_interval_and_monotone`, `vesicle_pool_multistep_invariant` by structural induction, `atp_hitting_time_upper_bound` proving exact H3 depletion at `t = 3 s`, and `diagonal_excess_implies_positive_coupling`), expanded `lean/NonVacuity.lean` to 26 witnesses, and added `lean/AdversarialChecks.lean` proving concrete counterexamples when positive-domain or causal guards are dropped.
+- **Interactive Lean 4 Proof Blueprint & SVG Dependency DAG (`blueprint/index.html`):** Self-contained interactive theorem inspector and dependency graph deployed live alongside the workbench at `/blueprint/`.
+- **Unsolved Problems Mega-Atlas Crosswalk (`docs/mega-atlas-crosswalk.md` & White Paper 2 §3):** Complete, honest audit of all 1,900 problems in `0thernes/unsolved-problems-mega-atlas` (`0 / 1,900` fully solved; 18 high-CSS Atlas IDs mapped to exact machine-checked sub-lemmas, Monte Carlo bounds, and explicit remaining barriers).
+- **Defensible Research Playbook Edition 1.3 & Archival Parity (`F29`):** Added verbatim 24-theorem `#print axioms` 5-Second Proof block in `README.md` with automated CI drift auditor (`scripts/check_readme_axioms.py`), `CITATION.bib`, `AUTHORS.md`, `NOTICE`, `croissant.json`, `docs/statement-fidelity.md`, `docs/AI_DISCLOSURE.md`, `docs/PRESERVATION.md`, Withdrawal & Retraction Policy in `ERRATA.md`, and complete 3-cycle forensic hardening ledger (`HARDENING_LOG.md`).
+
+### Fixed
+- **Benchmark JSON Corruption (`F21`):** Fixed `scripts/dev.sh` (`npm run --silent bench --workspace=@synapse/core`) and regenerated clean valid JSON `data/benchmarks/node_bench.json` + updated `data/MANIFEST.sha256`.
+- **Cross-Language Input Boundary Guards (`F24`, `F25`, `F31`, `F32`, `F34`):** Added `math.isfinite()` NaN/Inf guards across `python/synapse_science/oracle.py`, `u0 <= 1` guard in `hodgkinHuxley.ts`, monotonic timestamp validation in `traceAnalyzer.ts`, upfront `firing_rate_hz`/`nanocolumn_offset_nm`/`cleft_width_nm`/`temp_c` checks in Rust `run_monte_carlo_bouton`, and graceful `try/catch` WebGL fallback in `apps/web/src/scene3d.ts`.
+- **Script, CLI & Metadata Drift (`F22`, `F23`, `F27`, `F33`):** Replaced hardcoded `v1.0.0`/`v1.1.0` strings in Rust `main.rs`, `apps/web/src/main.ts`, `generate_media.py`, and `verify_citations.py`; fixed `scripts/dev.sh` Lean comment-stripping grep; synchronized all active docs, `.zenodo.json`, `CITATION.cff`, and `openProblems.ts` with `v1.3.0` counts & observational factorization wording.
+- **CI Modernization (`F26`):** Upgraded all GitHub Actions in `ci.yml`, `pages.yml`, and `release.yml` to native Node 24 tags (`@v7`/`@v6`/`@v5`/`@v10`/`@v4`), added `_native` axiom scan, `AdversarialChecks` `leanchecker`, and README axiom drift verification; removed retired `palomar-preflight.yml`.
+- **Zero-Warning AMS-LaTeX White Papers (`F28`):** Eliminated every Overfull `\hbox`, Underfull `\hbox`, and `hyperref` duplicate anchor warning across both White Papers 1 & 2 (`0` box/hyperref warnings in Tectonic 0.17.0).
+
 ## [1.2.0] - 2026-11-23
 
 ### Changed (Lean 4.35.0 Statement-Fidelity & Positive-Domain Hardening — `ERRATA.md` `E05`)

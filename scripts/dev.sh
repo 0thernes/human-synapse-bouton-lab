@@ -39,7 +39,7 @@ do_node() {
     build) run npm run build ;;
     test)  run npm run test && run node examples/nanocolumn_example.mjs ;;
     lint)  run npm run lint && run npm run typecheck ;;
-    bench) run npm run bench ;;
+    bench) run npm run --silent bench --workspace=@synapse/core ;;
     run)   run npm run dev ;;
     clean) run rm -rf node_modules apps/web/dist packages/synapse-core/dist ;;
   esac
@@ -78,8 +78,8 @@ do_lean() {
     setup) note "lean toolchain pinned via lean/lean-toolchain (zero external deps)" ;;
     build) run bash -c 'cd lean && lake build --wfail' ;;
     test)
-      run bash -c 'cd lean && lake build --wfail && lake env lean VerifyAxioms.lean && lake env leanchecker Solution && lake env leanchecker NonVacuity'
-      run bash -c '! grep -rnE "\b(sorry|admit|native_decide)\b|^\s*axiom\b|implemented_by|@\[extern" lean/Solution.lean lean/NonVacuity.lean lean/VerifyAxioms.lean'
+      run bash -c 'cd lean && lake build --wfail && lake env lean VerifyAxioms.lean && lake env leanchecker Solution && lake env leanchecker NonVacuity && lake env leanchecker AdversarialChecks'
+      run bash -c '! sed "s/--.*$//" lean/Solution.lean lean/NonVacuity.lean lean/AdversarialChecks.lean lean/VerifyAxioms.lean | grep -nE "\b(sorry|admit|native_decide)\b|^\s*axiom\b|implemented_by|@\[extern"'
       ;;
     lint)  note "lean warnings enforced via lake build --wfail" ;;
     bench) note "lean proof build time tracked in docs/benchmarks.md" ;;

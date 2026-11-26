@@ -11,7 +11,7 @@ Because this repository has zero mutable runtime databases, 100% of intellectual
 3. **Master Research Archive Submodule & Frozen PDFs:** `https://github.com/0thernes/0thernes-research-archive` (`0TH-2026-007` & `0TH-2026-008`).
 4. **Immutable Third-Party Scholarly Archives:**
    - **CERN Zenodo (DataCite DOI):** `https://doi.org/10.5281/zenodo.24477927` (`v1.1.1`: `10.5281/zenodo.24477928`).
-   - **Software Heritage:** `swh:1:snp:1a278fff55465dbe8d0b870408b6468822eb3e8b` (`v1.0.0`), `swh:1:snp:458adcd73c9a78054486147094950e2be6774271` (`v1.1.0`).
+   - **Software Heritage:** `swh:1:snp:8ef70f745fae4f91f040720b28e21560c73deffc` (`v1.0.0`), `swh:1:snp:458adcd73c9a78054486147094950e2be6774271` (`v1.1.0`).
 
 ## Recorded Restore Drill Log
 

@@ -14,7 +14,7 @@ Computational neuroscience demos and exploratory monographs routinely mix unveri
 
 ## Scope (In-Scope for `v1.x`)
 
-- Pure Lean 4.35.0 formal proof package (18 theorems, 19 non-vacuity witnesses, `VerifyAxioms.lean`, `comparator.json`, `formalization.yaml`).
+- Pure Lean 4.35.0 formal proof package (24 theorems, 19 non-vacuity witnesses, `VerifyAxioms.lean`, `comparator.json`, `formalization.yaml`).
 - Rust `synapse-sim` (`ChaCha8Rng` Monte Carlo sweeps, `proptest`, benchmarks).
 - Python `synapse_science` (50-digit `mpmath`/rational oracle, FastAPI REST API, pre-registered stats, deterministic figures/GIF/MP4 renderer).
 - Strict TypeScript `packages/synapse-core` + accessible Vite/Three.js/Chart.js `apps/web` deployed to GitHub Pages.
@@ -41,7 +41,7 @@ Computational neuroscience demos and exploratory monographs routinely mix unveri
 ### J2 — Formal Multi-Kernel Verification
 - **Start:** Reviewer clones the repository and enters `lean/`.
 - **Steps:** Run `lake build --wfail`, `lake env lean VerifyAxioms.lean`, and (on Linux) `lake comparator --paranoid`.
-- **Visible Outcome:** All 18 theorems compile with zero warnings, print axioms strictly within `[propext, Quot.sound]`, and pass all 6 independent kernels.
+- **Visible Outcome:** All 24 theorems compile with zero warnings, print axioms strictly within `[propext, Quot.sound]`, and pass all 6 independent kernels.
 - **Acceptance Criteria:**
   - *Given* a clean checkout of `lean/`, *When* `lake build --wfail && lake env lean VerifyAxioms.lean` executes, *Then* exit code is `0` and stdout contains zero `sorryAx`, zero `Classical.choice`, and zero `Lean.ofReduceBool`.
 
@@ -70,7 +70,7 @@ Computational neuroscience demos and exploratory monographs routinely mix unveri
 
 | Category | Requirement | Target / Status |
 |---|---|---|
-| Correctness (Formal) | Zero `sorry`, zero custom axioms, zero `Classical.choice` across all 18 theorems | `100%` (verified across 6 kernels) |
+| Correctness (Formal) | Zero `sorry`, zero custom axioms, zero `Classical.choice` across all 24 theorems | `100%` (verified across 6 kernels) |
 | Correctness (Numerical) | Max relative error between TS, Rust, and 50-digit Python oracle across 1,000 inputs | `<= 1e-10` (`0` violations) |
 | Performance (Simulation) | Rust 5,000-AP Monte Carlo median runtime | `< 1.0 ms` (measured `0.3093 ms`, `5.94x` faster than Node) |
 | Performance (API) | Local FastAPI `/healthz` and compute endpoint p95 latency | `< 50 ms` (pure in-memory math) |

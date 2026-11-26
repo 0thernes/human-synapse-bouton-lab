@@ -9,6 +9,7 @@ floating-point illusions (Defensible Playbook Layer 3) across TypeScript and Rus
 
 from __future__ import annotations
 
+import math
 from fractions import Fraction
 from typing import Any
 
@@ -16,6 +17,13 @@ import mpmath as mp
 
 # 50 decimal digits of precision for transcendental Nernst/GHK/Arrhenius/Gaussian calculations
 mp.mp.dps = 50
+
+
+def _check_finite(**kwargs: float) -> None:
+    """Reject NaN and +/-Infinity before range checks (IEEE-754 NaN comparisons silently return False)."""
+    for name, value in kwargs.items():
+        if not math.isfinite(float(value)):
+            raise ValueError(f"{name} must be a finite number (got {value!r})")
 
 K_B_EXACT = mp.mpf("1.380649e-23")
 R_GAS_EXACT = mp.mpf("8.314462618")
@@ -39,6 +47,7 @@ def exact_hill4_fraction(ca_num: int, ca_den: int = 1, kd_num: int = 15, kd_den:
 
 
 def exact_thermal_energy_pn_nm(temp_c: float) -> mp.mpf:
+    _check_finite(temp_c=temp_c)
     if temp_c < -273.15:
         raise ValueError("Temperature cannot be below absolute zero (-273.15 C)")
     temp_k = max(mp.mpf("273.15"), mp.mpf(str(temp_c)) + mp.mpf("273.15"))
@@ -46,12 +55,14 @@ def exact_thermal_energy_pn_nm(temp_c: float) -> mp.mpf:
 
 
 def exact_q10_factor(temp_c: float, q10: float = 2.1) -> mp.mpf:
+    _check_finite(temp_c=temp_c, q10=q10)
     if q10 <= 0:
         raise ValueError("q10 must be strictly positive")
     return mp.power(mp.mpf(str(q10)), (mp.mpf(str(temp_c)) - mp.mpf("37")) / mp.mpf("10"))
 
 
 def exact_local_ca_peak_um(ca_ext_mm: float, coupling_nm: float) -> mp.mpf:
+    _check_finite(ca_ext_mm=ca_ext_mm, coupling_nm=coupling_nm)
     if ca_ext_mm < 0 or coupling_nm <= 0:
         raise ValueError("ca_ext_mm >= 0 and coupling_nm > 0 required")
     d_safe = max(mp.mpf("5"), mp.mpf(str(coupling_nm)))
@@ -60,6 +71,7 @@ def exact_local_ca_peak_um(ca_ext_mm: float, coupling_nm: float) -> mp.mpf:
 
 
 def exact_release_probability(ca_local_um: float) -> mp.mpf:
+    _check_finite(ca_local_um=ca_local_um)
     if ca_local_um < 0:
         raise ValueError("ca_local_um must be non-negative")
     c = mp.mpf(str(ca_local_um))
@@ -72,6 +84,11 @@ def exact_release_probability(ca_local_um: float) -> mp.mpf:
 def exact_cleft_glu_peak_mm(
     fused_vesicles: float, cleft_width_nm: float, nanocolumn_offset_nm: float
 ) -> mp.mpf:
+    _check_finite(
+        fused_vesicles=fused_vesicles,
+        cleft_width_nm=cleft_width_nm,
+        nanocolumn_offset_nm=nanocolumn_offset_nm,
+    )
     if fused_vesicles < 0 or cleft_width_nm <= 0 or nanocolumn_offset_nm < 0:
         raise ValueError("Invalid cleft glutamate inputs")
     if fused_vesicles == 0:
@@ -88,6 +105,7 @@ def exact_cleft_glu_peak_mm(
 
 
 def exact_peak_epsc_pa(glu_peak_mm: float, temp_c: float) -> mp.mpf:
+    _check_finite(glu_peak_mm=glu_peak_mm, temp_c=temp_c)
     if glu_peak_mm < 0:
         raise ValueError("glu_peak_mm must be non-negative")
     if glu_peak_mm == 0:
@@ -110,6 +128,19 @@ def exact_electrochemistry(
     p_cl_rel: float,
     temp_c: float,
 ) -> dict[str, float]:
+    _check_finite(
+        na_out=na_out,
+        na_in=na_in,
+        k_out=k_out,
+        k_in=k_in,
+        ca_out=ca_out,
+        ca_in_um=ca_in_um,
+        cl_out=cl_out,
+        cl_in=cl_in,
+        p_na_rel=p_na_rel,
+        p_cl_rel=p_cl_rel,
+        temp_c=temp_c,
+    )
     vals = [na_out, na_in, k_out, k_in, ca_out, ca_in_um, cl_out, cl_in]
     if any(v <= 0 for v in vals) or p_na_rel < 0 or p_cl_rel < 0:
         raise ValueError("Ion concentrations must be > 0 and permeabilities >= 0")
@@ -136,6 +167,13 @@ def exact_electrochemistry(
 def exact_ei_balance(
     g_exc_ns: float, g_inh_ns: float, cl_in_mm: float, cl_out_mm: float, temp_c: float
 ) -> dict[str, Any]:
+    _check_finite(
+        g_exc_ns=g_exc_ns,
+        g_inh_ns=g_inh_ns,
+        cl_in_mm=cl_in_mm,
+        cl_out_mm=cl_out_mm,
+        temp_c=temp_c,
+    )
     if g_exc_ns < 0 or g_inh_ns < 0 or cl_in_mm <= 0 or cl_out_mm <= 0:
         raise ValueError("Invalid E/I balance parameters")
     temp_k = max(mp.mpf("273.15"), mp.mpf(str(temp_c)) + mp.mpf("273.15"))
@@ -160,6 +198,12 @@ def exact_ei_balance(
 def exact_snare_thermodynamics(
     snare_count: float, clamp_energy_kbt: float, syt1_ca_bound: float, temp_c: float
 ) -> dict[str, Any]:
+    _check_finite(
+        snare_count=snare_count,
+        clamp_energy_kbt=clamp_energy_kbt,
+        syt1_ca_bound=syt1_ca_bound,
+        temp_c=temp_c,
+    )
     if clamp_energy_kbt < 0 or syt1_ca_bound < 0:
         raise ValueError("clamp_energy_kbt and syt1_ca_bound must be non-negative")
     n_snare = min(mp.mpf("6"), max(mp.mpf("1"), mp.mpf(str(snare_count))))
@@ -193,6 +237,13 @@ def exact_bioenergetics(
     mito_active: bool,
     temp_c: float,
 ) -> dict[str, Any]:
+    _check_finite(
+        luminal_ph=luminal_ph,
+        cytosolic_ph=cytosolic_ph,
+        delta_psi_mv=delta_psi_mv,
+        firing_rate_hz=firing_rate_hz,
+        temp_c=temp_c,
+    )
     if firing_rate_hz < 0:
         raise ValueError("firing_rate_hz must be >= 0")
     temp_k = max(mp.mpf("273.15"), mp.mpf(str(temp_c)) + mp.mpf("273.15"))
@@ -223,6 +274,15 @@ def exact_metrology(
     spacing_nm: float,
     resi_subsets_k: float,
 ) -> dict[str, Any]:
+    _check_finite(
+        photons=photons,
+        psf_sigma_nm=psf_sigma_nm,
+        imager_conc_nm=imager_conc_nm,
+        k_on=k_on,
+        k_off=k_off,
+        spacing_nm=spacing_nm,
+        resi_subsets_k=resi_subsets_k,
+    )
     if any(v <= 0 for v in [photons, psf_sigma_nm, imager_conc_nm, k_on, k_off, resi_subsets_k]) or spacing_nm < 0:
         raise ValueError("Metrology parameters must be positive (spacing >= 0)")
     n_safe = max(mp.mpf("10"), mp.mpf(str(photons)))

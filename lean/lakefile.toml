@@ -1,6 +1,6 @@
 name = "SynapseBoutonProofs"
-version = "1.0.0"
-defaultTargets = ["Solution", "NonVacuity", "VerifyAxioms"]
+version = "1.3.0"
+defaultTargets = ["Solution", "NonVacuity", "AdversarialChecks", "VerifyAxioms"]
 
 [[lean_lib]]
 name = "Challenge"
@@ -10,6 +10,9 @@ name = "Solution"
 
 [[lean_lib]]
 name = "NonVacuity"
+
+[[lean_lib]]
+name = "AdversarialChecks"
 
 [[lean_lib]]
 name = "VerifyAxioms"

@@ -85,6 +85,13 @@ export function analyzeExperimentalTrace(rawText: string): TraceAnalysisResult {
   if (times.length < 3) {
     throw new TraceParseError(`At least 3 valid numeric (time, value) samples are required; found ${times.length}`);
   }
+  for (let i = 1; i < times.length; i++) {
+    if (times[i] < times[i - 1]) {
+      throw new TraceParseError(
+        `Trace timestamps must be monotonically non-decreasing (index ${i}: ${times[i]} < ${times[i - 1]})`
+      );
+    }
+  }
 
   const baseN = Math.max(2, Math.floor(times.length * 0.12));
   let baseSum = 0;

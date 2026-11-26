@@ -21,7 +21,21 @@ export function mountSynapse3D(container: HTMLElement): Synapse3DHandle {
   const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 200);
   camera.position.set(0, 4.5, 22);
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  let renderer: THREE.WebGLRenderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+  } catch (err) {
+    container.innerHTML = `<div class="card" role="status" style="margin:18px;">
+      <h3>WebGL Context Unavailable</h3>
+      <p class="meta-small">Your browser or headless environment does not expose a WebGL rendering context (${err instanceof Error ? err.message : 'unavailable'}). All 2D nanoscale simulation, Hodgkin-Huxley RK4, formal verification, and open-problems tabs remain fully interactive.</p>
+    </div>`;
+    return {
+      triggerFusionBurst() {},
+      setLayerVisibility() {},
+      resize() {},
+      dispose() {},
+    };
+  }
   renderer.setSize(width, height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   container.innerHTML = '';

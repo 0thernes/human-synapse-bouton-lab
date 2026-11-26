@@ -2,24 +2,30 @@ module
 
 public import Solution
 public import NonVacuity
+public import AdversarialChecks
 
 -- SPDX-License-Identifier: Apache-2.0
 -- Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 --
--- Axiom audit module: prints exact axiom dependencies of all 18 exported headline theorems.
+-- Axiom audit module (v1.3.0): prints exact axiom dependencies of all 24 exported headline theorems.
 -- Every theorem must use only standard Lean axioms subset of [propext, Classical.choice, Quot.sound]
--- (and zero custom axioms / zero Lean.ofReduceBool / zero sorryAx).
+-- (and zero custom axioms / zero Lean.ofReduceBool / zero _native / zero sorryAx).
 
 #print axioms SynapseBouton.hill4_unit_interval
 #print axioms SynapseBouton.hill4_half_max_exact
 #print axioms SynapseBouton.hill4_strict_monotone
 #print axioms SynapseBouton.hill4_resting_noise_floor
 #print axioms SynapseBouton.hill4_ultrasensitive_doubling
+#print axioms SynapseBouton.hill4_ultrasensitive_crossover_vs_linear
+#print axioms SynapseBouton.tsodyks_markram_step_unit_bounds
 #print axioms SynapseBouton.ei_steady_state_bounds
 #print axioms SynapseBouton.shunting_inhibition_strict_attenuation
 #print axioms SynapseBouton.pure_shunting_divisive_identity
+#print axioms SynapseBouton.nmda_mg_unblock_unit_interval_and_monotone
 #print axioms SynapseBouton.vesicle_pool_transition_invariant
+#print axioms SynapseBouton.vesicle_pool_multistep_invariant
 #print axioms SynapseBouton.atp_deficit_strict_depletion
+#print axioms SynapseBouton.atp_hitting_time_upper_bound
 #print axioms SynapseBouton.resting_leak_strictly_lowers_sustainable_rate
 #print axioms SynapseBouton.kinesin_processive_atp_exact
 #print axioms SynapseBouton.snare_barrier_monotone_in_syt1_ca
@@ -28,3 +34,4 @@ public import NonVacuity
 #print axioms SynapseBouton.resi_duty_cycle_monotone_in_imager
 #print axioms SynapseBouton.factorized_bipartition_zero_integration
 #print axioms SynapseBouton.correlated_nanocolumn_positive_integration
+#print axioms SynapseBouton.diagonal_excess_implies_positive_coupling

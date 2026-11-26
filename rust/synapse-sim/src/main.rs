@@ -137,7 +137,10 @@ fn main() {
             println!("{}", serde_json::to_string(&out).unwrap());
         }
         _ => {
-            println!("synapse-sim v1.0.0 — Usage: synapse-sim <vectors|sweep|bench|differential>");
+            println!(
+                "synapse-sim v{} — Usage: synapse-sim <vectors|sweep|bench|differential>",
+                env!("CARGO_PKG_VERSION")
+            );
         }
     }
 }

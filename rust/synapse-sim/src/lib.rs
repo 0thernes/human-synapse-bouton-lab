@@ -243,6 +243,10 @@ pub fn run_monte_carlo_bouton(cfg: MonteCarloConfig) -> Result<MonteCarloTrialSu
     if n_aps == 0 {
         return Err(SimError::InvalidInput("n_aps must be >= 1".into()));
     }
+    check_pos(cleft_width_nm, "cleft_width_nm")?;
+    check_non_neg(nanocolumn_offset_nm, "nanocolumn_offset_nm")?;
+    check_finite(temp_c, "temp_c")?;
+    check_non_neg(firing_rate_hz, "firing_rate_hz")?;
     let mut rng = ChaCha8Rng::seed_from_u64(seed);
     let base_ca = compute_local_ca_peak_um(ca_ext_mm, coupling_nm)?;
     let rrp_cap: usize = 12;
@@ -325,6 +329,14 @@ mod tests {
         assert!(run_monte_carlo_bouton(MonteCarloConfig {
             seed: 1000, n_aps: 0, ca_ext_mm: 2.0, coupling_nm: 17.0, cleft_width_nm: 22.0,
             nanocolumn_offset_nm: 0.0, temp_c: 37.0, mito_active: true, firing_rate_hz: 40.0
+        }).is_err());
+        assert!(run_monte_carlo_bouton(MonteCarloConfig {
+            seed: 1000, n_aps: 10, ca_ext_mm: 2.0, coupling_nm: 17.0, cleft_width_nm: 22.0,
+            nanocolumn_offset_nm: 0.0, temp_c: 37.0, mito_active: true, firing_rate_hz: -5.0
+        }).is_err());
+        assert!(run_monte_carlo_bouton(MonteCarloConfig {
+            seed: 1000, n_aps: 10, ca_ext_mm: 2.0, coupling_nm: 17.0, cleft_width_nm: 22.0,
+            nanocolumn_offset_nm: -1.0, temp_c: 37.0, mito_active: true, firing_rate_hz: 20.0
         }).is_err());
     }
 

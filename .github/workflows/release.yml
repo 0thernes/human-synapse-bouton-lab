@@ -15,7 +15,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { fetch-depth: 0 }
 
       - name: Check version consistency
@@ -25,21 +25,16 @@ jobs:
           [ "$file" = "$tag" ] || echo "::warning::VERSION ($file) does not match tag ($tag)"
           grep -Eq "^## \[$tag\]" CHANGELOG.md || echo "::warning::CHANGELOG.md has no section for $tag"
 
-      - uses: extractions/setup-just@v2
-        continue-on-error: true
-
       - name: Build artifacts
         run: |
           mkdir -p dist
           name="${GITHUB_REPOSITORY#*/}"
-          if command -v just >/dev/null && just --summary 2>/dev/null | tr ' ' '\n' | grep -qx dist; then
-            just dist            # a project-defined recipe that writes release artifacts into dist/
-          fi
           git archive --format=tar.gz --prefix="$name-$GITHUB_REF_NAME/" -o "dist/$name-$GITHUB_REF_NAME-source.tar.gz" "$GITHUB_REF_NAME"
           git archive --format=zip --prefix="$name-$GITHUB_REF_NAME/" -o "dist/$name-$GITHUB_REF_NAME-source.zip" "$GITHUB_REF_NAME"
           cp docs/lean-axioms-report.txt dist/lean-axioms-report.txt
           [ -f MANIFEST.sha256 ] && cp MANIFEST.sha256 dist/MANIFEST.sha256 || true
           [ -f MANIFEST.sha256.tsr ] && cp MANIFEST.sha256.tsr dist/MANIFEST.sha256.tsr || true
+          [ -f MANIFEST.sha256.ots ] && cp MANIFEST.sha256.ots dist/MANIFEST.sha256.ots || true
 
       - name: SHA256SUMS
         working-directory: dist
@@ -51,7 +46,7 @@ jobs:
           cat SHA256SUMS
 
       - name: Attest build provenance
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v4
         with:
           subject-path: "dist/*"
 

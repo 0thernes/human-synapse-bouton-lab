@@ -5,20 +5,22 @@ project:
   name: "Human Synaptic Bouton Biophysical Invariants and 2x2 Weight-Table Factorization Bounds"
   description: >
     Pure Lean 4.35.0 (zero Mathlib, zero sorry, zero Classical.choice) formalization of
-    18 elementary algebraic invariants across six nanoscale human synaptic bouton modeling domains:
-    (1) Hill n=4 Ca2+ release cooperativity with positive-domain guarantees (unit interval,
-    half-maximal exactness, strict monotonicity, 1/82 resting noise floor at 3*c <= Kd with Kd > 0,
-    and exact 17/2 = 8.5x doubling gain from Kd/2 = halfKd to Kd = 2*halfKd with halfKd > 0);
-    (2) conductance-based mature KCC2 GABAergic shunting attenuation and well-defined pure-shunting
-    divisive identity (gL, gE, gI > 0, eL < eE); (3) exact conservation of presynaptic vesicle pools
-    under conservative transitions (instantiated for rat 374-vesicle and human L1 3,500-vesicle
-    presets); (4) local ATP deficit depletion of a positive clamped store (`atpStoreAfter < a0`)
-    and resting V-ATPase H+ leak reduction of rational (and, when cAp <= bLeak, integer floor)
-    maximal sustainable firing rate; (5) exact kinesin-1 stoichiometry (125,000 ATP/mm at 8 nm/step)
-    and SNAREpin Syt1/copy-number fusion-barrier monotonicity; (6) RESI 1/sqrt(N*K) localization
-    variance improvement, imager duty-cycle monotonicity, and exact 2x2 weight-table algebraic
-    factorization vs. strict diagonal product dominance bounds. Paired with 20 concrete
-    physiological non-vacuity witnesses in lean/NonVacuity.lean.
+    24 elementary algebraic and discrete-dynamical invariants across six nanoscale human
+    synaptic bouton modeling domains: (1) Hill n=4 Ca2+ release cooperativity with
+    positive-domain guarantees (unit interval, half-max exactness, strict monotonicity,
+    1/82 resting noise floor, exact 8.5x Kd/2->Kd doubling gain, exact sigmoidal crossover
+    vs. linear n=1) and fixed-point Tsodyks-Markram STP single-step unit bounds;
+    (2) conductance-based mature KCC2 GABAergic shunting attenuation, well-defined
+    pure-shunting divisive identity, and cleared-denominator Jahr-Stevens NMDAR Mg2+
+    unblock monotonicity; (3) single-step and structural-induction multi-step vesicle pool
+    conservation (rat 374 & human L1 3,500), positive clamped ATP store depletion, exact
+    discrete ATP depletion hitting-time upper bound, resting V-ATPase leak rate bounds,
+    and exact kinesin-1 stoichiometry (125,000 ATP/mm); (4) SNAREpin Syt1/copy-number
+    barrier monotonicity; (5) RESI 1/sqrt(N*K) localization variance and imager duty-cycle
+    monotonicity; and (6) exact 2x2 weight-table algebraic factorization, diagonal product
+    dominance, and diagonal excess implication. Paired with 26 concrete physiological
+    non-vacuity witnesses (lean/NonVacuity.lean) and 6 adversarial counterexample checks
+    (lean/AdversarialChecks.lean).
   authors:
     - name: "Alexander Stephen Donahue"
       github: "0thernes"
@@ -35,9 +37,9 @@ sources:
       - "Alexander Stephen Donahue"
     id: "doi:10.5281/zenodo.24477927"
     type: "preprint"
-    location: "Section 3 (Theorems 3.1-3.2 & Table 2)"
+    location: "Section 3 (Theorems 3.1-3.3 & Table 2)"
     relationship: "formalizes"
-    note: "Companion computational neuroscience preprint formalizing elementary algebraic invariants of established biophysical models; does not claim pure-mathematics research novelty."
+    note: "Companion computational neuroscience preprint formalizing elementary algebraic and discrete-dynamical invariants of established biophysical models; does not claim pure-mathematics research novelty."
     license: "CC-BY-4.0"
     author_endorsement: "participated"
   - title: "Composition of isolated synaptic boutons reveals the amounts of vesicle trafficking proteins"
@@ -89,9 +91,10 @@ classification:
 
 status:
   scope: >
-    Certifies 18 elementary algebraic, monotonicity, conservation, stoichiometry, variance-scaling,
-    and 2x2 weight-table factorization invariants over Nat and Int in pure Lean 4.35.0 without
-    Mathlib. Explicitly does NOT formalize continuum 3D Brownian PDEs, interventional causal
+    Certifies 24 elementary algebraic, inductive, monotonicity, conservation, stoichiometry,
+    variance-scaling, and 2x2 weight-table factorization invariants over Nat and Int in pure
+    Lean 4.35.0 without Mathlib, plus 26 non-vacuity witnesses and 6 adversarial counterexample
+    theorems. Explicitly does NOT formalize continuum 3D Brownian PDEs, interventional causal
     graphs, float64 RK4 Hodgkin-Huxley ODE trajectories (tagged numerical_approximation outside
     Lean), or phenomenal consciousness/sentience.
   sorry_count: 0
@@ -125,6 +128,16 @@ status:
       sorry_count: 0
       axioms: ["propext", "Quot.sound"]
       comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.hill4_ultrasensitive_crossover_vs_linear"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.tsodyks_markram_step_unit_bounds"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
     - declaration: "SynapseBouton.ei_steady_state_bounds"
       file: "lean/Solution.lean"
       sorry_count: 0
@@ -140,12 +153,27 @@ status:
       sorry_count: 0
       axioms: ["propext", "Quot.sound"]
       comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.nmda_mg_unblock_unit_interval_and_monotone"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
     - declaration: "SynapseBouton.vesicle_pool_transition_invariant"
       file: "lean/Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Quot.sound"]
       comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.vesicle_pool_multistep_invariant"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
     - declaration: "SynapseBouton.atp_deficit_strict_depletion"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.atp_hitting_time_upper_bound"
       file: "lean/Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Quot.sound"]
@@ -190,6 +218,11 @@ status:
       sorry_count: 0
       axioms: ["propext"]
       comparator_config: "lean/comparator.json"
+    - declaration: "SynapseBouton.diagonal_excess_implies_positive_coupling"
+      file: "lean/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
 
 automation:
   methods:
@@ -199,22 +232,23 @@ automation:
       framework: "Antigravity IDE"
       tool_setup: "Lean 4.35.0 (elan/lake)"
       cost:
-        wall_time: "1 day"
+        wall_time: "2 days"
         spend_usd: "subscription-based usage"
         hardware: "Windows 11 x86_64 workstation + Ubuntu GitHub Actions runners"
-      prompting_notes: "Human author directed scope, biophysical parameter separation (rat vs. human cortical presets), statement fidelity audit, positive-domain tightening (v1.2.0), and zero-Mathlib / zero-sorry / zero-Classical.choice constraints."
+      prompting_notes: "Human author directed scope, biophysical parameter separation (rat vs. human cortical presets), statement fidelity audit, positive-domain tightening (v1.2.0), inductive/dynamical expansion and adversarial counterexample suite (v1.3.0), and zero-Mathlib / zero-sorry / zero-Classical.choice constraints."
   spend_usd: "subscription-based usage"
-  notes: "Repository CI (.github/workflows/ci.yml) runs `lake comparator --paranoid` (replaying lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, and con-ron); those project CI checks are recorded separately from any external registry verification."
+  notes: "Repository CI (.github/workflows/ci.yml) runs `lake comparator --paranoid` (replaying lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, and con-ron) and `scripts/check_readme_axioms.py`; those project CI checks are recorded separately from any external registry verification."
 
 fidelity:
   divergences: >
-    Real-valued biophysical rational ratios (Hill n=4, conductance divider, RESI variance,
-    SNARE barrier tenths/fiftieths) are cross-multiplied and integer-scaled over Nat/Int with
-    explicit positive-domain hypotheses so every theorem is proved exactly without IEEE-754
-    rounding or Classical.choice. Domain VI proves algebraic factorization vs. strict diagonal
-    product dominance on supplied 2x2 weight tables without formalizing interventional causality
-    or geometric nanocolumn alignment-to-weight maps. Transcendental Nernst/GHK/Arrhenius/Gaussian
-    expressions are checked externally by a 50-digit mpmath oracle (python/synapse_science/oracle.py).
+    Real-valued biophysical rational ratios (Hill n=4, conductance divider, Jahr-Stevens NMDAR
+    unblock, Tsodyks-Markram fixed-point STP, RESI variance, SNARE barrier tenths/fiftieths)
+    are cross-multiplied and integer-scaled over Nat/Int with explicit positive-domain
+    hypotheses so every theorem is proved constructively without IEEE-754 rounding or
+    Classical.choice. Domain VI proves algebraic factorization vs. strict diagonal dominance
+    on supplied 2x2 weight tables without formalizing interventional causality (explicitly
+    verified by common-cause counterexample A05 in lean/AdversarialChecks.lean). Transcendental
+    Nernst/GHK/Arrhenius/Gaussian expressions are checked externally by a 50-digit mpmath oracle.
 
 review:
   status: "self-assessed"
@@ -222,30 +256,34 @@ review:
     - name: "Alexander Stephen Donahue"
       github: "0thernes"
       orcid: "0009-0006-8168-9648"
-  notes: "Applied computational neuroscience preprint; not externally journal peer-reviewed. Passed 10-pass internal adversarial audit (docs/reviews/2026-11-23-redteam.md) and v1.2.0 statement-fidelity tightening (ERRATA.md E05)."
+  notes: "Applied computational neuroscience preprint; not externally journal peer-reviewed. Passed 10-pass internal red-team audit, v1.2.0 statement-fidelity tightening (E05), and v1.3.0 3-cycle exhaustive forensic hardening (HARDENING_LOG.md, E06)."
 
 alignment:
   namespace: "SynapseBouton"
   statements:
-    - source: "White Paper 1 Theorem 3.1 (Hill n=4 cooperativity, positive-domain 1/82 floor, 8.5x Kd/2->Kd doubling gain)"
-      lean: "SynapseBouton.hill4_unit_interval, hill4_half_max_exact, hill4_strict_monotone, hill4_resting_noise_floor, hill4_ultrasensitive_doubling"
+    - source: "White Paper 1 Theorem 3.1 (Hill n=4 cooperativity, positive-domain 1/82 floor, 8.5x doubling gain, sigmoidal crossover vs. linear n=1, Tsodyks-Markram STP bounds)"
+      lean: "SynapseBouton.hill4_unit_interval, hill4_half_max_exact, hill4_strict_monotone, hill4_resting_noise_floor, hill4_ultrasensitive_doubling, hill4_ultrasensitive_crossover_vs_linear, tsodyks_markram_step_unit_bounds"
       module: "Solution"
       status: "proved"
-    - source: "White Paper 1 Theorem 3.2 (KCC2 shunting attenuation & well-defined pure-shunting divisive identity)"
-      lean: "SynapseBouton.ei_steady_state_bounds, shunting_inhibition_strict_attenuation, pure_shunting_divisive_identity"
+    - source: "White Paper 1 Theorem 3.2 (KCC2 shunting attenuation, well-defined divisive identity, Jahr-Stevens NMDAR Mg2+ unblock monotonicity)"
+      lean: "SynapseBouton.ei_steady_state_bounds, shunting_inhibition_strict_attenuation, pure_shunting_divisive_identity, nmda_mg_unblock_unit_interval_and_monotone"
       module: "Solution"
       status: "proved"
-    - source: "White Paper 1 Table 2 (Vesicle pool conservation, positive clamped ATP store depletion, resting leak rate bounds, kinesin-1 125,000 ATP/mm)"
-      lean: "SynapseBouton.vesicle_pool_transition_invariant, atp_deficit_strict_depletion, resting_leak_strictly_lowers_sustainable_rate, kinesin_processive_atp_exact"
+    - source: "White Paper 1 Theorem 3.3 & Table 2 (Single-step & multi-step inductive vesicle conservation, clamped ATP depletion, exact hitting-time bound, resting leak rate bounds, kinesin-1 125,000 ATP/mm)"
+      lean: "SynapseBouton.vesicle_pool_transition_invariant, vesicle_pool_multistep_invariant, atp_deficit_strict_depletion, atp_hitting_time_upper_bound, resting_leak_strictly_lowers_sustainable_rate, kinesin_processive_atp_exact"
       module: "Solution"
       status: "proved"
     - source: "White Paper 1 Table 2 (SNAREpin Syt1/copy-number cooperativity & RESI metrology)"
       lean: "SynapseBouton.snare_barrier_monotone_in_syt1_ca, snare_copy_number_cooperativity, resi_variance_strict_improvement, resi_duty_cycle_monotone_in_imager"
       module: "Solution"
       status: "proved"
-    - source: "White Paper 2 Theorem 3.1 (2x2 discrete weight-table algebraic factorization vs. diagonal product dominance bounds)"
-      lean: "SynapseBouton.factorized_bipartition_zero_integration, correlated_nanocolumn_positive_integration"
+    - source: "White Paper 2 Theorem 3.1 (2x2 discrete weight-table algebraic factorization, diagonal product dominance, diagonal excess implication)"
+      lean: "SynapseBouton.factorized_bipartition_zero_integration, correlated_nanocolumn_positive_integration, diagonal_excess_implies_positive_coupling"
       module: "Solution"
+      status: "proved"
+    - source: "Adversarial Hypothesis Tightness & Common-Cause Counterexamples (A01-A06)"
+      lean: "SynapseBouton.AdversarialChecks.*"
+      module: "AdversarialChecks"
       status: "proved"
     - source: "4D Hodgkin-Huxley RK4 ODEs, 3D Brownian PDEs, interventional causal models, phenomenal consciousness"
       lean: "none"

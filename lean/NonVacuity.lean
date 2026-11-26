@@ -5,8 +5,9 @@ public import Solution
 -- SPDX-License-Identifier: Apache-2.0
 -- Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 --
--- Non-vacuity witness suite: exhibits concrete physiological instances satisfying every
--- positive-domain hypothesis bundle of every headline theorem in Solution.lean.
+-- Non-vacuity witness suite (v1.3.0 — 26 concrete physiological witnesses):
+-- exhibits concrete instances satisfying every positive-domain hypothesis bundle
+-- of all 24 headline theorems in Solution.lean.
 
 public section
 
@@ -15,7 +16,7 @@ namespace SynapseBouton.NonVacuity
 open SynapseBouton
 
 /-- Concrete physiological witnesses for Hill n=4 (`Kd = 15 uM`, resting `5 uM` vs nanodomain `35 uM`,
-    and doubling from `Kd/2 = 15` to `Kd = 30` with `halfKd = 15 > 0`). -/
+    doubling from `Kd/2 = 15` to `Kd = 30`, and sigmoidal crossover vs. linear `n = 1`). -/
 theorem witness_hill4_unit : pow4 20 < pow4 20 + pow4 15 :=
   hill4_unit_interval 20 15 (by omega)
 
@@ -36,6 +37,23 @@ theorem witness_hill4_doubling :
         17 * pow4 15 * (pow4 (2 * 15) + pow4 (2 * 15)) :=
   hill4_ultrasensitive_doubling 15 (by omega)
 
+theorem witness_hill4_crossover_below_kd :
+    pow4 5 * (5 + 15) < 5 * (pow4 5 + pow4 15) :=
+  (hill4_ultrasensitive_crossover_vs_linear 5 15 (by omega) (by omega)).1 (by omega)
+
+theorem witness_hill4_crossover_above_kd :
+    35 * (pow4 35 + pow4 15) < pow4 35 * (35 + 15) :=
+  (hill4_ultrasensitive_crossover_vs_linear 35 15 (by omega) (by omega)).2 (by omega)
+
+/-- Concrete witness for Tsodyks-Markram STP (`scale = 1000`, `u = 400`, `u0 = 400`, `x = 1000`). -/
+theorem witness_tsodyks_markram_step :
+    400 ≤ tmUPlus 1000 400 400 ∧
+      tmUPlus 1000 400 400 ≤ 1000 ∧
+      tmEffRel 1000 (tmUPlus 1000 400 400) 1000 ≤ 1000 ∧
+      1000 - tmEffRel 1000 (tmUPlus 1000 400 400) 1000 ≤ 1000 :=
+  tsodyks_markram_step_unit_bounds 1000 400 400 1000
+    (by omega) (by omega) (by omega) (by omega) (by omega)
+
 /-- Concrete witnesses for mature KCC2 E/I balance (`gL=1, gE=3, gI=4 nS; eI=-80, eL=-70, eE=0 mV`). -/
 theorem witness_ei_bounds :
     (-80) * eiDen 1 3 4 ≤ eiNum 1 3 4 (-70) 0 (-80) ∧
@@ -55,7 +73,17 @@ theorem witness_pure_shunting :
       eiNum 1 3 0 (-70) 0 (-70) - (-70) * (1 + 3) = 3 * (0 - (-70)) :=
   pure_shunting_divisive_identity 1 3 4 (-70) 0 (by omega) (by omega) (by omega) (by omega)
 
-/-- Concrete witnesses for Wilhelm (2014) rat bouton (374 vesicles) & Human L1 (3,500 vesicles). -/
+/-- Concrete witness for Jahr-Stevens NMDAR Mg2+ unblock (`-70 mV -> eRest=767`, `+20 mV -> eDepol=3`,
+    `dScale = 357`, `mg = 10` for 1.0 mM in tenths). -/
+theorem witness_nmda_mg_unblock :
+    357 < 357 + 10 * 767 ∧
+      357 < 357 + 10 * 3 ∧
+      357 * (357 + 10 * 3) < 357 * (357 + 10 * 767) :=
+  nmda_mg_unblock_unit_interval_and_monotone 357 10 767 3
+    (by omega) (by omega) (by omega) (by omega)
+
+/-- Concrete witnesses for Wilhelm (2014) rat bouton (374 vesicles) & Human L1 (3,500 vesicles),
+    plus a 3-step burst trace witness verified via structural induction. -/
 def wilhelmBouton : VesiclePools := { rrp := 12, recycling := 62, reserve := 300 }
 def humanL1Bouton : VesiclePools := { rrp := 20, recycling := 480, reserve := 3000 }
 
@@ -71,12 +99,26 @@ theorem witness_vesicle_conservation_human_L1 :
     (by decide) (by decide) (by decide)
   exact h
 
+theorem witness_vesicle_multistep_human_L1 :
+    (runVesicleTrace humanL1Bouton [(6, 4, 20), (5, 5, 15), (4, 6, 10)]).total = 3500 := by
+  have hValid : ValidVesicleTrace humanL1Bouton [(6, 4, 20), (5, 5, 15), (4, 6, 10)] := by
+    refine ⟨by decide, by decide, by decide, ?_⟩
+    refine ⟨by decide, by decide, by decide, ?_⟩
+    refine ⟨by decide, by decide, by decide, trivial⟩
+  exact vesicle_pool_multistep_invariant humanL1Bouton [(6, 4, 20), (5, 5, 15), (4, 6, 10)] hValid
+
 /-- Concrete witness for glycolysis-only ATP depletion at 40 Hz (`a0 = 1,000,000 > 0`,
     burn `1,284,000 > 280,000` -> clamped store drops strictly below `1,000,000`). -/
 theorem witness_atp_depletion :
     1000000 + 280000 * 1 < 1000000 + (4000 + 40 * 32000) * 1 ∧
       atpStoreAfter 1000000 4000 40 32000 280000 1 < 1000000 :=
   atp_deficit_strict_depletion 1000000 4000 40 32000 280000 1 (by omega) (by omega) (by omega)
+
+/-- Concrete witness for pre-registered H3 refutation (40 Hz with active mitochondria:
+    supply `950,000` vs burn `1,284,000`, deficit `334,000 ATP/s` -> exact `0` by `t = 3 s`). -/
+theorem witness_atp_hitting_time_h3_40hz :
+    atpStoreAfter 1000000 4000 40 32000 950000 3 = 0 :=
+  atp_hitting_time_upper_bound 1000000 4000 40 32000 950000 3 (by omega) (by decide)
 
 /-- Concrete witnesses for resting V-ATPase leak lowering both continuous critical frequency
     (`bLeak = 4,000, cAp = 32,000`) and integer floor maximal frequency (`bLeak = 40,000 >= cAp = 32,000`). -/
@@ -111,7 +153,8 @@ theorem witness_resi_variance : 12100 * 2500 < 12100 * (2500 * 9) :=
 theorem witness_resi_duty : (2 * 1) * (2 * 5 + 5) < (2 * 5) * (2 * 1 + 5) :=
   resi_duty_cycle_monotone_in_imager 2 5 1 5 (by omega) (by omega) (by omega)
 
-/-- Concrete witnesses for 2x2 weight-table algebraic factorization (`0`) vs diagonal product dominance (`> 0`). -/
+/-- Concrete witnesses for 2x2 weight-table algebraic factorization (`0`), diagonal dominance (`> 0`),
+    and positive diagonal excess implication. -/
 theorem witness_factorized_zero :
     bipartiteCoupling (3 * 4) (3 * 6) (7 * 4) (7 * 6) = 0 :=
   factorized_bipartition_zero_integration 3 7 4 6
@@ -119,6 +162,11 @@ theorem witness_factorized_zero :
 theorem witness_correlated_nanocolumn :
     bipartiteCoupling 85 15 10 90 > 0 :=
   correlated_nanocolumn_positive_integration 85 15 10 90 (by omega)
+
+theorem witness_diagonal_excess :
+    ((15 : Int) + 70) * (10 + 80) > 15 * 10 ∧
+      bipartiteCoupling (15 + 70) 15 10 (10 + 80) > 0 :=
+  diagonal_excess_implies_positive_coupling 15 10 70 80 (by omega) (by omega) (by omega) (by omega)
 
 end SynapseBouton.NonVacuity
 

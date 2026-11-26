@@ -377,13 +377,13 @@ def generate_fig5_consciousness_epistemic_map(out_dir: Path) -> None:
     ax.axis("off")
 
     tiers = [
-        (3, 4, 21, 46, "#ecfdf5", "#059669", "TIER 1: KERNEL-CHECKED\n(Lean 4.35.0, 18 Theorems)", [
-            "Math / NeuroMath:\nHill n=4 bounds & 8.5x gain",
-            "Neurophysics:\nKCC2 shunting attenuation",
-            "Chemistry / Neurochem:\nSNARE Syt1 barrier & ATP",
-            "Neurobiology:\nVesicle pool conservation",
-            "Metrology:\nRESI 1/(N*K) variance",
-            "Info Geometry:\nZero-coupling = 0 integration",
+        (3, 4, 21, 46, "#ecfdf5", "#059669", "TIER 1: KERNEL-CHECKED\n(Lean 4.35.0, 24 Theorems)", [
+            "Math / NeuroMath:\nHill n=4 crossover & STP bounds",
+            "Neurophysics:\nKCC2 shunting & NMDAR Mg2+",
+            "Chemistry / Neurochem:\nSNARE clamp & ATP hitting time",
+            "Neurobiology:\nMulti-step vesicle induction",
+            "Metrology:\nRESI 1/(N*K) variance gain",
+            "2x2 Tables:\nFactorization & A05 check",
         ]),
         (27, 4, 21, 46, "#eff6ff", "#2563eb", "TIER 2: COMPUTATIONAL\n(30-Seed MC + 50-Digit Oracle)", [
             "Neuroscience:\nH1 Nanocolumn alignment",
@@ -521,7 +521,9 @@ def generate_tripartite_blueprint(docs_media: Path, web_media: Path) -> None:
     ax.plot([14, 28], [5.5, 5.5], color="white", lw=3.0)
     ax.text(21, 3.0, "Scale ~50 nm (Schematic Proportions)", color=FG_LIGHT, fontsize=8, ha="center")
     ax.text(50, 97.5, "Biophysically Audited Human Cortical Tripartite Synaptic Bouton — Deterministic Schematic Blueprint", color="white", fontsize=11.5, ha="center", va="center", fontweight="bold")
-    ax.text(98, 2.5, "Deterministic code-rendered schematic (NOT atomic PDB coordinate data) · human-synapse-bouton-lab v1.0.0", color=FG_MUTED, fontsize=7.5, ha="right")
+    version_file = Path(__file__).resolve().parents[2] / "VERSION"
+    ver = version_file.read_text(encoding="utf-8").strip() if version_file.exists() else "1.3.0"
+    ax.text(98, 2.5, f"Deterministic code-rendered schematic (NOT atomic PDB coordinate data) · human-synapse-bouton-lab v{ver}", color=FG_MUTED, fontsize=7.5, ha="right")
 
     out_docs = docs_media / "tripartite_bouton_blueprint.png"
     fig.savefig(out_docs, facecolor=BG_DARK, dpi=120)
@@ -565,10 +567,10 @@ def generate_social_preview(docs_media: Path) -> None:
 
     # Metric pills on left
     pills = [
-        ("18 Lean 4.35.0 Proofs", "Zero sorry · Multi-kernel replayed", EMERALD),
+        ("24 Lean 4.35.0 Proofs", "Zero sorry · 6 kernels · 26 witnesses", EMERALD),
         ("TS + Rust + Python Oracle", "1,000-case cross-language differential match", CYAN),
         ("30-Seed Pre-Registered MC", "Permutation p + 95% CI + Holm-Bonferroni", AMBER),
-        ("2 AMS-LaTeX White Papers", "11 Disciplines + Consciousness Epistemic Map", VIOLET),
+        ("2 AMS-LaTeX White Papers", "11 Disciplines + Mega-Atlas Crosswalk", VIOLET),
     ]
     for idx, (t, sub, col) in enumerate(pills):
         yy = 36.5 - idx * 8.2

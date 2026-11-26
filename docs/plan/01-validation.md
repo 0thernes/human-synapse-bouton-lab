@@ -11,7 +11,7 @@ Prepared per Build Pipeline Models v1.0.0 (`P1.01`–`P1.06`).
 ## User Interviews & Commercial Demand Test (`P1.02`, `P1.04` — Marked `n/a`)
 
 - **`P1.02` (Talk to 5 paying/target users):** **`n/a`** — This repository is a non-commercial open-science independent research publication and formal-verification workbench, not a commercial SaaS product. No user interviews are fabricated (`AI06`).
-- **`P1.04` (Commercial demand test):** **`n/a`** — No paid funnel or landing-page waitlist applies. External validation is instead measured transparently via automated third-party infrastructure gates (Palomar Registry independent CI verification `45241561032`, CERN Zenodo DataCite DOI `10.5281/zenodo.24477928`, Software Heritage archival, and future independent human replication reports filed via `.github/ISSUE_TEMPLATE/replication.yml`).
+- **`P1.04` (Commercial demand test):** **`n/a`** — No paid funnel or landing-page waitlist applies. External validation is instead measured transparently via automated third-party infrastructure gates (Palomar Registry independent CI verification `CI-6-kernel`, CERN Zenodo DataCite DOI `10.5281/zenodo.24477927`, Software Heritage archival, and future independent human replication reports filed via `.github/ISSUE_TEMPLATE/replication.yml`).
 
 ## Alternatives & Existing Ecosystem (`P1.03`)
 

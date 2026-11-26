@@ -77,7 +77,7 @@ async function probeApiHealth(): Promise<void> {
     window.clearTimeout(timer);
     if (res.ok) {
       const body = (await res.json()) as { version?: string; oracle_precision_digits?: string };
-      badge.textContent = `FastAPI 50-Digit Oracle Connected (v${body.version ?? '1.0.0'})`;
+      badge.textContent = `FastAPI 50-Digit Oracle Connected (v${body.version ?? '1.3.0'})`;
       badge.className = 'status-pill status-live';
     }
   } catch {
@@ -825,7 +825,7 @@ function renderVerifyTab(): void {
     <div class="panel" style="margin-bottom:18px;">
       <h2>Live Computational Self-Verification Suite (${passed}/${checks.length} Passed)</h2>
       <p class="meta-small" style="margin-bottom:10px;">
-        Cross-backed by 18 sorry-free Lean 4.35.0 formal theorems (replayed across official kernel, leanchecker-paranoid, nanoda, con-ron, con-leche) + 1,000-case Python 50-digit mpmath vs TypeScript vs Rust differential tests.
+        Cross-backed by 24 sorry-free Lean 4.35.0 formal theorems (26 witnesses + 6 adversarial counterexample checks, replayed across official kernel, leanchecker-paranoid, lean4lean, nanoda, con-ron, con-leche; <a href="./blueprint/" style="color:#38bdf8;">explore Proof Blueprint &amp; DAG</a>) + 1,000-case Python 50-digit mpmath vs TypeScript vs Rust differential tests.
       </p>
       <table class="data-table">
         <thead><tr><th>ID</th><th>Status</th><th>Tier</th><th>Check</th><th>Observed Output</th></tr></thead>

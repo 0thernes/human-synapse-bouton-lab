@@ -3,12 +3,15 @@ module
 -- SPDX-License-Identifier: Apache-2.0
 -- Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 --
--- Machine-checked Lean 4.35.0 proofs of all 18 theorems in Challenge.lean.
--- Zero sorry, zero admit, zero native_decide, zero custom axioms, zero Mathlib.
+-- Machine-checked Lean 4.35.0 proofs of all 24 theorems in Challenge.lean (v1.3.0).
+-- Zero sorry, zero admit, zero native_decide, zero custom axioms, zero Classical.choice, zero Mathlib.
 
 public section
 
 namespace SynapseBouton
+
+/-- Exact third power `x^3` helper used in Hill `n = 4` vs. linear `n = 1` crossover proof. -/
+@[expose] def pow3 (x : Nat) : Nat := x * x * x
 
 /-- Exact fourth power `x^4` used in Hill `n = 4` release probability `P_r(c) = c^4 / (c^4 + Kd^4)`. -/
 @[expose] def pow4 (x : Nat) : Nat := x * x * x * x
@@ -20,6 +23,14 @@ namespace SynapseBouton
 /-- Total postsynaptic conductance denominator: `gL + gE + gI`. -/
 @[expose] def eiDen (gL gE gI : Int) : Int :=
   gL + gE + gI
+
+/-- Fixed-point scaled Tsodyks-Markram facilitation update `uPlus = u + floor(u0 * (S - u) / S)`. -/
+@[expose] def tmUPlus (scale u u0 : Nat) : Nat :=
+  u + (u0 * (scale - u)) / scale
+
+/-- Fixed-point scaled Tsodyks-Markram effective release `effRel = floor(uPlus * x / S)`. -/
+@[expose] def tmEffRel (scale uPlus x : Nat) : Nat :=
+  (uPlus * x) / scale
 
 /-- Presynaptic vesicle pool state (RRP, Recycling Pool, Reserve/Resting Pool). -/
 structure VesiclePools where
@@ -36,6 +47,19 @@ structure VesiclePools where
   { rrp := p.rrp - exo + prime
     recycling := p.recycling + exo - prime + mob
     reserve := p.reserve - mob }
+
+/-- Step-wise conservation validity predicate over an arbitrary finite synaptic firing trace. -/
+@[expose] def ValidVesicleTrace : VesiclePools → List (Nat × Nat × Nat) → Prop
+  | _, [] => True
+  | p, (exo, prime, mob) :: rest =>
+      exo ≤ p.rrp ∧ prime ≤ p.recycling + exo ∧ mob ≤ p.reserve ∧
+        ValidVesicleTrace (stepVesiclePools p exo prime mob) rest
+
+/-- Iterated execution of a finite sequence of vesicle pool cycling steps. -/
+@[expose] def runVesicleTrace : VesiclePools → List (Nat × Nat × Nat) → VesiclePools
+  | p, [] => p
+  | p, (exo, prime, mob) :: rest =>
+      runVesicleTrace (stepVesiclePools p exo prime mob) rest
 
 /-- Nonnegative clamped local ATP store after duration `t` under constant supply `sAtp`
     and total consumption rate `bLeak + f * cAp` (clamped at 0 via `Nat` subtraction). -/
@@ -59,8 +83,13 @@ structure VesiclePools where
   Int.ofNat (Int.natAbs (w00 * w11 - w01 * w10))
 
 -- ============================================================================
--- Helper lemmas (private, exact arithmetic)
+-- Helper lemmas (private, exact constructive arithmetic)
 -- ============================================================================
+
+private theorem pow3_lt_pow3 {a b : Nat} (h : a < b) : pow3 a < pow3 b := by
+  unfold pow3
+  have h2 : a * a < b * b := Nat.mul_lt_mul_of_lt_of_lt h h
+  exact Nat.mul_lt_mul_of_lt_of_lt h2 h
 
 private theorem pow4_pos {x : Nat} (hx : x > 0) : pow4 x > 0 := by
   unfold pow4
@@ -79,7 +108,7 @@ private theorem pow4_le_pow4 {a b : Nat} (h : a ≤ b) : pow4 a ≤ pow4 b := by
   exact Nat.mul_le_mul h3 h
 
 -- ============================================================================
--- DOMAIN I: Ca2+ Nanodomain & Hill n=4 Cooperativity (5 Theorems)
+-- DOMAIN I: Ca2+ Nanodomain, Hill n=4 Cooperativity & STP (7 Theorems)
 -- ============================================================================
 
 theorem hill4_unit_interval (c kd : Nat) (hkd : kd > 0) :
@@ -137,8 +166,59 @@ theorem hill4_ultrasensitive_doubling (halfKd : Nat) (hh : halfKd > 0) :
     omega
   rw [hleft, hright]
 
+theorem hill4_ultrasensitive_crossover_vs_linear (c kd : Nat) (hc : c > 0) (hkd : kd > 0) :
+    (c < kd → pow4 c * (c + kd) < c * (pow4 c + pow4 kd)) ∧
+      (kd < c → c * (pow4 c + pow4 kd) < pow4 c * (c + kd)) := by
+  have hckdPos : c * kd > 0 := Nat.mul_pos hc hkd
+  have hExpL : pow4 c * (c + kd) = pow4 c * c + (c * kd) * pow3 c := by
+    unfold pow4 pow3
+    rw [Nat.mul_add]
+    congr 1
+    simp [Nat.mul_left_comm, Nat.mul_comm]
+  have hExpR : c * (pow4 c + pow4 kd) = pow4 c * c + (c * kd) * pow3 kd := by
+    unfold pow4 pow3
+    rw [Nat.mul_add]
+    congr 1
+    · simp [Nat.mul_comm]
+    · simp [Nat.mul_left_comm, Nat.mul_comm]
+  constructor
+  · intro hlt
+    rw [hExpL, hExpR]
+    exact Nat.add_lt_add_left (Nat.mul_lt_mul_of_pos_left (pow3_lt_pow3 hlt) hckdPos) (pow4 c * c)
+  · intro hgt
+    rw [hExpL, hExpR]
+    exact Nat.add_lt_add_left (Nat.mul_lt_mul_of_pos_left (pow3_lt_pow3 hgt) hckdPos) (pow4 c * c)
+
+theorem tsodyks_markram_step_unit_bounds (scale u u0 x : Nat)
+    (hS : scale > 0) (hu : u ≤ scale) (_hu0Pos : u0 > 0) (hu0Le : u0 ≤ scale) (hx : x ≤ scale) :
+    u ≤ tmUPlus scale u u0 ∧
+      tmUPlus scale u u0 ≤ scale ∧
+      tmEffRel scale (tmUPlus scale u u0) x ≤ x ∧
+      x - tmEffRel scale (tmUPlus scale u u0) x ≤ scale := by
+  have hIncLe : (u0 * (scale - u)) / scale ≤ scale - u := by
+    have hMul : u0 * (scale - u) ≤ scale * (scale - u) := Nat.mul_le_mul_right (scale - u) hu0Le
+    have hDiv : (u0 * (scale - u)) / scale ≤ (scale * (scale - u)) / scale := Nat.div_le_div_right hMul
+    rw [Nat.mul_div_cancel_left (scale - u) hS] at hDiv
+    exact hDiv
+  have huPlusGe : u ≤ tmUPlus scale u u0 := by
+    unfold tmUPlus
+    exact Nat.le_add_right u _
+  have huPlusLe : tmUPlus scale u u0 ≤ scale := by
+    unfold tmUPlus
+    have hSum : u + (u0 * (scale - u)) / scale ≤ u + (scale - u) :=
+      Nat.add_le_add_left hIncLe u
+    have hEq : u + (scale - u) = scale := Nat.add_sub_of_le hu
+    omega
+  have hRelLe : tmEffRel scale (tmUPlus scale u u0) x ≤ x := by
+    unfold tmEffRel
+    have hMul : tmUPlus scale u u0 * x ≤ scale * x := Nat.mul_le_mul_right x huPlusLe
+    have hDiv : (tmUPlus scale u u0 * x) / scale ≤ (scale * x) / scale := Nat.div_le_div_right hMul
+    rw [Nat.mul_div_cancel_left x hS] at hDiv
+    exact hDiv
+  refine ⟨huPlusGe, huPlusLe, hRelLe, by omega⟩
+
 -- ============================================================================
--- DOMAIN II: Conductance-Based E/I Balance & Shunting Inhibition (3 Theorems)
+-- DOMAIN II: Conductance-Based E/I Balance, Shunting & NMDAR Mg2+ (4 Theorems)
 -- ============================================================================
 
 theorem ei_steady_state_bounds (gL gE gI eL eE eI : Int)
@@ -198,8 +278,20 @@ theorem pure_shunting_divisive_identity (gL gE gI eL eE : Int)
   · simp [Int.mul_add, Int.mul_sub, Int.mul_comm]
     omega
 
+theorem nmda_mg_unblock_unit_interval_and_monotone (dScale mg eRest eDepol : Nat)
+    (hD : dScale > 0) (hMg : mg > 0) (hE2 : eDepol > 0) (hDepol : eDepol < eRest) :
+    dScale < dScale + mg * eRest ∧
+      dScale < dScale + mg * eDepol ∧
+      dScale * (dScale + mg * eDepol) < dScale * (dScale + mg * eRest) := by
+  have hE1 : eRest > 0 := Nat.lt_trans hE2 hDepol
+  have hProd1 : mg * eRest > 0 := Nat.mul_pos hMg hE1
+  have hProd2 : mg * eDepol > 0 := Nat.mul_pos hMg hE2
+  have hProdLt : mg * eDepol < mg * eRest := Nat.mul_lt_mul_of_pos_left hDepol hMg
+  have hDenLt : dScale + mg * eDepol < dScale + mg * eRest := Nat.add_lt_add_left hProdLt dScale
+  refine ⟨by omega, by omega, Nat.mul_lt_mul_of_pos_left hDenLt hD⟩
+
 -- ============================================================================
--- DOMAIN III: Presynaptic Vesicle Conservation & Bioenergetics (4 Theorems)
+-- DOMAIN III: Presynaptic Vesicle Conservation & Bioenergetics (6 Theorems)
 -- ============================================================================
 
 theorem vesicle_pool_transition_invariant (p : VesiclePools) (exo prime mob : Nat)
@@ -211,6 +303,19 @@ theorem vesicle_pool_transition_invariant (p : VesiclePools) (exo prime mob : Na
   dsimp
   omega
 
+theorem vesicle_pool_multistep_invariant (p : VesiclePools) (trace : List (Nat × Nat × Nat))
+    (hValid : ValidVesicleTrace p trace) :
+    (runVesicleTrace p trace).total = p.total := by
+  induction trace generalizing p with
+  | nil => rfl
+  | cons step rest ih =>
+    rcases step with ⟨exo, prime, mob⟩
+    rcases hValid with ⟨hExo, hPrime, hMob, hRest⟩
+    calc
+      (runVesicleTrace (stepVesiclePools p exo prime mob) rest).total
+          = (stepVesiclePools p exo prime mob).total := ih (stepVesiclePools p exo prime mob) hRest
+      _ = p.total := vesicle_pool_transition_invariant p exo prime mob hExo hPrime hMob
+
 theorem atp_deficit_strict_depletion (a0 bLeak f cAp sAtp t : Nat)
     (ha0 : a0 > 0) (hDeficit : sAtp < bLeak + f * cAp) (ht : t > 0) :
     a0 + sAtp * t < a0 + (bLeak + f * cAp) * t ∧
@@ -218,6 +323,28 @@ theorem atp_deficit_strict_depletion (a0 bLeak f cAp sAtp t : Nat)
   unfold atpStoreAfter
   have hmul : sAtp * t < (bLeak + f * cAp) * t := Nat.mul_lt_mul_of_pos_right hDeficit ht
   constructor <;> omega
+
+theorem atp_hitting_time_upper_bound (a0 bLeak f cAp sAtp t : Nat)
+    (hDeficit : sAtp < bLeak + f * cAp)
+    (hTime : a0 / ((bLeak + f * cAp) - sAtp) + 1 ≤ t) :
+    atpStoreAfter a0 bLeak f cAp sAtp t = 0 := by
+  unfold atpStoreAfter
+  let D := (bLeak + f * cAp) - sAtp
+  have hD : D > 0 := by omega
+  have hModLt : a0 % D < D := Nat.mod_lt a0 hD
+  have hDivMod : D * (a0 / D) + a0 % D = a0 := Nat.div_add_mod a0 D
+  have hA0Lt : a0 < D * (a0 / D + 1) := by
+    rw [Nat.mul_add, Nat.mul_one]
+    omega
+  have hMulLe : D * (a0 / D + 1) ≤ D * t := Nat.mul_le_mul_left D hTime
+  have hA0LeDt : a0 ≤ D * t := Nat.le_of_lt (Nat.lt_of_lt_of_le hA0Lt hMulLe)
+  have hBurnEq : (bLeak + f * cAp) * t = sAtp * t + D * t := by
+    have hSum : bLeak + f * cAp = sAtp + D := by omega
+    rw [hSum, Nat.add_mul]
+  have hLe : a0 + sAtp * t ≤ (bLeak + f * cAp) * t := by
+    rw [hBurnEq]
+    omega
+  exact Nat.sub_eq_zero_of_le hLe
 
 theorem resting_leak_strictly_lowers_sustainable_rate (bLeak f cAp sAtp : Nat)
     (hLeak : bLeak > 0) (hCap : cAp > 0) (hSust : bLeak + f * cAp ≤ sAtp) :
@@ -294,7 +421,7 @@ theorem resi_duty_cycle_monotone_in_imager (kOn kOff c1 c2 : Nat)
   exact Nat.add_lt_add_left h2 ((kOn * c2) * (kOn * c1))
 
 -- ============================================================================
--- DOMAIN VI: 2x2 Discrete Bipartition Algebraic Factorization Bounds (2 Theorems)
+-- DOMAIN VI: 2x2 Discrete Bipartition Algebraic Factorization Bounds (3 Theorems)
 -- ============================================================================
 
 theorem factorized_bipartition_zero_integration (a0 a1 b0 b1 : Int) :
@@ -315,6 +442,19 @@ theorem correlated_nanocolumn_positive_integration (w00 w01 w10 w11 : Int)
   have hne : w00 * w11 - w01 * w10 ≠ 0 := Int.ne_of_gt hpos
   have hnat : 0 < Int.natAbs (w00 * w11 - w01 * w10) := Int.natAbs_pos.mpr hne
   exact Int.ofNat_lt.mpr hnat
+
+theorem diagonal_excess_implies_positive_coupling (w01 w10 d1 d2 : Int)
+    (h01 : w01 ≥ 0) (h10 : w10 ≥ 0) (hd1 : d1 > 0) (hd2 : d2 > 0) :
+    (w01 + d1) * (w10 + d2) > w01 * w10 ∧
+      bipartiteCoupling (w01 + d1) w01 w10 (w10 + d2) > 0 := by
+  have h1 : w01 * d2 ≥ 0 := Int.mul_nonneg h01 (Int.le_of_lt hd2)
+  have h2 : d1 * w10 ≥ 0 := Int.mul_nonneg (Int.le_of_lt hd1) h10
+  have h3 : d1 * d2 > 0 := Int.mul_pos hd1 hd2
+  have hExp : (w01 + d1) * (w10 + d2) = w01 * w10 + w01 * d2 + d1 * w10 + d1 * d2 := by
+    simp [Int.add_mul, Int.mul_add]
+    omega
+  have hDom : (w01 + d1) * (w10 + d2) > w01 * w10 := by omega
+  exact ⟨hDom, correlated_nanocolumn_positive_integration (w01 + d1) w01 w10 (w10 + d2) hDom⟩
 
 end SynapseBouton
 

@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, formal proofs, datasets, or white papers, please cite them using these metadata."
 title: "human-synapse-bouton-lab: Formally Verified Human Synaptic Bouton Biophysics, Stochastic Nanocolumn Simulator, and 11-Discipline Open Hard Problems Framework"
-abstract: "A full-stack, multi-language (TypeScript, Rust, Python, Lean 4.35.0) computational workbench, exact biophysical reference oracle, pre-registered Monte Carlo synaptic release simulator, and AMS-LaTeX white-paper suite covering human cortical synaptic bouton biophysics, microtubules, bioenergetics, DNA-origami metrology, and an 11-discipline map of open hard problems toward the consciousness frontier."
+abstract: "A full-stack, multi-language (TypeScript, Rust, Python, Lean 4.35.0) computational workbench, 24-theorem multi-kernel formal proof suite, exact 50-digit biophysical reference oracle, pre-registered Monte Carlo synaptic release simulator, and AMS-LaTeX white-paper suite covering human cortical synaptic bouton biophysics, microtubules, bioenergetics, DNA-origami metrology, and an 11-discipline map of open hard problems with an honest Mega-Atlas crosswalk."
 type: software
 authors:
   - family-names: "Donahue"
@@ -10,9 +10,9 @@ authors:
     orcid: "https://orcid.org/0009-0006-8168-9648"
     email: "0_0@0thernes.art"
     affiliation: "Independent Researcher, Spokane, WA, USA"
-version: "1.2.0"
+version: "1.3.0"
 doi: "10.5281/zenodo.24477927"
-date-released: "2026-11-23"
+date-released: "2026-11-25"
 license: "Apache-2.0"
 repository-code: "https://github.com/0thernes/human-synapse-bouton-lab"
 url: "https://0thernes.github.io/human-synapse-bouton-lab/"
@@ -21,11 +21,11 @@ identifiers:
     value: "10.5281/zenodo.24477927"
     description: "Zenodo concept DOI (always resolves to latest release)"
   - type: doi
-    value: "10.5281/zenodo.24478612"
-    description: "Zenodo version DOI (v1.1.2)"
+    value: "10.5281/zenodo.24484350"
+    description: "Zenodo version DOI (prior v1.2.0 archival release)"
   - type: swh
-    value: "swh:1:snp:d922faec88e60f6f950f98eb6572b55f7b450bc7"
-    description: "Software Heritage permanent archival snapshot (v1.1.2)"
+    value: "swh:1:snp:8ef70f745fae4f91f040720b28e21560c73deffc"
+    description: "Software Heritage permanent archival snapshot (prior v1.2.0 archival release)"
 keywords:
   - computational-neuroscience
   - synaptic-bouton

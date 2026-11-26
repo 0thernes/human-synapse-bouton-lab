@@ -74,6 +74,9 @@ describe('Negative Boundary Tests (B06)', () => {
     expect(() => computePeakEpscPa(-0.5, 37)).toThrow(BiophysicsValidationError);
     expect(() => computeNmdaMgUnblock(-70, -1)).toThrow(BiophysicsValidationError);
     expect(() =>
+      simulateTsodyksMarkram({ pulseTimesMs: [0, 20], u0: 1.5, tauRecMs: 300, tauFacilMs: 50 })
+    ).toThrow(BiophysicsValidationError);
+    expect(() =>
       computeMetrology({
         photons: 0,
         psfSigmaNm: 110,
@@ -92,6 +95,7 @@ describe('Negative Boundary Tests (B06)', () => {
     expect(() => analyzeExperimentalTrace('{invalid-json')).toThrow(TraceParseError);
     expect(() => analyzeExperimentalTrace('{"notData": 123}')).toThrow(TraceParseError);
     expect(() => analyzeExperimentalTrace('0,1\n1,2')).toThrow(TraceParseError);
+    expect(() => analyzeExperimentalTrace('0,-2\n5,-15\n2,-30\n6,-4')).toThrow(TraceParseError);
     expect(() => analyzeExperimentalTrace('0,1\n'.repeat(600_000))).toThrow(TraceParseError);
   });
 });

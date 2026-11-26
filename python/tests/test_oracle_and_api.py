@@ -50,6 +50,22 @@ def test_negative_oracle_inputs_rejected() -> None:
         exact_release_probability(-0.5)
     with pytest.raises(ValueError):
         exact_hill4_fraction(-1, 1)
+    # Non-finite NaN / Inf boundary guards (F24)
+    for bad in (float("nan"), float("inf"), float("-inf")):
+        with pytest.raises(ValueError):
+            exact_thermal_energy_pn_nm(bad)
+        with pytest.raises(ValueError):
+            exact_release_probability(bad)
+        with pytest.raises(ValueError):
+            exact_local_ca_peak_um(bad, 20.0)
+        with pytest.raises(ValueError):
+            exact_ei_balance(3.0, 4.0, 7.0, 125.0, bad)
+        with pytest.raises(ValueError):
+            exact_snare_thermodynamics(4, 15, 5, bad)
+        with pytest.raises(ValueError):
+            exact_bioenergetics(5.5, 7.2, 40, 10, True, bad)
+        with pytest.raises(ValueError):
+            exact_metrology(2500, 110, 2, 2, 5, 3, bad)
 
 
 @settings(max_examples=1000)

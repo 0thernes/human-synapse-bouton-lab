@@ -20,7 +20,7 @@ jobs:
     name: Lean 4.35.0 Multi-Kernel Proof Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install elan & Lean 4.35.0
         run: |
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
@@ -29,16 +29,17 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y bubblewrap || true
       - name: Forbidden token scan on proof modules
         run: |
-          ! sed 's/--.*$//' lean/Solution.lean lean/NonVacuity.lean lean/VerifyAxioms.lean | \
+          ! sed 's/--.*$//' lean/Solution.lean lean/NonVacuity.lean lean/AdversarialChecks.lean lean/VerifyAxioms.lean | \
             grep -nE '\b(sorry|admit|native_decide)\b|^\s*axiom\b|implemented_by|@\[extern'
-      - name: Build proofs (--wfail), verify axioms, replay leanchecker & external kernels
+      - name: Build proofs (--wfail), verify axioms, replay leanchecker & 6 independent kernels
         working-directory: lean
         run: |
           lake build --wfail
           lake env lean VerifyAxioms.lean | tee ../lean-axioms-ci.txt
-          ! grep -E '\b(sorryAx|Lean\.ofReduceBool|Lean\.trustCompiler)\b' ../lean-axioms-ci.txt
+          ! grep -E '\b(sorryAx|Lean\.ofReduceBool|Lean\.trustCompiler)\b|_native' ../lean-axioms-ci.txt
           lake env leanchecker Solution
           lake env leanchecker NonVacuity
+          lake env leanchecker AdversarialChecks
           lake env leanchecker-paranoid Solution
           lake env leanexport Solution > .lake/solution.ndjson
           printf '{"export_file_path":".lake/solution.ndjson","permitted_axioms":["propext","Classical.choice","Quot.sound"],"unpermitted_axiom_hard_error":false,"nat_extension":true,"string_extension":true}\n' > .lake/nanoda.json
@@ -47,8 +48,10 @@ jobs:
           lake env con-leche .lake/solution.ndjson
           lake check --paranoid || lake check --paranoid --inadvisably-no-sandbox
           lake comparator --config comparator.json --paranoid || lake comparator --config comparator.json --paranoid --inadvisably-no-sandbox
+      - name: Verify README verbatim axiom block matches kernel output
+        run: python3 scripts/check_readme_axioms.py --axioms-file lean-axioms-ci.txt
       - name: Upload Lean axiom report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: lean-axioms-report
           path: lean-axioms-ci.txt
@@ -62,8 +65,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     defaults: { run: { shell: bash } }
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with: { node-version: "24" }
       - run: npm ci
       - run: npm run build
@@ -81,7 +84,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     defaults: { run: { shell: bash } }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: dtolnay/rust-toolchain@stable
         with: { components: clippy }
       - run: cargo build --release --locked
@@ -98,13 +101,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     defaults: { run: { shell: bash } }
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with: { node-version: "24" }
       - uses: dtolnay/rust-toolchain@stable
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with: { python-version: "3.12" }
-      - uses: astral-sh/setup-uv@v5
+      - uses: astral-sh/setup-uv@v10
       - run: npm ci && npm run build --workspace=@synapse/core
       - run: cargo build --release --locked
       - run: uv sync --extra dev --frozen
@@ -117,10 +120,10 @@ jobs:
     name: Build Standard v1.1.0 Audit (report-only)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { fetch-depth: 0 }
       - run: bash scripts/audit-repo.sh --json audit.json --markdown "$GITHUB_STEP_SUMMARY" || true
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: build-standard-audit, path: audit.json }
 
   security:
@@ -128,7 +131,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { fetch-depth: 0 }
       - name: gitleaks
         run: |
@@ -141,5 +144,5 @@ jobs:
           chmod +x osv-scanner
           ./osv-scanner --recursive . > osv.txt 2>&1 || true
           { echo '### osv-scanner'; echo '```'; tail -n 40 osv.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: security-reports, path: "gitleaks.json\nosv.txt" }
