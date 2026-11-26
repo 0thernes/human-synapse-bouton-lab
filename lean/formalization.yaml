@@ -282,7 +282,7 @@ alignment:
       lean: "SynapseBouton.snare_barrier_monotone_in_syt1_ca, snare_copy_number_cooperativity, resi_variance_strict_improvement, resi_duty_cycle_monotone_in_imager"
       module: "Solution"
       status: "proved"
-    - source: "White Paper 2 Theorem 3.1 (2x2 discrete weight-table algebraic factorization, diagonal product dominance, diagonal excess implication)"
+    - source: "White Paper 2 Theorem 4.1 (Section 4.1; generic 2x2 integer determinant facts: rank-one tables have determinant 0, diagonal product dominance and diagonal excess give a nonzero determinant; no neural or causal content)"
       lean: "SynapseBouton.factorized_bipartition_zero_integration, correlated_nanocolumn_positive_integration, diagonal_excess_implies_positive_coupling"
       module: "Solution"
       status: "proved"

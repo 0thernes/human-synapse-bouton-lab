@@ -7,7 +7,7 @@ A multi-language modelling workbench for a human synaptic bouton. It combines Le
 [![CI](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/ci.yml)
 [![Pages](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/pages.yml/badge.svg)](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/pages.yml)
 [![Release](https://img.shields.io/github/v/release/0thernes/human-synapse-bouton-lab?display_name=tag)](https://github.com/0thernes/human-synapse-bouton-lab/releases)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24477927.svg)](https://doi.org/10.5281/zenodo.24477927)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24477927.svg)](https://doi.org/10.5281/zenodo.24477927) (concept DOI; `v1.3.0` version DOI: [`10.5281/zenodo.24548051`](https://doi.org/10.5281/zenodo.24548051))
 [![Code License: Apache-2.0](https://img.shields.io/badge/Code-Apache--2.0-blue.svg)](LICENSE)
 [![Content License: CC-BY-4.0](https://img.shields.io/badge/Papers%20%26%20Media-CC--BY--4.0-lightgrey.svg)](docs/LICENSE-CONTENT.md)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39.svg)](https://orcid.org/0009-0006-8168-9648)
@@ -24,8 +24,9 @@ A multi-language modelling workbench for a human synaptic bouton. It combines Le
 
 1. **White Paper 1 — Formally Verified Human Synaptic Bouton Biophysics:**
    [`dist/Donahue_2026_human_synaptic_bouton_verification.pdf`](dist/Donahue_2026_human_synaptic_bouton_verification.pdf) · Source: [`papers/wp1_synaptic_bouton/main.tex`](papers/wp1_synaptic_bouton/main.tex) · arXiv tarball: [`dist/arxiv_wp1_synaptic_bouton.tar.gz`](dist/arxiv_wp1_synaptic_bouton.tar.gz)
-2. **White Paper 2 — 11-Discipline Open Hard Problems Map, Mega-Atlas Crosswalk & Consciousness Epistemology:**
+2. **White Paper 2 — "An 11-Discipline Open Hard Problems Map from Nanoscale Synaptic Biophysics to the Consciousness Frontier: Formal Bounds, Mega-Atlas Crosswalk, Deductive–Inductive–Abductive Epistemology, and a Six-Class Audit":**
    [`dist/Donahue_2026_open_hard_problems_consciousness_frontier.pdf`](dist/Donahue_2026_open_hard_problems_consciousness_frontier.pdf) · Source: [`papers/wp2_open_problems_consciousness/main.tex`](papers/wp2_open_problems_consciousness/main.tex) · arXiv tarball: [`dist/arxiv_wp2_open_problems_consciousness.tar.gz`](dist/arxiv_wp2_open_problems_consciousness.tar.gz)
+   A companion survey paper (archive entry `0TH-2026-008`) that shares this repository, commit and Lean suite with White Paper 1 (`0TH-2026-007`). Its only formal content is `T22`–`T24` (2×2 integer determinant facts, counted once among the 24) and the example table `A05`; it has no formal result of its own and makes no formal contribution to any problem it surveys. Its crosswalk table (§3, Table 2) heads one column "Verified Partial Contribution" and lists `T22`–`T24` under `NEURO-004`; that wording is withdrawn (see [`ERRATA.md`](ERRATA.md#2026-11-26-statement-audit)). Its "six-class" audit uses the six finding classes of Build Standard v1.1.0.
 3. **Unsolved Problems Mega-Atlas Audit (`0 / 1,900` Fully Solved):**
    [`docs/mega-atlas-crosswalk.md`](docs/mega-atlas-crosswalk.md) gives an ID-by-ID accounting against the 1,900 entries in [`0thernes/unsolved-problems-mega-atlas`](https://github.com/0thernes/unsolved-problems-mega-atlas): **None of the 1,900 open problems is solved, fully or partially (`0 / 1,900`).** 18 Atlas problems (`NEURO-001`, `NEURO-003`, `NEURO-004`, `NEURO-019`, `NEURO-020`, `NEURO-023`, `NEURO-027`, `MED-001`, `BIO-003`, `CHEM-013`, `CHEM-058`, `AI-004`, `CS-058`, `HW-004`, `LOG-033`, `SUB-036`, `SUB-037`, `SUB-038`) are listed as topically related to parts of this repository, with the remaining barriers. No Lean statement is a case of any of them.
 
@@ -153,7 +154,7 @@ node -e "import('./packages/synapse-core/dist/index.js').then(m => m.analyzeExpe
 - **Architecture & Data Flow:** [`docs/architecture.md`](docs/architecture.md) · **ADRs:** [`docs/adr/README.md`](docs/adr/README.md)
 - **Claims & Falsification Ledger:** [`CLAIMS.md`](CLAIMS.md) · **Pre-Registration & Deviations:** [`PREREGISTRATION.md`](PREREGISTRATION.md), [`DEVIATIONS.md`](DEVIATIONS.md)
 - **Honest Benchmarks & Performance Budgets:** [`docs/benchmarks.md`](docs/benchmarks.md) · **Replication:** [`REPLICATION.md`](REPLICATION.md) · **Audit Trail:** [`docs/run-log.md`](docs/run-log.md)
-- **Red-Team 10-Pass Review & Six-Class Findings:** [`docs/reviews/2026-11-23-redteam.md`](docs/reviews/2026-11-23-redteam.md)
+- **Red-Team 10-Pass Review & Six-Class Findings (Build Standard v1.1.0 classes):** [`docs/reviews/2026-11-23-redteam.md`](docs/reviews/2026-11-23-redteam.md)
 - **Build Pipeline Models (`P0`–`P11`):** [`project.yaml`](project.yaml), [`docs/plan/checklist.md`](docs/plan/checklist.md), [`api/openapi.yaml`](api/openapi.yaml), [`docs/deploy.md`](docs/deploy.md), [`reports/security/2026-11-23-audit.md`](reports/security/2026-11-23-audit.md)
 - **Security Threat Model, Config, Operations, Accessibility, FAQ & Glossary:** [`docs/threat-model.md`](docs/threat-model.md), [`docs/configuration.md`](docs/configuration.md), [`docs/operations.md`](docs/operations.md), [`docs/accessibility.md`](docs/accessibility.md), [`docs/faq.md`](docs/faq.md), [`docs/glossary.md`](docs/glossary.md)
 

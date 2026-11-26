@@ -4,6 +4,12 @@ All notable changes to `human-synapse-bouton-lab` are documented here following 
 
 ## [Unreleased]
 
+### Changed (2026-11-26 statement audit, companion White Paper 2, archive entry `0TH-2026-008`)
+- Described White Paper 2 as a companion survey paper with no formal result of its own; its formal content is `T22`–`T24` and `A05` from the shared Lean suite. Used the paper's own title in `README.md`.
+- Withdrew the listing of `T22`–`T24` as a verified partial contribution to `NEURO-004` and the statement that `A05` proves a determinant is not causality (`CLAIMS.md` `C12`, `docs/mega-atlas-crosswalk.md`, `LIMITATIONS.md`).
+- Corrected the White Paper 2 theorem locator in `lean/formalization.yaml` (Theorem 4.1, not 3.1) and recorded the `v1.3.0` version DOI `10.5281/zenodo.24548051` in `README.md` and `docs/PRESERVATION.md`.
+- Recorded the errors that remain in the frozen White Paper 2 source and PDF in `ERRATA.md`.
+
 ## [1.3.0] - 2026-11-25
 
 ### Added
