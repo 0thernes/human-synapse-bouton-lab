@@ -2,25 +2,28 @@
 version: "v0.4"
 
 project:
-  name: "Human Synaptic Bouton Biophysical Invariants and 2x2 Weight-Table Factorization Bounds"
+  name: "Elementary Integer Invariants of a Human Synaptic Bouton Model and 2x2 Integer Determinant Facts"
   description: >
-    Pure Lean 4.35.0 (zero Mathlib, zero sorry, zero Classical.choice) formalization of
-    24 elementary algebraic and discrete-dynamical invariants across six nanoscale human
-    synaptic bouton modeling domains: (1) Hill n=4 Ca2+ release cooperativity with
-    positive-domain guarantees (unit interval, half-max exactness, strict monotonicity,
-    1/82 resting noise floor, exact 8.5x Kd/2->Kd doubling gain, exact sigmoidal crossover
-    vs. linear n=1) and fixed-point Tsodyks-Markram STP single-step unit bounds;
-    (2) conductance-based mature KCC2 GABAergic shunting attenuation, well-defined
-    pure-shunting divisive identity, and cleared-denominator Jahr-Stevens NMDAR Mg2+
-    unblock monotonicity; (3) single-step and structural-induction multi-step vesicle pool
-    conservation (rat 374 & human L1 3,500), positive clamped ATP store depletion, exact
-    discrete ATP depletion hitting-time upper bound, resting V-ATPase leak rate bounds,
-    and exact kinesin-1 stoichiometry (125,000 ATP/mm); (4) SNAREpin Syt1/copy-number
-    barrier monotonicity; (5) RESI 1/sqrt(N*K) localization variance and imager duty-cycle
-    monotonicity; and (6) exact 2x2 weight-table algebraic factorization, diagonal product
-    dominance, and diagonal excess implication. Paired with 26 concrete physiological
-    non-vacuity witnesses (lean/NonVacuity.lean) and 6 adversarial counterexample checks
-    (lean/AdversarialChecks.lean).
+    Lean 4.35.0 (no Mathlib; no sorry in proof modules; no Classical.choice in any printed
+    axiom list) proofs of 24 elementary integer and list-induction lemmas about the
+    repository's own model formulas, stated over Nat/Int with denominators cleared:
+    (1) Hill n=4 inequalities (below 1, value 1/2 at c = kd, strict increase in c, at most
+    1/82 when 3c <= kd, ratio 17/2 between c = kd and c = kd/2, crossover with c/(c+kd))
+    and one Tsodyks-Markram update step; (2) bounds for a conductance-weighted mean, two
+    numerator identities for pure shunting, and monotonicity of D/(D+m*e) in an abstract
+    natural e (the form used for Jahr-Stevens Mg2+ unblock; voltage dependence not
+    formalised); (3) single-step and list-induction vesicle pool conservation, strict drop
+    of a truncated linear ATP store, an upper bound on the time at which that mean-rate store
+    reaches 0, leak lowering the sustainable rate, and (8n)/8 = n (no kinesin model);
+    (4) non-strict monotonicity of a clamped SNARE barrier formula; (5) RESI variance and
+    duty-cycle inequalities; and (6) 2x2 integer determinant facts (rank-one tables have
+    determinant 0; diagonal excess gives a nonzero determinant). Paired with 27 non-vacuity
+    witness theorems (lean/NonVacuity.lean) and 6 sanity and sharpness checks
+    (lean/AdversarialChecks.lean). These are known elementary facts; no published open
+    question is resolved. The Lean definitions are hand-written integer analogues of the
+    TypeScript/Rust engines, with no tested link. Prior formal work on biological models
+    includes marpaia/grn-lean (Lean 4, Hill-kinetic gene-regulatory circuits), Bobbin et
+    al., Digital Discovery 3:264 (2024), doi:10.1039/D3DD00077J, and arXiv:2505.05362.
   authors:
     - name: "Alexander Stephen Donahue"
       github: "0thernes"
@@ -91,12 +94,12 @@ classification:
 
 status:
   scope: >
-    Certifies 24 elementary algebraic, inductive, monotonicity, conservation, stoichiometry,
-    variance-scaling, and 2x2 weight-table factorization invariants over Nat and Int in pure
-    Lean 4.35.0 without Mathlib, plus 26 non-vacuity witnesses and 6 adversarial counterexample
-    theorems. Explicitly does NOT formalize continuum 3D Brownian PDEs, interventional causal
-    graphs, float64 RK4 Hodgkin-Huxley ODE trajectories (tagged numerical_approximation outside
-    Lean), or phenomenal consciousness/sentience.
+    Kernel-checks 24 elementary integer inequalities, conservation identities and
+    list-induction facts over Nat and Int in Lean 4.35.0 without Mathlib, plus 27 non-vacuity
+    witness theorems and 6 sanity checks. Challenge.lean holds 24 sorry statement stubs used
+    only by the comparator. Does NOT formalize continuum 3D Brownian PDEs, any causal model,
+    float64 RK4 Hodgkin-Huxley ODE trajectories (tagged numerical_approximation outside
+    Lean), the TypeScript/Rust engines, or phenomenal consciousness/sentience.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
@@ -235,9 +238,9 @@ automation:
         wall_time: "2 days"
         spend_usd: "subscription-based usage"
         hardware: "Windows 11 x86_64 workstation + Ubuntu GitHub Actions runners"
-      prompting_notes: "Human author directed scope, biophysical parameter separation (rat vs. human cortical presets), statement fidelity audit, positive-domain tightening (v1.2.0), inductive/dynamical expansion and adversarial counterexample suite (v1.3.0), and zero-Mathlib / zero-sorry / zero-Classical.choice constraints."
+      prompting_notes: "Human author directed scope, biophysical parameter separation (rat vs. human cortical presets), statement fidelity audit, positive-domain tightening (v1.2.0), inductive/dynamical expansion and sanity-check suite (v1.3.0), and zero-Mathlib / zero-sorry / zero-Classical.choice constraints."
   spend_usd: "subscription-based usage"
-  notes: "Repository CI (.github/workflows/ci.yml) runs `lake comparator --paranoid` (replaying lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, and con-ron) and `scripts/check_readme_axioms.py`; those project CI checks are recorded separately from any external registry verification."
+  notes: "Repository CI (.github/workflows/ci.yml) runs `lake comparator --paranoid` (Solution checked against Challenge), `lake check --paranoid` on all default targets (replaying lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, and con-ron), and `scripts/check_readme_axioms.py`; those project CI checks are recorded separately from any external registry verification."
 
 fidelity:
   divergences: >
@@ -245,9 +248,11 @@ fidelity:
     unblock, Tsodyks-Markram fixed-point STP, RESI variance, SNARE barrier tenths/fiftieths)
     are cross-multiplied and integer-scaled over Nat/Int with explicit positive-domain
     hypotheses so every theorem is proved constructively without IEEE-754 rounding or
-    Classical.choice. Domain VI proves algebraic factorization vs. strict diagonal dominance
-    on supplied 2x2 weight tables without formalizing interventional causality (explicitly
-    verified by common-cause counterexample A05 in lean/AdversarialChecks.lean). Transcendental
+    Classical.choice. Domain VI proves 2x2 integer determinant facts and formalizes no causal
+    model; A05 in lean/AdversarialChecks.lean evaluates one example determinant, and its
+    reading as a common-cause table is informal. T11 contains no voltage or exponential; T15
+    is an upper bound for a deterministic mean-rate store; the hypotheses kd > 0 (T02) and
+    u0 > 0 (T07) are unused. Transcendental
     Nernst/GHK/Arrhenius/Gaussian expressions are checked externally by a 50-digit mpmath oracle.
 
 review:
@@ -269,7 +274,7 @@ alignment:
       lean: "SynapseBouton.ei_steady_state_bounds, shunting_inhibition_strict_attenuation, pure_shunting_divisive_identity, nmda_mg_unblock_unit_interval_and_monotone"
       module: "Solution"
       status: "proved"
-    - source: "White Paper 1 Theorem 3.3 & Table 2 (Single-step & multi-step inductive vesicle conservation, clamped ATP depletion, exact hitting-time bound, resting leak rate bounds, kinesin-1 125,000 ATP/mm)"
+    - source: "White Paper 1 Theorem 3.3 & Table 2 (Single-step & multi-step inductive vesicle conservation, clamped ATP depletion, upper bound on the zero time of the mean-rate ATP store, resting leak rate bounds, (8n)/8 = n used for kinesin-1 125,000 ATP/mm)"
       lean: "SynapseBouton.vesicle_pool_transition_invariant, vesicle_pool_multistep_invariant, atp_deficit_strict_depletion, atp_hitting_time_upper_bound, resting_leak_strictly_lowers_sustainable_rate, kinesin_processive_atp_exact"
       module: "Solution"
       status: "proved"
@@ -281,7 +286,7 @@ alignment:
       lean: "SynapseBouton.factorized_bipartition_zero_integration, correlated_nanocolumn_positive_integration, diagonal_excess_implies_positive_coupling"
       module: "Solution"
       status: "proved"
-    - source: "Adversarial Hypothesis Tightness & Common-Cause Counterexamples (A01-A06)"
+    - source: "Sanity and sharpness checks A01-A06 (closed arithmetic facts and one example determinant; they do not show every hypothesis is needed)"
       lean: "SynapseBouton.AdversarialChecks.*"
       module: "AdversarialChecks"
       status: "proved"

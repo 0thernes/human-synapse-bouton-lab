@@ -13,10 +13,10 @@ In accordance with the Defensible Independent AI Research Playbook (Edition 1.3)
 - **Tool:** Antigravity (Google DeepMind) interactive coding and research environment.
 - **Tasks Assisted:** Multi-language software refactoring (TypeScript, Rust, Python, Three.js), Lean 4.35.0 proof tactic drafting, AMS-LaTeX typesetting, deterministic Matplotlib/FFmpeg figure & video scripting, and automated forensic verification audits.
 - **Independent Machine Certification:**
-  1. Every Lean 4.35.0 theorem (`24` headline theorems, `26` non-vacuity witnesses, `6` adversarial counterexample checks) is independently verified with zero `sorry` and zero `Classical.choice` by six distinct proof-checking kernels (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda`, `con-leche`, `con-ron`) in public Ubuntu CI.
+  1. Every Lean 4.35.0 theorem (`24` elementary lemmas, `27` non-vacuity witnesses, `6` sanity checks) is replayed with zero `sorry` in proof modules and no `Classical.choice` in any printed axiom list by six proof-checking kernels (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda`, `con-leche`, `con-ron`) in public Ubuntu CI. Kernel checking does not establish that the statements say what their names suggest; see `docs/statement-fidelity.md`.
   2. Every floating-point biophysical equation is independently cross-validated across TypeScript, Rust, and a 50-digit `mpmath`/rational Python reference oracle over `1,000` seeded random cases (`0` mismatches within `1e-10`) plus `6/6` (`100%`) controlled mutation kills.
-  3. Every primary literature reference (`23/23`) is verified live against the Crossref API with zero retractions (`docs/citation-audit.json`).
-  4. All stochastic Monte Carlo results were pre-registered in `PREREGISTRATION.md` prior to execution, and the refutation of pre-registered hypothesis `H3` (`40 Hz`) is reported verbatim in `CLAIMS.md`, `ERRATA.md`, `DEVIATIONS.md`, and White Paper 1.
+  3. Bibliography DOIs are resolved against the Crossref API (`docs/citation-audit.json`). This check did not catch one DOI that points to an unrelated paper or two entries with wrong authors, because it does not compare titles or authors (`ERRATA.md`, 2026-11-26).
+  4. The hypotheses, seeds and statistics of the Monte Carlo experiments were registered in `PREREGISTRATION.md` before any code; the model constants were set later. The failure of pre-registered hypothesis `H3` (`40 Hz`) in the fixed-parameter simulator is reported in `CLAIMS.md`, `ERRATA.md`, `DEVIATIONS.md`, and White Paper 1.
 
 ## Policy & Platform Compliance
 
