@@ -77,7 +77,7 @@ async function probeApiHealth(): Promise<void> {
     window.clearTimeout(timer);
     if (res.ok) {
       const body = (await res.json()) as { version?: string; oracle_precision_digits?: string };
-      badge.textContent = `FastAPI 50-Digit Oracle Connected (v${body.version ?? '1.3.0'})`;
+      badge.textContent = `FastAPI 50-Digit Oracle Connected (v${body.version ?? '1.4.0'})`;
       badge.className = 'status-pill status-live';
     }
   } catch {
@@ -627,7 +627,7 @@ function renderChemTab(): void {
         <div class="metric-grid" id="bio-metrics"></div>
         <h3 style="margin-top:14px;">Exact Nernst &amp; GHK Physiology (37 °C)</h3>
         <div class="metric-grid" id="nernst-metrics"></div>
-        <h3 style="margin-top:14px;">Synaptic Vesicle Organic Lipidome (Deutsch &amp; Kelly 1981)</h3>
+        <h3 style="margin-top:14px;">Synaptic Vesicle Organic Lipidome (<em>Narcine brasiliensis</em> Electric Organ, Deutsch &amp; Kelly 1981)</h3>
         <table class="data-table">
           <thead><tr><th>Lipid</th><th>mol %</th><th>Biophysical Role</th></tr></thead>
           <tbody>
@@ -825,7 +825,7 @@ function renderVerifyTab(): void {
     <div class="panel" style="margin-bottom:18px;">
       <h2>Live Computational Self-Verification Suite (${passed}/${checks.length} Passed)</h2>
       <p class="meta-small" style="margin-bottom:10px;">
-        Cross-backed by 24 sorry-free Lean 4.35.0 formal theorems (26 witnesses + 6 adversarial counterexample checks, replayed across official kernel, leanchecker-paranoid, lean4lean, nanoda, con-ron, con-leche; <a href="./blueprint/" style="color:#38bdf8;">explore Proof Blueprint &amp; DAG</a>) + 1,000-case Python 50-digit mpmath vs TypeScript vs Rust differential tests.
+        Cross-backed by 24 sorry-free Lean 4.35.0 elementary lemmas (0 unused hypotheses, enforced 0 Classical.choice, 27 concrete witnesses + 7 sanity &amp; sharpness checks, replayed across official kernel, leanchecker-paranoid, lean4lean, nanoda, con-ron, con-leche; <a href="./blueprint/" style="color:#38bdf8;">explore Proof Blueprint &amp; DAG</a>) + 1,000-case Python 50-digit mpmath vs TypeScript vs Rust differential &amp; Lean vector parity tests.
       </p>
       <table class="data-table">
         <thead><tr><th>ID</th><th>Status</th><th>Tier</th><th>Check</th><th>Observed Output</th></tr></thead>
@@ -930,15 +930,27 @@ function renderOpenProblemsTab(): void {
   renderCards('ALL');
 }
 
-// ---------- TAB 9: Six-Class Findings Ledger (Bugs, Errors, Issues, Problems, Dilemmas, Conflicts) ----------
+// ---------- TAB 9: Ten-Class Findings Ledger (Build Standard v1.2.0 R7) ----------
 function renderFindingsTab(): void {
   const host = el('panel-findings');
-  const classes: ('ALL' | FindingClass)[] = ['ALL', 'bug', 'error', 'issue', 'problem', 'dilemma', 'conflict'];
+  const classes: ('ALL' | FindingClass)[] = [
+    'ALL',
+    'bug',
+    'error',
+    'issue',
+    'problem',
+    'concern',
+    'dilemma',
+    'conflict',
+    'gap',
+    'hole',
+    'blindspot',
+  ];
   host.innerHTML = `
     <div class="panel">
-      <h2>Six-Class Audit Ledger — Bugs, Errors, Issues, Problems, Dilemmas &amp; Conflicts</h2>
+      <h2>Ten-Class Audit Ledger (Build Standard v1.2.0 R7)</h2>
       <p class="meta-small" style="margin-bottom:12px;">
-        Per Build Standard R7, every defect, gap, external obstacle, trade-off, and rule contradiction encountered across the legacy prototype, playbooks, and experiments is classified into exactly one bucket and transparently logged.
+        Per Build Standard v1.2.0 R7, every finding across code, specs, white papers, and simulations is classified into exactly one of ten buckets (<code>bug</code>, <code>error</code>, <code>issue</code>, <code>problem</code>, <code>concern</code>, <code>dilemma</code>, <code>conflict</code>, <code>gap</code>, <code>hole</code>, <code>blindspot</code>) and transparently logged.
       </p>
       <div class="btn-row" id="finding-filter-row" style="margin-bottom:14px;">
         ${classes.map((c, i) => `<button type="button" class="tab-btn ${i === 0 ? 'active' : ''}" data-cls="${c}">${c.toUpperCase()}</button>`).join('')}

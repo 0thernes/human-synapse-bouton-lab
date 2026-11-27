@@ -1,24 +1,29 @@
 # human-synapse-bouton-lab
 
-> Full-stack, formally verified human synaptic bouton biophysical workbench (Lean 4.35.0, Rust, TypeScript, Python 50-digit oracle), pre-registered 30-seed Monte Carlo nanocolumn simulator, interactive 9-tab WebGL workbench, and two AMS-LaTeX white papers mapping 11 disciplines of open hard problems toward the consciousness frontier.
+> Full-stack human synaptic bouton biophysical workbench (Lean 4.35.0, Rust, TypeScript, Python 50-digit oracle), pre-registered 30-seed Monte Carlo nanocolumn simulator, interactive 9-tab WebGL workbench + Lean Proof Blueprint DAG, and two AMS-LaTeX white papers mapping 11 disciplines of open hard problems toward the consciousness frontier (0 of 1,900 Mega-Atlas problems solved).
 
 ## Agent & Governance Entry Points
 
-- [AGENTS.md](AGENTS.md): Canonical instructions, commands, hard rules (R1–R8), six finding classes, and known traps
+- [AGENTS.md](AGENTS.md): Canonical instructions, commands, hard rules (R1–R8), ten Build Standard v1.2.0 finding classes, and known traps
 - [README.md](README.md): Overview, verified Lean fidelity table, Monte Carlo summary, quickstart, and usage examples
 - [CLAIMS.md](CLAIMS.md): Numbered claims ledger with commands, tests, and refutation criteria
 - [LIMITATIONS.md](LIMITATIONS.md): Honest limits, untested paths, literal-vs-metaphor boundary, and corrections
+- [ERRATA.md](ERRATA.md): Append-only errata, post-release audit resolutions, and withdrawal policy
 - [REPLICATION.md](REPLICATION.md): Clean-clone replication protocol and recorded replication log
 - [PREREGISTRATION.md](PREREGISTRATION.md): Pre-registered Monte Carlo hypotheses committed prior to execution
-- [DEVIATIONS.md](DEVIATIONS.md): Transparent log of H3 refutation and exploratory 20 Hz H3b
+- [DEVIATIONS.md](DEVIATIONS.md): Transparent log of H3 40 Hz failure in simulation and exploratory 20 Hz H3b
 
 ## Formal Verification & Architecture
 
-- [lean/Challenge.lean](lean/Challenge.lean): Isolated 18-theorem Palomar-format challenge specification
+- [lean/Challenge.lean](lean/Challenge.lean): Isolated 24-lemma specification (0 unused hypotheses, enforced 0 Classical.choice)
 - [lean/Solution.lean](lean/Solution.lean): Zero-sorry, zero-Mathlib Lean 4.35.0 proofs
-- [lean/NonVacuity.lean](lean/NonVacuity.lean): 19 physiological non-vacuity witnesses
+- [lean/NonVacuity.lean](lean/NonVacuity.lean): 27 concrete physiological non-vacuity witnesses
+- [lean/AdversarialChecks.lean](lean/AdversarialChecks.lean): 7 sanity and sharpness checks (A01–A07)
+- [lean/ExportVectors.lean](lean/ExportVectors.lean): Executable Lean-to-engine JSON vector exporter (`data/lean_engine_vectors.json`)
+- [docs/statement-fidelity.md](docs/statement-fidelity.md): Line-by-line statement fidelity audit for all 24 lemmas and 7 checks
+- [docs/mega-atlas-crosswalk.md](docs/mega-atlas-crosswalk.md): Programmatic crosswalk against all 1,900 Mega-Atlas open problems (0/1,900 solved)
 - [docs/architecture.md](docs/architecture.md): Multi-language system architecture and Mermaid diagram
 - [docs/benchmarks.md](docs/benchmarks.md): Honest Rust vs Node benchmarks and performance budgets
-- [docs/reviews/2026-11-23-redteam.md](docs/reviews/2026-11-23-redteam.md): 10-pass adversarial red-team review and six-class findings ledger
+- [docs/reviews/2026-11-23-redteam.md](docs/reviews/2026-11-23-redteam.md): 10-pass adversarial red-team review
 - [docs/faq.md](docs/faq.md): Frequently asked questions
-- [docs/glossary.md](docs/glossary.md): Alphabetized scientific and engineering glossary
+- [docs/glossary.md](docs/glossary.md): Alphabetized scientific and engineering glossary (all 10 Build Standard v1.2.0 classes)

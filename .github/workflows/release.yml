@@ -47,6 +47,7 @@ jobs:
 
       - name: Attest build provenance
         uses: actions/attest-build-provenance@v4
+        continue-on-error: true   # attestations need a public repo (or GitHub Enterprise Cloud); never block the release
         with:
           subject-path: "dist/*"
 

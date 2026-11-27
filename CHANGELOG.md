@@ -2,13 +2,24 @@
 
 All notable changes to `human-synapse-bouton-lab` are documented here following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.4.0] - 2026-11-26
 
-### Changed (2026-11-26 statement audit, companion White Paper 2, archive entry `0TH-2026-008`)
-- Described White Paper 2 as a companion survey paper with no formal result of its own; its formal content is `T22`–`T24` and `A05` from the shared Lean suite. Used the paper's own title in `README.md`.
-- Withdrew the listing of `T22`–`T24` as a verified partial contribution to `NEURO-004` and the statement that `A05` proves a determinant is not causality (`CLAIMS.md` `C12`, `docs/mega-atlas-crosswalk.md`, `LIMITATIONS.md`).
-- Corrected the White Paper 2 theorem locator in `lean/formalization.yaml` (Theorem 4.1, not 3.1) and recorded the `v1.3.0` version DOI `10.5281/zenodo.24548051` in `README.md` and `docs/PRESERVATION.md`.
-- Recorded the errors that remain in the frozen White Paper 2 source and PDF in `ERRATA.md`.
+### Added
+- **Executable Lean-to-Engine Vector Parity Bridge (`F38`, `lean/ExportVectors.lean`):** Exports `data/lean_engine_vectors.json` directly from Lean 4.35.0 `Solution.lean` definitions (`hill4`, `ei_balance`, `tsodyks_markram`, 60 `snare` states, `atp_mean_rate`, `vesicle_pools`, `det2x2`), verified in CI against `ExportVectors.lean` and directly asserted in Python (`test_differential.py`), TypeScript (`synapse.test.ts`), and Rust (`lib.rs`).
+- **T15 Upper-Bound Sharpness Check (`F37`, `A07` in `lean/AdversarialChecks.lean`):** Proves `atpStoreAfter 10 0 1 5 0 2 = 0 ∧ 2 < 10 / 5 + 1`, certifying that `T15` is an upper bound (not tight when `D | a0`); upgraded `A01`, `A02`, `A04`, and `A06` to prove explicit negations (`¬ ...`).
+- **Negative Citation & Retraction Auditor Tests (`F36`, `python/tests/test_citations.py`):** Unit tests proving `scripts/verify_citations.py` rejects mismatched DOIs (e.g., `10.1021/jacs.5b12688` MOF vs. Xu DNA origami), catches Retraction Watch notices in Crossref `updated-by`, and distinguishes non-retraction publisher corrections.
+- **Primary Model & Companion Literature Entries (`F36`, `papers/references.bib`):** Added Crossref-verified entries for `coupland2024vatpase` (*Science* 385:168-174), `dodge1967calcium`, `tsodyks1998dynamic`, `naraghi1997buffered`, `brown2010anesthesia`, and `bobbin2024lean` (total 29 entries: 28 Crossref DOI-matched + 1 non-DOI).
+
+### Fixed
+- **Mutation Harness Exit-4 False Kills & Untested `M04` (`F35`, `C14`):** Fixed `scripts/mutation_audit.py` passing absolute bracketed paths to `pytest` (which previously caused `rc = 4` on every mutant and faked `6/6` kills without running tests); added mandatory unmutated `rc = 0` control, temp-dir import guard, strict `rc = 1` kill check, and exact `atpBurnPerSec` assertions in `test_oracle_and_api.py` so all `6/6` mutants genuinely fail tests.
+- **BibTeX & Live Crossref Citation Auditor (`F36`, `C13`):** Repaired `xu2016dnaorigami` DOI (`10.1021/jacs.5b13107`), `yakoubi2019layer4`, `rollenhagen2020human`, `rollenhagen2024l1` (`eLife 13:RP99473`, 2025), and `depace2024borc`; separated Coupland 2024 (*Science*, rat SVs) from Wang 2024 (*Nature*, mouse SVs); replaced regex BibTeX parsing in `scripts/verify_citations.py` with a brace-balanced parser enforcing HTTP 200, normalized title Jaccard, first-author surname, year, and Crossref `updated-by` retraction detection.
+- **Enforced Zero `Classical.choice`, Zero Unused Hypotheses & Literal Lean Scope (`F37`):** Removed `Classical.choice` from `lean/comparator.json` `permitted_axioms` and forbade it in `scripts/check_readme_axioms.py`, `scripts/dev.sh`, and `.github/workflows/ci.yml` (documenting standalone `nanoda_bin`'s transitive `Init` config); strengthened `T02` (`0 < pow4 kd + pow4 kd`) and generalized `T07` (dropped unused `u0 > 0`); fixed `A04` docstring (`T15` -> `T16`); added generic aliases `outer_product_det_zero`, `det_pos_of_diag_dominance`, and `det_pos_of_diag_excess`.
+- **Frozen White Papers 1 & 2, Blueprint, Media & Web UI Synchronization (`F39`, `F40`):** Rebuilt both AMS-LaTeX white papers, figures, blueprint, and UI to close every 2026-11-26 statement-audit item (companion survey scope of WP2, removal of `T22`–`T24` from `NEURO-004`/`NeuroCS`, `A05` informal common-cause note, `T15` upper bound, illustrative H3 constants, *Narcine brasiliensis* lipidome attribution, `27` witnesses / `7` checks, `v1.3.0` DOI `10.5281/zenodo.24548051`, ten-class audit table).
+- **Oracle Constant Precision & WebGL Error Escaping (`F42`, `F43`):** Replaced 6-digit `2.302585` / `2.35482` constants in `oracle.py`, `bioenergetics.ts`, and `metrology.ts` with exact `ln(10)` and $2\sqrt{2\ln 2}$; escaped WebGL error strings before `innerHTML` in `apps/web/src/scene3d.ts`.
+
+### Changed
+- **Build Standard v1.2.0 Upgrade (`F41`):** Upgraded all governance, templates, labels, CI security scanners (`gitleaks v8.30.1`, `osv-scanner v2.7.1` with SHA-256 verification), `release.yml` (`continue-on-error: true` on `attest-build-provenance`), `repo-standard.schema.json` (URN `$id`), `scripts/dev.sh` (exit 2 on unknown command), `docs/build-standard.md`, `AGENTS.md`, `CONTRIBUTING.md`, `docs/glossary.md`, `openProblems.ts`, and Web UI Tab 9 to all **ten** Build Standard v1.2.0 finding classes (`bug`, `error`, `issue`, `problem`, `concern`, `dilemma`, `conflict`, `gap`, `hole`, `blindspot`).
+- **2026-11-26 Statement Audit Integration:** Consolidated the companion White Paper 2 (`0TH-2026-008`) audit updates into `v1.4.0` (`ERRATA.md` `E07`) and populated `related_formalizations` in `lean/formalization.yaml`.
 
 ## [1.3.0] - 2026-11-25
 
@@ -61,7 +72,7 @@ All notable changes to `human-synapse-bouton-lab` are documented here following 
 
 ### Added
 - **Palomar Registry `module` Headers (`lean/`):** Added Lean 4.35.0 `module` headers and `@[expose]` definitions to `Challenge.lean`, `Solution.lean`, `NonVacuity.lean`, and `VerifyAxioms.lean` (re-verified across all 6 kernels).
-- **Live Citation & Retraction Audit (`scripts/verify_citations.py`, `docs/citation-audit.json`):** Verified all `23/23` BibTeX entries live against the Crossref API (`0` dead links, `0` retractions). *(2026-11-26 statement audit: one of these DOIs resolves to an unrelated paper, and the checker does not compare titles or authors; see `ERRATA.md`.)*
+- **Live Citation & Retraction Audit (`scripts/verify_citations.py`, `docs/citation-audit.json`):** Verified all `23/23` BibTeX entries live against the Crossref API (`0` dead links, `0` retractions). *(2026-11-26 statement audit: one of these DOIs resolves to an unrelated paper, and the checker did not compare titles or authors; repaired in `v1.4.0` `F36` and recorded in `ERRATA.md`.)*
 - **Playbook Provenance & Hardening Artifacts:** Added `ERRATA.md`, digest-pinned `Dockerfile` (`debian:bookworm-slim@sha256:734a72b3...`), `docs/literature-and-checklist.md` (literature log, NeurIPS checklist, dataset datasheet, 15 CFR 734.8 export-control self-screen), `docs/adr/0005-commit-signing-and-zero-gate-precedence.md`, root `MANIFEST.sha256`, and RFC 3161 trusted timestamp (`MANIFEST.sha256.tsr`).
 - **Software Heritage SWHID Integration:** Added verified SWHID `swh:1:snp:1a278fff55465dbe8d0b870408b6468822eb3e8b` into `CITATION.cff`, `.zenodo.json`, and both recompiled AMS-LaTeX white papers.
 - **Expanded SLSA Release Provenance:** `.github/workflows/ci.yml` uploads `lean-axioms-ci.txt`, and `.github/workflows/release.yml` includes `docs/lean-axioms-report.txt` and `MANIFEST.sha256` inside the SLSA-attested `dist/` release artifacts.

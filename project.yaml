@@ -47,7 +47,7 @@ steps:
   P4.06: {status: done, note: "docs/adr/0006-deploy-target-and-rollback.md + docs/deploy.md"}
   P4.07: {status: done, note: "THIRD_PARTY_NOTICES.md + sbom.cdx.json + 0 open alerts"}
   P5.01: {status: done, note: "https://github.com/0thernes/human-synapse-bouton-lab"}
-  P5.02: {status: done, note: "Build Standard v1.1.0 100.0% (79/79, Core 33/33)"}
+  P5.02: {status: done, note: "Build Standard v1.2.0 100.0% (79/79, Core 33/33)"}
   P5.03: {status: done, note: "lean-toolchain, Cargo.lock, uv.lock, package-lock.json"}
   P5.04: {status: done, note: "just setup && just test verified from clean clone"}
   P5.05: {status: done, note: ".env.example + gitleaks 0 findings"}
@@ -55,7 +55,7 @@ steps:
   P5.07: {status: done, note: "Digest-pinned Dockerfile"}
   P6.01: {status: done, note: "docs/plan/slices.md"}
   P6.02: {status: done, note: "https://0thernes.github.io/human-synapse-bouton-lab/"}
-  P6.03: {status: done, note: "Vitest (13), Rust (5), Pytest (9), Lean (18)"}
+  P6.03: {status: done, note: "Vitest (14 incl. Lean vectors), Rust (6 incl. Lean vectors), Pytest (14), Lean (24+27+7)"}
   P6.04: {status: done, note: "docs/run-log.md"}
   P6.05: {status: n/a, note: "No runtime generative-AI features"}
   P6.06: {status: n/a, note: "All 9 workbench modules shipped complete; no hidden feature flags"}
@@ -68,7 +68,7 @@ steps:
   P7.05: {status: done, note: "reports/security/2026-11-23-audit.md + CI gitleaks + osv-scanner + 0 Dependabot alerts"}
   P7.06: {status: done, note: "docs/accessibility.md + 3-OS CI matrix"}
   P7.07: {status: n/a, note: "No ML models trained or runtime AI inference"}
-  P7.08: {status: done, note: "docs/reviews/2026-11-23-redteam.md (10 passes + v1.3.0 statement-fidelity hardening F15-F20)"}
+  P7.08: {status: done, note: "docs/reviews/2026-11-23-redteam.md (10 passes + v1.4.0 full statement audit F15-F43)"}
   P7.09: {status: done, note: "LIMITATIONS.md + README Limitations"}
   P8.01: {status: done, note: ".github/workflows/ci.yml (informational, zero gates)"}
   P8.02: {status: done, note: "dist/ PDFs, tarballs, and apps/web/dist built reproducibly"}
@@ -80,7 +80,7 @@ steps:
   P8.08: {status: n/a, note: "No paid runtime flags; static client degrades gracefully if local FastAPI is absent"}
   P8.09: {status: done, note: "docs/deploy.md explains static GitHub Pages atomic swap"}
   P8.10: {status: done, note: "docs/deploy.md rollback via git revert + Pages atomic redeploy"}
-  P8.11: {status: done, note: ".github/workflows/release.yml (v1.0.0, v1.1.0, v1.1.1, v1.3.0)"}
+  P8.11: {status: done, note: ".github/workflows/release.yml (v1.0.0, v1.1.0, v1.1.1, v1.2.0, v1.3.0, v1.4.0)"}
   P9.01: {status: done, note: "docs/launch/release-checklist.md"}
   P9.02: {status: done, note: "REPLICATION.md verified from isolated clean clone"}
   P9.03: {status: done, note: "v1.0.0 -> v1.1.0 -> v1.1.1 staged hardening before outreach"}

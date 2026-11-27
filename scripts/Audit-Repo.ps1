@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
   Score any repository against the Build Standard for LLMs (90 items). Report-only: always exits 0 unless misused.
 .DESCRIPTION
@@ -52,8 +52,7 @@ function Get-Matches([string]$alts) {
 }
 function Test-Any([string]$alts) { return ((Get-Matches $alts).Count -gt 0) }
 function Test-TextFile([string]$f) {
-  $full = if ([System.IO.Path]::IsPathRooted($f)) { $f } else { [System.IO.Path]::Combine($Root, $f) }
-  try { $fs = [System.IO.File]::OpenRead($full) } catch { return $false }
+  try { $fs = [System.IO.File]::OpenRead((& { if ([System.IO.Path]::IsPathRooted($f)) { $f } else { [System.IO.Path]::Combine($Root, $f) } })) } catch { return $false }
   try { $buf = New-Object byte[] 8000; $n = $fs.Read($buf, 0, 8000); for ($i = 0; $i -lt $n; $i++) { if ($buf[$i] -eq 0) { return $false } }; return $true } finally { $fs.Dispose() }
 }
 function Test-Grep([string]$file, [string]$re) {
@@ -116,7 +115,7 @@ function Invoke-Builtin([string]$name) {
       if ($br -ne "main") { $D = "current branch is '$br', not main"; break }
       $null = git rev-parse HEAD 2>$null; if ($LASTEXITCODE -ne 0) { $D = "no commits yet"; break }
       $ids = @(git log --format='%ae %ce')
-      if ($ids | Where-Object { $_ -match '(example\.(com|org)|placeholder|localhost|invalid|@users\.noreply\.github\.com.*bot|^ *$)' }) { $D = "placeholder or example email in history"; break }
+      if ($ids | Where-Object { $_ -match '(example\.(com|org)|placeholder|localhost|invalid|@users\.noreply\.github\.com.*bot|^ *$)' }) { $D = "placeholder, example or bot email in history"; break }
       $R = "pass"; $D = "on main; author identities look real"
     }
     "hygiene" {
@@ -244,7 +243,7 @@ if ($Json) {
 }
 if ($Markdown) {
   $md = @("## Build Standard v$StdVersion audit", "", ("Structure **{0}%** · Completion **{1}%** · Core complete **{2}%** · pass $P, partial $PA, fail $F, n/a $NA, unknown $U" -f (Fmt $STRUCT), (Fmt $COMPLETE), (Fmt $CORE)), "", "| Result | ID | Tier | Item | Detail |", "|---|---|---|---|---|")
-  $md += $Results | Where-Object { $_.result -ne "na" } | ForEach-Object { "| $($_.result) | $($_.id) | $($_.tier) | $($_.name) | $($_.detail) |" }
+  $md += $Results | Where-Object { $_.result -ne "na" } | ForEach-Object { "| $($_.result) | $($_.id) | $($_.tier) | $($_.name.Replace('|', '\|')) | $($_.detail.Replace('|', '\|')) |" }
   Add-Content -LiteralPath $Markdown -Value $md -Encoding UTF8
 }
 exit 0

@@ -3,8 +3,9 @@ module
 -- SPDX-License-Identifier: Apache-2.0
 -- Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 --
--- Machine-checked Lean 4.35.0 proofs of all 24 theorems in Challenge.lean (v1.3.0).
--- Zero sorry, zero admit, zero native_decide, zero custom axioms, zero Classical.choice, zero Mathlib.
+-- Machine-checked Lean 4.35.0 proofs of all 24 theorems in Challenge.lean (v1.4.0).
+-- Zero sorry, zero admit, zero native_decide, zero custom axioms, zero Classical.choice
+-- (enforced by comparator.json & CI), zero unused hypotheses, zero Mathlib.
 
 public section
 
@@ -13,7 +14,7 @@ namespace SynapseBouton
 /-- Exact third power `x^3` helper used in Hill `n = 4` vs. linear `n = 1` crossover proof. -/
 @[expose] def pow3 (x : Nat) : Nat := x * x * x
 
-/-- Exact fourth power `x^4` used in Hill `n = 4` release probability `P_r(c) = c^4 / (c^4 + Kd^4)`. -/
+/-- Exact fourth power `x^4` used in cleared-denominator Hill `n = 4` ratio `c^4 / (c^4 + Kd^4)`. -/
 @[expose] def pow4 (x : Nat) : Nat := x * x * x * x
 
 /-- Conductance-weighted steady-state numerator: `gL*eL + gE*eE + gI*eI`. -/
@@ -24,15 +25,15 @@ namespace SynapseBouton
 @[expose] def eiDen (gL gE gI : Int) : Int :=
   gL + gE + gI
 
-/-- Fixed-point scaled Tsodyks-Markram facilitation update `uPlus = u + floor(u0 * (S - u) / S)`. -/
+/-- Fixed-point scaled single-spike Tsodyks-Markram facilitation update `uPlus = u + floor(u0 * (S - u) / S)`. -/
 @[expose] def tmUPlus (scale u u0 : Nat) : Nat :=
   u + (u0 * (scale - u)) / scale
 
-/-- Fixed-point scaled Tsodyks-Markram effective release `effRel = floor(uPlus * x / S)`. -/
+/-- Fixed-point scaled single-spike Tsodyks-Markram effective release `effRel = floor(uPlus * x / S)`. -/
 @[expose] def tmEffRel (scale uPlus x : Nat) : Nat :=
   (uPlus * x) / scale
 
-/-- Presynaptic vesicle pool state (RRP, Recycling Pool, Reserve/Resting Pool). -/
+/-- Presynaptic vesicle pool counts (RRP, Recycling Pool, Reserve/Resting Pool). -/
 structure VesiclePools where
   rrp : Nat
   recycling : Nat
@@ -48,7 +49,7 @@ structure VesiclePools where
     recycling := p.recycling + exo - prime + mob
     reserve := p.reserve - mob }
 
-/-- Step-wise conservation validity predicate over an arbitrary finite synaptic firing trace. -/
+/-- Step-wise conservation validity predicate over an arbitrary finite list of transition steps. -/
 @[expose] def ValidVesicleTrace : VesiclePools → List (Nat × Nat × Nat) → Prop
   | _, [] => True
   | p, (exo, prime, mob) :: rest =>
@@ -61,24 +62,24 @@ structure VesiclePools where
   | p, (exo, prime, mob) :: rest =>
       runVesicleTrace (stepVesiclePools p exo prime mob) rest
 
-/-- Nonnegative clamped local ATP store after duration `t` under constant supply `sAtp`
-    and total consumption rate `bLeak + f * cAp` (clamped at 0 via `Nat` subtraction). -/
+/-- Nonnegative clamped deterministic mean-rate ATP store after duration `t` under constant
+    supply `sAtp` and constant total burn `bLeak + f * cAp` (truncated at 0 via `Nat` subtraction). -/
 @[expose] def atpStoreAfter (a0 bLeak f cAp sAtp t : Nat) : Nat :=
   (a0 + sAtp * t) - (bLeak + f * cAp) * t
 
-/-- Integer-scaled SNAREpin zippering energy (in tenths of `k_B T`). -/
+/-- Integer-scaled SNAREpin zippering energy formula (in tenths of `k_B T`). -/
 @[expose] def snareZipTenthKbt (nSnare : Nat) : Int :=
   115 * (nSnare : Int)
 
-/-- Integer-scaled unclamped SNARE effective barrier (in fiftieths of `k_B T`). -/
+/-- Integer-scaled unclamped SNARE barrier formula (in fiftieths of `k_B T`). -/
 @[expose] def snareRawBarrier50 (nSnare nCa clampTenth : Nat) : Int :=
   1400 + (5 - (nCa : Int)) * (clampTenth : Int) - 120 * (nCa : Int) - 160 * ((nSnare : Int) - 1)
 
-/-- Clamped effective barrier in fiftieths of `k_B T` with lower floor 60 (`= 1.2 k_B T`). -/
+/-- Clamped effective barrier formula in fiftieths of `k_B T` with lower floor 60 (`= 1.2 k_B T`). -/
 @[expose] def snareEffBarrier50 (nSnare nCa clampTenth : Nat) : Int :=
   max 60 (snareRawBarrier50 nSnare nCa clampTenth)
 
-/-- Exact 2x2 discrete weight-table cross-coupling determinant `|w00*w11 - w01*w10|`. -/
+/-- Exact 2x2 integer determinant magnitude `|w00*w11 - w01*w10|`. -/
 @[expose] def bipartiteCoupling (w00 w01 w10 w11 : Int) : Int :=
   Int.ofNat (Int.natAbs (w00 * w11 - w01 * w10))
 
@@ -108,7 +109,7 @@ private theorem pow4_le_pow4 {a b : Nat} (h : a ≤ b) : pow4 a ≤ pow4 b := by
   exact Nat.mul_le_mul h3 h
 
 -- ============================================================================
--- DOMAIN I: Ca2+ Nanodomain, Hill n=4 Cooperativity & STP (7 Theorems)
+-- DOMAIN I: Cleared-Denominator Hill n=4 Inequalities & Single-Step STP (7 Theorems)
 -- ============================================================================
 
 theorem hill4_unit_interval (c kd : Nat) (hkd : kd > 0) :
@@ -116,9 +117,10 @@ theorem hill4_unit_interval (c kd : Nat) (hkd : kd > 0) :
   have hpos : pow4 kd > 0 := pow4_pos hkd
   omega
 
-theorem hill4_half_max_exact (kd : Nat) (_hkd : kd > 0) :
-    2 * pow4 kd = pow4 kd + pow4 kd := by
-  omega
+theorem hill4_half_max_exact (kd : Nat) (hkd : kd > 0) :
+    0 < pow4 kd + pow4 kd ∧ 2 * pow4 kd = pow4 kd + pow4 kd := by
+  have hpos : pow4 kd > 0 := pow4_pos hkd
+  constructor <;> omega
 
 theorem hill4_strict_monotone (c1 c2 kd : Nat) (hc : c1 < c2) (hkd : kd > 0) :
     pow4 c1 * (pow4 c2 + pow4 kd) < pow4 c2 * (pow4 c1 + pow4 kd) := by
@@ -190,7 +192,7 @@ theorem hill4_ultrasensitive_crossover_vs_linear (c kd : Nat) (hc : c > 0) (hkd 
     exact Nat.add_lt_add_left (Nat.mul_lt_mul_of_pos_left (pow3_lt_pow3 hgt) hckdPos) (pow4 c * c)
 
 theorem tsodyks_markram_step_unit_bounds (scale u u0 x : Nat)
-    (hS : scale > 0) (hu : u ≤ scale) (_hu0Pos : u0 > 0) (hu0Le : u0 ≤ scale) (hx : x ≤ scale) :
+    (hS : scale > 0) (hu : u ≤ scale) (hu0Le : u0 ≤ scale) (hx : x ≤ scale) :
     u ≤ tmUPlus scale u u0 ∧
       tmUPlus scale u u0 ≤ scale ∧
       tmEffRel scale (tmUPlus scale u u0) x ≤ x ∧
@@ -218,7 +220,7 @@ theorem tsodyks_markram_step_unit_bounds (scale u u0 x : Nat)
   refine ⟨huPlusGe, huPlusLe, hRelLe, by omega⟩
 
 -- ============================================================================
--- DOMAIN II: Conductance-Based E/I Balance, Shunting & NMDAR Mg2+ (4 Theorems)
+-- DOMAIN II: Conductance-Weighted Mean & Monotonicity of D/(D + m*e) (4 Theorems)
 -- ============================================================================
 
 theorem ei_steady_state_bounds (gL gE gI eL eE eI : Int)
@@ -291,7 +293,7 @@ theorem nmda_mg_unblock_unit_interval_and_monotone (dScale mg eRest eDepol : Nat
   refine ⟨by omega, by omega, Nat.mul_lt_mul_of_pos_left hDenLt hD⟩
 
 -- ============================================================================
--- DOMAIN III: Presynaptic Vesicle Conservation & Bioenergetics (6 Theorems)
+-- DOMAIN III: Vesicle Pool Conservation & Mean-Rate Linear ATP Bounds (6 Theorems)
 -- ============================================================================
 
 theorem vesicle_pool_transition_invariant (p : VesiclePools) (exo prime mob : Nat)
@@ -368,7 +370,7 @@ theorem kinesin_processive_atp_exact (steps : Nat) :
   · decide
 
 -- ============================================================================
--- DOMAIN IV: SNAREpin Zippering & Complexin/Syt1 Clamp Kinetics (2 Theorems)
+-- DOMAIN IV: Clamped Linear SNARE Barrier Formula Monotonicity (2 Theorems)
 -- ============================================================================
 
 theorem snare_barrier_monotone_in_syt1_ca (nSnare nCa1 nCa2 clampTenth : Nat)
@@ -398,7 +400,7 @@ theorem snare_copy_number_cooperativity (n1 n2 nCa clampTenth : Nat)
   constructor <;> omega
 
 -- ============================================================================
--- DOMAIN V: DNA-PAINT / RESI Super-Resolution Metrology (2 Theorems)
+-- DOMAIN V: Cleared-Denominator Variance & Duty-Cycle Inequalities (2 Theorems)
 -- ============================================================================
 
 theorem resi_variance_strict_improvement (sigmaSq nPhotons kSubsets : Nat)
@@ -421,7 +423,7 @@ theorem resi_duty_cycle_monotone_in_imager (kOn kOff c1 c2 : Nat)
   exact Nat.add_lt_add_left h2 ((kOn * c2) * (kOn * c1))
 
 -- ============================================================================
--- DOMAIN VI: 2x2 Discrete Bipartition Algebraic Factorization Bounds (3 Theorems)
+-- DOMAIN VI: Generic 2x2 Integer Determinant Facts (3 Theorems + Generic Aliases)
 -- ============================================================================
 
 theorem factorized_bipartition_zero_integration (a0 a1 b0 b1 : Int) :
@@ -455,6 +457,15 @@ theorem diagonal_excess_implies_positive_coupling (w01 w10 d1 d2 : Int)
     omega
   have hDom : (w01 + d1) * (w10 + d2) > w01 * w10 := by omega
   exact ⟨hDom, correlated_nanocolumn_positive_integration (w01 + d1) w01 w10 (w10 + d2) hDom⟩
+
+/-- Generic algebraic alias for T22 (outer-product 2x2 determinant vanishes). -/
+abbrev outer_product_det_zero := @factorized_bipartition_zero_integration
+
+/-- Generic algebraic alias for T23 (strict diagonal product dominance implies positive |det|). -/
+abbrev det_pos_of_diag_dominance := @correlated_nanocolumn_positive_integration
+
+/-- Generic algebraic alias for T24 (strict positive diagonal excess implies positive |det|). -/
+abbrev det_pos_of_diag_excess := @diagonal_excess_implies_positive_coupling
 
 end SynapseBouton
 

@@ -4,26 +4,25 @@ version: "v0.4"
 project:
   name: "Elementary Integer Invariants of a Human Synaptic Bouton Model and 2x2 Integer Determinant Facts"
   description: >
-    Lean 4.35.0 (no Mathlib; no sorry in proof modules; no Classical.choice in any printed
-    axiom list) proofs of 24 elementary integer and list-induction lemmas about the
-    repository's own model formulas, stated over Nat/Int with denominators cleared:
-    (1) Hill n=4 inequalities (below 1, value 1/2 at c = kd, strict increase in c, at most
-    1/82 when 3c <= kd, ratio 17/2 between c = kd and c = kd/2, crossover with c/(c+kd))
-    and one Tsodyks-Markram update step; (2) bounds for a conductance-weighted mean, two
-    numerator identities for pure shunting, and monotonicity of D/(D+m*e) in an abstract
-    natural e (the form used for Jahr-Stevens Mg2+ unblock; voltage dependence not
-    formalised); (3) single-step and list-induction vesicle pool conservation, strict drop
-    of a truncated linear ATP store, an upper bound on the time at which that mean-rate store
-    reaches 0, leak lowering the sustainable rate, and (8n)/8 = n (no kinesin model);
-    (4) non-strict monotonicity of a clamped SNARE barrier formula; (5) RESI variance and
-    duty-cycle inequalities; and (6) 2x2 integer determinant facts (rank-one tables have
-    determinant 0; diagonal excess gives a nonzero determinant). Paired with 27 non-vacuity
-    witness theorems (lean/NonVacuity.lean) and 6 sanity and sharpness checks
-    (lean/AdversarialChecks.lean). These are known elementary facts; no published open
-    question is resolved. The Lean definitions are hand-written integer analogues of the
-    TypeScript/Rust engines, with no tested link. Prior formal work on biological models
-    includes marpaia/grn-lean (Lean 4, Hill-kinetic gene-regulatory circuits), Bobbin et
-    al., Digital Discovery 3:264 (2024), doi:10.1039/D3DD00077J, and arXiv:2505.05362.
+    Lean 4.35.0 (no Mathlib; no sorry in proof modules; zero Classical.choice enforced by
+    comparator.json and CI; zero unused hypotheses) proofs of 24 elementary integer and
+    list-induction lemmas about the repository's own model formulas, stated over Nat/Int
+    with denominators cleared: (1) Hill n=4 inequalities (below 1, positive-denominator
+    half-max at c = kd, strict increase in c, at most 1/82 when 3c <= kd, ratio 17/2 between
+    c = kd and c = kd/2, crossover with c/(c+kd)) and one Tsodyks-Markram update step;
+    (2) bounds for a conductance-weighted mean, two numerator identities for pure shunting,
+    and monotonicity of D/(D+m*e) in an abstract natural e (the form used for Jahr-Stevens
+    Mg2+ unblock; voltage dependence not formalised); (3) single-step and list-induction
+    vesicle pool conservation, strict drop of a truncated linear ATP store, an upper bound
+    on the zero time of that deterministic mean-rate store, leak lowering the sustainable
+    rate, and (8n)/8 = n (no kinesin model); (4) non-strict monotonicity of a clamped SNARE
+    barrier formula; (5) RESI variance and duty-cycle inequalities; and (6) 2x2 integer
+    determinant facts (rank-one tables have determinant 0; diagonal excess gives a nonzero
+    determinant). Paired with 27 non-vacuity witness theorems (lean/NonVacuity.lean), 7
+    sanity and sharpness checks (lean/AdversarialChecks.lean), and an executable Lean-to-engine
+    test-vector bridge (lean/ExportVectors.lean -> data/lean_engine_vectors.json asserted in
+    Python, TypeScript, and Rust tests). These are known elementary facts; no published open
+    question is resolved.
   authors:
     - name: "Alexander Stephen Donahue"
       github: "0thernes"
@@ -45,6 +44,25 @@ sources:
     note: "Companion computational neuroscience preprint formalizing elementary algebraic and discrete-dynamical invariants of established biophysical models; does not claim pure-mathematics research novelty."
     license: "CC-BY-4.0"
     author_endorsement: "participated"
+  - title: "Co-operative action of calcium ions in transmitter release at the neuromuscular junction"
+    authors:
+      - "F. A. Dodge"
+      - "R. Rahamimoff"
+    id: "doi:10.1113/jphysiol.1967.sp008367"
+    type: "article"
+    location: "4th-power Ca2+ cooperativity relation"
+    relationship: "adapts"
+    author_endorsement: "not-contacted"
+  - title: "Neural Networks with Dynamic Synapses"
+    authors:
+      - "Misha Tsodyks"
+      - "Klaus Pawelzik"
+      - "Henry Markram"
+    id: "doi:10.1162/089976698300017502"
+    type: "article"
+    location: "Facilitating and depressing short-term plasticity recurrence"
+    relationship: "adapts"
+    author_endorsement: "not-contacted"
   - title: "Composition of isolated synaptic boutons reveals the amounts of vesicle trafficking proteins"
     authors:
       - "Burkhard G. Wilhelm"
@@ -54,11 +72,11 @@ sources:
     location: "Baseline rat synaptosome vesicle counts (374 vesicles)"
     relationship: "adapts"
     author_endorsement: "not-contacted"
-  - title: "Ultrastructural sublaminar-specific diversity of excitatory synaptic boutons in L1 of human temporal lobe neocortex"
+  - title: "Ultrastructural sublaminar-specific diversity of excitatory synaptic boutons in layer 1 of the adult human temporal lobe neocortex"
     authors:
       - "Astrid Rollenhagen"
       - "Joachim H. R. Lubke"
-    id: "https://elifesciences.org/reviewed-preprints/99473v1"
+    id: "doi:10.7554/eLife.99473"
     type: "article"
     location: "Human cortical L1 excitatory bouton vesicle pools (~3,500 vesicles)"
     relationship: "adapts"
@@ -82,7 +100,16 @@ sources:
     relationship: "adapts"
     author_endorsement: "not-contacted"
 
-related_formalizations: []
+related_formalizations:
+  - name: "grn-lean (Hill-kinetic gene-regulatory circuits in Lean 4)"
+    url: "https://github.com/marpaia/grn-lean"
+    relationship: "prior-work"
+  - name: "Bobbin et al., Formalizing chemical physics using the Lean theorem prover (Digital Discovery 3:264, 2024)"
+    url: "https://doi.org/10.1039/D3DD00077J"
+    relationship: "prior-work"
+  - name: "Modelling and Verifying Neuronal Archetypes in Rocq (arXiv:2505.05362)"
+    url: "https://arxiv.org/abs/2505.05362"
+    relationship: "prior-work"
 
 classification:
   arxiv:
@@ -95,11 +122,14 @@ classification:
 status:
   scope: >
     Kernel-checks 24 elementary integer inequalities, conservation identities and
-    list-induction facts over Nat and Int in Lean 4.35.0 without Mathlib, plus 27 non-vacuity
-    witness theorems and 6 sanity checks. Challenge.lean holds 24 sorry statement stubs used
-    only by the comparator. Does NOT formalize continuum 3D Brownian PDEs, any causal model,
-    float64 RK4 Hodgkin-Huxley ODE trajectories (tagged numerical_approximation outside
-    Lean), the TypeScript/Rust engines, or phenomenal consciousness/sentience.
+    list-induction facts over Nat and Int in Lean 4.35.0 without Mathlib (zero unused
+    hypotheses; zero Classical.choice enforced by comparator.json and CI), plus 27
+    non-vacuity witness theorems, 7 sanity and sharpness checks, and an executable
+    Lean-to-engine vector export (ExportVectors.lean). Challenge.lean holds 24 sorry
+    statement stubs used only by the comparator. Does NOT formalize continuum 3D Brownian
+    PDEs, any causal model, float64 RK4 Hodgkin-Huxley ODE trajectories (tagged
+    numerical_approximation outside Lean), per-second stochastic rate jitter in the Rust
+    Monte Carlo simulator, or phenomenal consciousness/sentience.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
@@ -238,22 +268,26 @@ automation:
         wall_time: "2 days"
         spend_usd: "subscription-based usage"
         hardware: "Windows 11 x86_64 workstation + Ubuntu GitHub Actions runners"
-      prompting_notes: "Human author directed scope, biophysical parameter separation (rat vs. human cortical presets), statement fidelity audit, positive-domain tightening (v1.2.0), inductive/dynamical expansion and sanity-check suite (v1.3.0), and zero-Mathlib / zero-sorry / zero-Classical.choice constraints."
+      prompting_notes: "Human author directed scope, biophysical parameter separation (rat vs. human cortical presets), statement fidelity audit, positive-domain tightening (v1.2.0), inductive/dynamical expansion (v1.3.0), unused-hypothesis elimination, zero-Classical.choice enforcement, and Lean-to-engine vector testing (v1.4.0)."
   spend_usd: "subscription-based usage"
-  notes: "Repository CI (.github/workflows/ci.yml) runs `lake comparator --paranoid` (Solution checked against Challenge), `lake check --paranoid` on all default targets (replaying lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, and con-ron), and `scripts/check_readme_axioms.py`; those project CI checks are recorded separately from any external registry verification."
+  notes: "Repository CI (.github/workflows/ci.yml) runs `lake comparator --paranoid` (Solution checked against Challenge with permitted_axioms = [propext, Quot.sound]), `lake check --paranoid` on all default targets (replaying lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, and con-ron), `ExportVectors.lean` vector parity, and `scripts/check_readme_axioms.py` (forbidding Classical.choice); those project CI checks are recorded separately from any external registry verification."
 
 fidelity:
   divergences: >
     Real-valued biophysical rational ratios (Hill n=4, conductance divider, Jahr-Stevens NMDAR
     unblock, Tsodyks-Markram fixed-point STP, RESI variance, SNARE barrier tenths/fiftieths)
     are cross-multiplied and integer-scaled over Nat/Int with explicit positive-domain
-    hypotheses so every theorem is proved constructively without IEEE-754 rounding or
-    Classical.choice. Domain VI proves 2x2 integer determinant facts and formalizes no causal
-    model; A05 in lean/AdversarialChecks.lean evaluates one example determinant, and its
-    reading as a common-cause table is informal. T11 contains no voltage or exponential; T15
-    is an upper bound for a deterministic mean-rate store; the hypotheses kd > 0 (T02) and
-    u0 > 0 (T07) are unused. Transcendental
-    Nernst/GHK/Arrhenius/Gaussian expressions are checked externally by a 50-digit mpmath oracle.
+    hypotheses and zero unused hypotheses so every theorem is proved constructively without
+    IEEE-754 rounding or Classical.choice. Domain VI proves generic 2x2 integer determinant
+    facts (aliased as outer_product_det_zero, det_pos_of_diag_dominance, det_pos_of_diag_excess)
+    and formalizes no causal model; A05 evaluates one example determinant, and its reading as a
+    common-cause table is informal. T11 contains no voltage or exponential; T10 states numerator
+    identities; T15 is an upper bound on the zero time of a deterministic mean-rate store (A07
+    proves strict inequality when D divides a0), whereas the Rust Monte Carlo simulator adds
+    per-second rate jitter; T17 is (8n)/8 = n with no kinesin model. Lean definitions are
+    machine-tested against Python, TypeScript, and Rust engines via ExportVectors.lean ->
+    data/lean_engine_vectors.json. Transcendental Nernst/GHK/Arrhenius/Gaussian expressions are
+    checked externally by a 50-digit mpmath oracle.
 
 review:
   status: "self-assessed"
@@ -261,36 +295,36 @@ review:
     - name: "Alexander Stephen Donahue"
       github: "0thernes"
       orcid: "0009-0006-8168-9648"
-  notes: "Applied computational neuroscience preprint; not externally journal peer-reviewed. Passed 10-pass internal red-team audit, v1.2.0 statement-fidelity tightening (E05), and v1.3.0 3-cycle exhaustive forensic hardening (HARDENING_LOG.md, E06)."
+  notes: "Applied computational neuroscience preprint; not externally journal peer-reviewed. Passed internal red-team review, 2026-11-26 independent statement audit, and v1.4.0 full remediation (ERRATA.md, HARDENING_LOG.md)."
 
 alignment:
   namespace: "SynapseBouton"
   statements:
-    - source: "White Paper 1 Theorem 3.1 (Hill n=4 cooperativity, positive-domain 1/82 floor, 8.5x doubling gain, sigmoidal crossover vs. linear n=1, Tsodyks-Markram STP bounds)"
+    - source: "White Paper 1 Theorem 3.1 (Hill n=4 inequalities, positive-domain 1/82 floor, 8.5x doubling gain, sigmoidal crossover vs. linear n=1, single-step Tsodyks-Markram STP bounds)"
       lean: "SynapseBouton.hill4_unit_interval, hill4_half_max_exact, hill4_strict_monotone, hill4_resting_noise_floor, hill4_ultrasensitive_doubling, hill4_ultrasensitive_crossover_vs_linear, tsodyks_markram_step_unit_bounds"
       module: "Solution"
       status: "proved"
-    - source: "White Paper 1 Theorem 3.2 (KCC2 shunting attenuation, well-defined divisive identity, Jahr-Stevens NMDAR Mg2+ unblock monotonicity)"
+    - source: "White Paper 1 Theorem 3.2 (Conductance-weighted mean bounds, strict attenuation, pure-shunting numerator identities, monotonicity of D/(D+m*e) in abstract e)"
       lean: "SynapseBouton.ei_steady_state_bounds, shunting_inhibition_strict_attenuation, pure_shunting_divisive_identity, nmda_mg_unblock_unit_interval_and_monotone"
       module: "Solution"
       status: "proved"
-    - source: "White Paper 1 Theorem 3.3 & Table 2 (Single-step & multi-step inductive vesicle conservation, clamped ATP depletion, upper bound on the zero time of the mean-rate ATP store, resting leak rate bounds, (8n)/8 = n used for kinesin-1 125,000 ATP/mm)"
+    - source: "White Paper 1 Theorem 3.3 & Table 2 (Single-step & multi-step inductive vesicle conservation, clamped ATP depletion, upper bound on deterministic mean-rate ATP zero time, resting leak rate bounds, (8n)/8 = n)"
       lean: "SynapseBouton.vesicle_pool_transition_invariant, vesicle_pool_multistep_invariant, atp_deficit_strict_depletion, atp_hitting_time_upper_bound, resting_leak_strictly_lowers_sustainable_rate, kinesin_processive_atp_exact"
       module: "Solution"
       status: "proved"
-    - source: "White Paper 1 Table 2 (SNAREpin Syt1/copy-number cooperativity & RESI metrology)"
+    - source: "White Paper 1 Table 2 (Clamped SNARE barrier formula monotonicity & RESI variance/duty-cycle inequalities)"
       lean: "SynapseBouton.snare_barrier_monotone_in_syt1_ca, snare_copy_number_cooperativity, resi_variance_strict_improvement, resi_duty_cycle_monotone_in_imager"
       module: "Solution"
       status: "proved"
-    - source: "White Paper 2 Theorem 4.1 (Section 4.1; generic 2x2 integer determinant facts: rank-one tables have determinant 0, diagonal product dominance and diagonal excess give a nonzero determinant; no neural or causal content)"
+    - source: "White Paper 2 Theorem 4.1 (Section 4.1; generic 2x2 integer determinant facts; no neural or causal content)"
       lean: "SynapseBouton.factorized_bipartition_zero_integration, correlated_nanocolumn_positive_integration, diagonal_excess_implies_positive_coupling"
       module: "Solution"
       status: "proved"
-    - source: "Sanity and sharpness checks A01-A06 (closed arithmetic facts and one example determinant; they do not show every hypothesis is needed)"
+    - source: "Sanity and sharpness checks A01-A07 (boundary negations, one example determinant, and T15 upper-bound sharpness)"
       lean: "SynapseBouton.AdversarialChecks.*"
       module: "AdversarialChecks"
       status: "proved"
-    - source: "4D Hodgkin-Huxley RK4 ODEs, 3D Brownian PDEs, interventional causal models, phenomenal consciousness"
+    - source: "4D Hodgkin-Huxley RK4 ODEs, 3D Brownian PDEs, jittered Monte Carlo trajectories, interventional causal models, phenomenal consciousness"
       lean: "none"
       module: "none"
       status: "not-formalized"

@@ -6,7 +6,7 @@ README Verbatim #print axioms Drift Auditor (Playbook Edition 1.3 §8 Item 4).
 Verifies that the verbatim `<!-- BEGIN_AXIOMS --> ... <!-- END_AXIOMS -->` code block
 embedded in README.md matches the exact Lean 4.35.0 `#print axioms` output produced by
 `lean/VerifyAxioms.lean` (locally in `docs/lean-axioms-report.txt` or live CI `lean-axioms-ci.txt`),
-and verifies zero forbidden axioms (`sorryAx`, `Lean.ofReduceBool`, `Lean.trustCompiler`, `_native`).
+and verifies zero forbidden axioms (`sorryAx`, `Classical.choice`, `Lean.ofReduceBool`, `Lean.trustCompiler`, `_native`).
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_AXIOMS = ROOT / "docs" / "lean-axioms-report.txt"
 README_PATH = ROOT / "README.md"
-FORBIDDEN_RE = re.compile(r"\b(sorryAx|Lean\.ofReduceBool|Lean\.trustCompiler)\b|_native")
+FORBIDDEN_RE = re.compile(r"\b(sorryAx|Classical\.choice|Lean\.ofReduceBool|Lean\.trustCompiler)\b|_native")
 
 
 def normalize_axioms(text: str) -> list[str]:

@@ -1,6 +1,6 @@
 {
-  "title": "human-synapse-bouton-lab: Formally Verified Human Synaptic Bouton Biophysics, Stochastic Nanocolumn Simulator, and 11-Discipline Open Hard Problems Framework",
-  "description": "Full-stack multi-language (Lean 4.35.0, Rust, TypeScript, Python) scientific repository with 24 sorry-free zero-Classical.choice formal biophysical invariants (26 concrete witnesses + 6 adversarial counterexample checks across 6 independent kernels in CI), a 50-digit exact reference oracle, 1,000-case cross-language differential verification, a pre-registered 30-seed Monte Carlo experiment (including honest refutation of H3 at 40 Hz), interactive WebGL 3D workbench + live Lean Proof Blueprint DAG, and two AMS-LaTeX white papers with an honest 1,900-problem Mega-Atlas crosswalk.",
+  "title": "human-synapse-bouton-lab: Human Synaptic Bouton Model Workbench with Lean-Checked Elementary Invariants, Stochastic Nanocolumn Simulator, and 11-Discipline Open Hard Problems Survey",
+  "description": "Full-stack multi-language (Lean 4.35.0, Rust, TypeScript, Python) scientific repository with 24 elementary pure Lean 4.35.0 lemmas (0 unused hypotheses, enforced 0 Classical.choice, 27 concrete witnesses, 7 sanity/sharpness checks, 6 independent kernels in CI, and ExportVectors.lean parity against Python/TS/Rust), a 50-digit exact reference oracle, 1,000-case cross-language differential verification, a pre-registered 30-seed Monte Carlo experiment (including honest failure of H3 at 40 Hz under illustrative model constants), interactive WebGL 3D workbench + live Lean Proof Blueprint DAG, and two AMS-LaTeX white papers with an honest 1,900-problem Mega-Atlas crosswalk (0 of 1,900 solved).",
   "upload_type": "software",
   "license": "apache-2.0",
   "creators": [
@@ -24,7 +24,7 @@
     "open problems",
     "consciousness research"
   ],
-  "notes": "Code and Lean 4.35.0 proofs are licensed under Apache-2.0; manuscripts, figures, blueprint, datasets, and simulation videos are licensed under CC-BY-4.0. Independent research preprint; not externally journal peer-reviewed. Human CRediT roles: Conceptualization, Methodology, Formal analysis, Validation, Writing - review & editing. AI tools (Antigravity / Google DeepMind) assisted with multi-language software engineering, Lean tactic drafting, and LaTeX typesetting; all proofs are independently certified by Lean 4.35.0 and five external kernels. Prior v1.2.0 Software Heritage SWHID: swh:1:snp:8ef70f745fae4f91f040720b28e21560c73deffc.",
+  "notes": "Code and Lean 4.35.0 proofs are licensed under Apache-2.0; manuscripts, figures, blueprint, datasets, and simulation videos are licensed under CC-BY-4.0. Independent research preprint v1.4.0; not externally journal peer-reviewed. Human CRediT roles: Conceptualization, Methodology, Formal analysis, Validation, Writing - review & editing. AI tools (Antigravity / Google DeepMind) assisted with multi-language software engineering, Lean tactic drafting, and LaTeX typesetting; all proofs are independently certified by Lean 4.35.0 and five external kernels. Prior v1.3.0 Zenodo DOI: 10.5281/zenodo.24548051. Prior v1.2.0 Software Heritage SWHID: swh:1:snp:8ef70f745fae4f91f040720b28e21560c73deffc.",
   "related_identifiers": [
     {
       "identifier": "https://github.com/0thernes/human-synapse-bouton-lab",

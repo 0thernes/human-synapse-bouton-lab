@@ -157,7 +157,7 @@ def generate_fig1_architecture(out_dir: Path) -> None:
     for yi, v in zip(y, vals, strict=True):
         ax1.text(v * 1.15, yi, f"{v:g} nm", va="center", fontsize=8, fontweight="bold", color="#0f172a")
 
-    cohorts = ["Human L1\n(eLife 2024)", "Human L4\n(eLife 2019)", "Human L5\n(IJMS 2020)", "Rat Synapt.\n(Wilhelm 2014)"]
+    cohorts = ["Human L1\n(eLife 2025)", "Human L4\n(eLife 2019)", "Human L5\n(IJMS 2020)", "Rat Synapt.\n(Wilhelm 2014)"]
     vesicles = [3500, 1800, 1500, 374]
     bar_cols = ["#0f294a", "#1e4b7a", "#2563eb", "#94a3b8"]
     bars = ax2.bar(cohorts, vesicles, color=bar_cols, width=0.55, edgecolor="#0f172a", linewidth=0.6)
@@ -324,7 +324,7 @@ def generate_fig4_monte_carlo(repo_root: Path, out_dir: Path) -> None:
             ["#d97706", "#94a3b8"],
         ),
         (
-            "H3b (Expl.): Local ATP\n(20 Hz; 40 Hz Refuted)",
+            "H3b (Expl.): Local ATP\n(20 Hz; 40 Hz Failed in Sim)",
             [float(r["h3b_exploratory_20hz_mito_atp_frac"]) for r in rows],
             [float(r["h3b_exploratory_20hz_glyc_atp_frac"]) for r in rows],
             ["Mito +\nGlycolysis", "Glycolysis\nOnly"],
@@ -377,13 +377,13 @@ def generate_fig5_consciousness_epistemic_map(out_dir: Path) -> None:
     ax.axis("off")
 
     tiers = [
-        (3, 4, 21, 46, "#ecfdf5", "#059669", "TIER 1: KERNEL-CHECKED\n(Lean 4.35.0, 24 Theorems)", [
+        (3, 4, 21, 46, "#ecfdf5", "#059669", "TIER 1: KERNEL-CHECKED\n(Lean 4.35.0, 24 Lemmas)", [
             "Math / NeuroMath:\nHill n=4 crossover & STP bounds",
             "Neurophysics:\nKCC2 shunting & NMDAR Mg2+",
-            "Chemistry / Neurochem:\nSNARE clamp & ATP hitting time",
+            "Chemistry / Neurochem:\nSNARE clamp & ATP upper bound",
             "Neurobiology:\nMulti-step vesicle induction",
             "Metrology:\nRESI 1/(N*K) variance gain",
-            "2x2 Tables:\nFactorization & A05 check",
+            "2x2 Integer Tables:\nDet. identities & A05 check",
         ]),
         (27, 4, 21, 46, "#eff6ff", "#2563eb", "TIER 2: COMPUTATIONAL\n(30-Seed MC + 50-Digit Oracle)", [
             "Neuroscience:\nH1 Nanocolumn alignment",
@@ -478,7 +478,7 @@ def generate_tripartite_blueprint(docs_media: Path, web_media: Path) -> None:
             # V-ATPase rotor crown
             ax.plot([vx, vx + 1.8], [vy + 2.1, vy + 3.6], color="#34d399", lw=2.2)
             ax.add_patch(patches.Circle((vx + 2.1, vy + 3.9), 0.75, facecolor="#10b981", edgecolor="white", lw=0.6))
-    ax.text(74.5, 72.2, "V-ATPase (EMD-44847)", color="#34d399", fontsize=7.5, ha="center", fontweight="bold")
+    ax.text(74.5, 72.2, "V-ATPase (Coupland/Wang 2024)", color="#34d399", fontsize=7.3, ha="center", fontweight="bold")
 
     # Active zone: docked vesicle + horizontal SNAREpins + lateral CaV2.1 channel (~17 nm) + omega fusion pore
     ax.add_patch(patches.Circle((49.5, 56.6), 2.3, facecolor="#fde68a", edgecolor="#f59e0b", lw=1.8))
@@ -522,7 +522,7 @@ def generate_tripartite_blueprint(docs_media: Path, web_media: Path) -> None:
     ax.text(21, 3.0, "Scale ~50 nm (Schematic Proportions)", color=FG_LIGHT, fontsize=8, ha="center")
     ax.text(50, 97.5, "Biophysically Audited Human Cortical Tripartite Synaptic Bouton — Deterministic Schematic Blueprint", color="white", fontsize=11.5, ha="center", va="center", fontweight="bold")
     version_file = Path(__file__).resolve().parents[2] / "VERSION"
-    ver = version_file.read_text(encoding="utf-8").strip() if version_file.exists() else "1.3.0"
+    ver = version_file.read_text(encoding="utf-8").strip() if version_file.exists() else "1.4.0"
     ax.text(98, 2.5, f"Deterministic code-rendered schematic (NOT atomic PDB coordinate data) · human-synapse-bouton-lab v{ver}", color=FG_MUTED, fontsize=7.5, ha="right")
 
     out_docs = docs_media / "tripartite_bouton_blueprint.png"
@@ -567,8 +567,8 @@ def generate_social_preview(docs_media: Path) -> None:
 
     # Metric pills on left
     pills = [
-        ("24 Lean 4.35.0 Proofs", "Zero sorry · 6 kernels · 26 witnesses", EMERALD),
-        ("TS + Rust + Python Oracle", "1,000-case cross-language differential match", CYAN),
+        ("24 Lean 4.35.0 Proofs", "0 sorry · 6 kernels · 27 witnesses · 7 checks", EMERALD),
+        ("TS + Rust + Python Oracle", "1,000-case + Lean vector parity match", CYAN),
         ("30-Seed Pre-Registered MC", "Permutation p + 95% CI + Holm-Bonferroni", AMBER),
         ("2 AMS-LaTeX White Papers", "11 Disciplines + Mega-Atlas Crosswalk", VIOLET),
     ]

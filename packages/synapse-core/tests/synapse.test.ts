@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 // Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import fc from 'fast-check';
 import {
@@ -248,10 +251,60 @@ describe('Metamorphic & Golden Tests (B08, B14)', () => {
     expect(CONSTANTS.DEBYE_LENGTH_NM).toBe(0.79);
   });
 
-  it('canonical F01-F10 findings ledger covers all 10 IDs and all 6 finding classes', () => {
+  it('canonical F01-F11 findings ledger covers all 11 IDs and all 10 Build Standard v1.2.0 classes', () => {
     const ids = CLASSIFIED_FINDINGS.map((f) => f.id);
-    expect(ids).toEqual(['F01', 'F02', 'F03', 'F04', 'F05', 'F06', 'F07', 'F08', 'F09', 'F10']);
+    expect(ids).toEqual(['F01', 'F02', 'F03', 'F04', 'F05', 'F06', 'F07', 'F08', 'F09', 'F10', 'F11']);
     const classes = new Set(CLASSIFIED_FINDINGS.map((f) => f.findingClass));
-    expect(classes).toEqual(new Set(['bug', 'error', 'issue', 'problem', 'dilemma', 'conflict']));
+    expect(classes).toEqual(
+      new Set(['bug', 'error', 'issue', 'problem', 'concern', 'dilemma', 'conflict', 'gap', 'hole', 'blindspot'])
+    );
+  });
+
+  it('Lean 4.35.0 exported vectors (ExportVectors.lean) match @synapse/core outputs (F38)', () => {
+    const here = dirname(fileURLToPath(import.meta.url));
+    const vecPath = resolve(here, '../../../data/lean_engine_vectors.json');
+    const vectors = JSON.parse(readFileSync(vecPath, 'utf-8')) as {
+      hill4: Array<{ c: number; kd: number; num: number; den: number }>;
+      snare: Array<{ nSnare: number; nCa: number; clampTenth: number; zipTenth: number; effBarrier50: number }>;
+      tsodyks_markram: Array<{ scale: number; u: number; u0: number; x: number; uPlus: number; effRel: number }>;
+      atp_mean_rate: Array<{ a0: number; bLeak: number; f: number; cAp: number; sAtp: number; t: number; remaining: number }>;
+    };
+
+    for (const row of vectors.hill4) {
+      expect(computeReleaseProbability(row.c)).toBeCloseTo(row.num / row.den, 12);
+    }
+    for (const row of vectors.snare) {
+      const res = computeSnareThermodynamics({
+        snareCount: row.nSnare,
+        clampEnergyKbt: row.clampTenth / 10,
+        syt1CaBound: row.nCa,
+        tempC: 37,
+      });
+      expect(res.totalZipKbt).toBeCloseTo(row.zipTenth / 10, 12);
+      expect(res.effectiveBarrierKbt).toBeCloseTo(row.effBarrier50 / 50, 12);
+    }
+    const tmFirst = vectors.tsodyks_markram[0];
+    const stp = simulateTsodyksMarkram({
+      pulseTimesMs: [0],
+      u0: tmFirst.u0 / tmFirst.scale,
+      tauRecMs: 300,
+      tauFacilMs: 50,
+    });
+    expect(stp[0].u).toBeCloseTo(tmFirst.uPlus / tmFirst.scale, 12);
+    expect(stp[0].effectiveRelease).toBeCloseTo(tmFirst.effRel / tmFirst.scale, 12);
+
+    const h3Row = vectors.atp_mean_rate.find((r) => r.f === 40 && r.sAtp === 950000 && r.t === 3);
+    expect(h3Row?.remaining).toBe(0);
+    const bio40 = computeBioenergetics({
+      luminalPh: 5.5,
+      cytosolicPh: 7.2,
+      deltaPsiMv: 40,
+      firingRateHz: 40,
+      mitoActive: true,
+      tempC: 37,
+    });
+    expect(bio40.atpBurnPerSec).toBe(4000 + 40 * 32000);
+    expect(bio40.atpSynthPerSec).toBe(950000);
+    expect(Math.ceil(bio40.sustainSeconds)).toBe(3);
   });
 });

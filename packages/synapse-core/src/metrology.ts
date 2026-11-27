@@ -38,7 +38,7 @@ export function computeMetrology(p: MetrologyParams): MetrologyResult {
   const kSub = Math.max(1, p.resiSubsetsK);
   const crlbNm = sigmaSafe / Math.sqrt(nSafe);
   const resiNm = crlbNm / Math.sqrt(kSub);
-  const fwhmNm = 2.35482 * resiNm;
+  const fwhmNm = 2 * Math.sqrt(2 * Math.LN2) * resiNm;
   const brightTimeMs = (1 / Math.max(0.05, p.kOff)) * 1000;
   const darkTimeMs = (1 / (Math.max(0.05, p.kOn) * 1e6 * Math.max(0.01, p.imagerConcNm) * 1e-9)) * 1000;
   const dutyCyclePct = (brightTimeMs / (brightTimeMs + darkTimeMs)) * 100;

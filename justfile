@@ -56,7 +56,7 @@ reproduce: setup build test stats
     node examples/nanocolumn_example.mjs
     uv run python examples/exact_oracle_example.py
 
-# Score this repo against Build Standard v1.1.0 (report-only; writes audit.json)
+# Score this repo against Build Standard v1.2.0 (report-only; writes audit.json)
 audit *ARGS:
     bash scripts/audit-repo.sh --json audit.json {{ARGS}}
 

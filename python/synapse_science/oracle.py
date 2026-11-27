@@ -247,7 +247,7 @@ def exact_bioenergetics(
     if firing_rate_hz < 0:
         raise ValueError("firing_rate_hz must be >= 0")
     temp_k = max(mp.mpf("273.15"), mp.mpf(str(temp_c)) + mp.mpf("273.15"))
-    nernst_ph = (mp.mpf("2.302585") * R_GAS_EXACT * temp_k * mp.mpf("1000")) / FARADAY_EXACT
+    nernst_ph = (mp.log(mp.mpf("10")) * R_GAS_EXACT * temp_k * mp.mpf("1000")) / FARADAY_EXACT
     delta_ph = max(mp.mpf("0"), mp.mpf(str(cytosolic_ph)) - mp.mpf(str(luminal_ph)))
     pmf = mp.mpf(str(delta_psi_mv)) + nernst_ph * delta_ph
     quanta = int(round(float(min(mp.mpf("5500"), max(mp.mpf("200"), (pmf / mp.mpf("145")) * mp.mpf("3200"))))))
@@ -290,7 +290,7 @@ def exact_metrology(
     k_sub = max(mp.mpf("1"), mp.mpf(str(resi_subsets_k)))
     crlb = sigma_safe / mp.sqrt(n_safe)
     resi = crlb / mp.sqrt(k_sub)
-    fwhm = mp.mpf("2.35482") * resi
+    fwhm = mp.mpf("2") * mp.sqrt(mp.mpf("2") * mp.log(mp.mpf("2"))) * resi
     bright_ms = (mp.mpf("1") / max(mp.mpf("0.05"), mp.mpf(str(k_off)))) * mp.mpf("1000")
     dark_ms = (
         mp.mpf("1")

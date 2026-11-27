@@ -145,12 +145,19 @@ def test_fastapi_openapi_contract_and_endpoints() -> None:
 
 
 def test_oracle_golden_values() -> None:
+    assert abs(float(exact_release_probability(15.0)) - 0.5) < 1e-12
+    assert abs(float(exact_release_probability(5.0)) - (1.0 / 82.0)) < 1e-12
     ec = exact_electrochemistry(145, 12, 4, 140, 2, 0.08, 120, 9, 0.04, 0.45, 37)
     assert abs(ec["rtOverFMv"] - 26.7266) < 1e-3
     assert abs(ec["vmGhkMv"] - (-70.613012)) < 1e-4
     assert abs(float(exact_thermal_energy_pn_nm(37)) - 4.282083) < 1e-3
     assert exact_snare_thermodynamics(4, 15, 5, 37)["fusionDelayMs"] < 1.5
-    assert exact_bioenergetics(5.5, 7.2, 40, 10, True, 37)["sustainSeconds"] == float("inf")
+    bio10 = exact_bioenergetics(5.5, 7.2, 40, 10, True, 37)
+    assert bio10["sustainSeconds"] == float("inf")
+    assert bio10["atpBurnPerSec"] == 324000.0
+    assert bio10["atpSynthPerSec"] == 950000.0
+    bio0 = exact_bioenergetics(5.5, 7.2, 40, 0, True, 37)
+    assert bio0["atpBurnPerSec"] == 4000.0
     assert exact_ei_balance(3.0, 4.0, 7.0, 125.0, 37)["shuntingRatio"] < 0.65
     assert exact_metrology(2500, 110, 2, 2, 5, 3, 9)["resolvable"] is True
     assert float(exact_peak_epsc_pa(1.62, 37)) < -20.0

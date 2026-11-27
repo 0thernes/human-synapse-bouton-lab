@@ -17,13 +17,13 @@
   },
   "@type": "sc:Dataset",
   "conformsTo": "http://mlcommons.org/croissant/1.0",
-  "name": "human-synapse-bouton-lab-v1.3.0-datasets",
-  "description": "Pre-registered 30-seed deterministic Monte Carlo synaptic bouton dataset (H1 nanocolumn alignment, H2 Ca2+ coupling, H3 40 Hz bioenergetics refuted, H3b 20 Hz exploratory, H4 disjoint-seed null control) and Rust vs. Node benchmark distributions.",
-  "version": "1.3.0",
+  "name": "human-synapse-bouton-lab-v1.4.0-datasets",
+  "description": "Pre-registered 30-seed deterministic Monte Carlo synaptic bouton dataset (H1 nanocolumn alignment, H2 Ca2+ coupling, H3 40 Hz bioenergetics failed in fixed-parameter simulator, H3b 20 Hz exploratory, H4 disjoint-seed null control), Lean 4.35.0 exported engine parity vectors, and Rust vs. Node benchmark distributions.",
+  "version": "1.4.0",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "url": "https://github.com/0thernes/human-synapse-bouton-lab",
   "identifier": "https://doi.org/10.5281/zenodo.24477927",
-  "datePublished": "2026-11-25",
+  "datePublished": "2026-11-26",
   "creator": {
     "@type": "Person",
     "name": "Alexander Stephen Donahue",
@@ -69,6 +69,16 @@
       "encodingFormat": "application/json",
       "sha256": "6c3e4f0e16ab08e5cd58ef9835693d1af0112a7fdc87de8855b7bf8b7716d4e3",
       "contentSize": "3074 B"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "lean_engine_vectors_json",
+      "name": "lean_engine_vectors.json",
+      "description": "Executable Lean 4.35.0 test vectors exported from Solution.lean for Python/TypeScript/Rust parity checks",
+      "contentUrl": "https://raw.githubusercontent.com/0thernes/human-synapse-bouton-lab/main/data/lean_engine_vectors.json",
+      "encodingFormat": "application/json",
+      "sha256": "e9a769e543d209d4107b3ff9e7f156db27254013944e9126399f5af59ee6b4a6",
+      "contentSize": "8594 B"
     }
   ],
   "recordSet": [

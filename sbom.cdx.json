@@ -19,14 +19,14 @@
       }
     ],
     "component": {
-      "bom-ref": "human-synapse-bouton-lab@1.2.0",
+      "bom-ref": "human-synapse-bouton-lab@1.4.0",
       "type": "library",
       "name": "human-synapse-bouton-lab",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "scope": "required",
       "author": "Alexander Stephen Donahue <0_0@0thernes.art> (https://orcid.org/0009-0006-8168-9648)",
       "description": "Full-stack, formally verified human synaptic bouton biophysical workbench, Lean 4.35.0 proofs, stochastic Monte Carlo nanocolumn simulator, and 11-discipline open hard problems monograph.",
-      "purl": "pkg:npm/human-synapse-bouton-lab@1.2.0",
+      "purl": "pkg:npm/human-synapse-bouton-lab@1.4.0",
       "properties": [
         {
           "name": "cdx:npm:package:private",

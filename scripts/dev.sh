@@ -78,7 +78,7 @@ do_lean() {
     setup) note "lean toolchain pinned via lean/lean-toolchain (zero external deps)" ;;
     build) run bash -c 'cd lean && lake build --wfail' ;;
     test)
-      run bash -c 'cd lean && lake build --wfail && lake env lean VerifyAxioms.lean && lake env leanchecker Solution && lake env leanchecker NonVacuity && lake env leanchecker AdversarialChecks'
+      run bash -c 'cd lean && lake build --wfail && lake env lean VerifyAxioms.lean | tee .lake/axioms.txt && ! grep -E "\b(sorryAx|Classical\.choice|Lean\.ofReduceBool|Lean\.trustCompiler)\b|_native" .lake/axioms.txt && lake env leanchecker Solution && lake env leanchecker NonVacuity && lake env leanchecker AdversarialChecks'
       run bash -c '! sed "s/--.*$//" lean/Solution.lean lean/NonVacuity.lean lean/AdversarialChecks.lean lean/VerifyAxioms.lean | grep -nE "\b(sorry|admit|native_decide)\b|^\s*axiom\b|implemented_by|@\[extern"'
       ;;
     lint)  note "lean warnings enforced via lake build --wfail" ;;
@@ -103,8 +103,13 @@ release() {
   if git rev-parse "v$v" >/dev/null 2>&1; then note "tag v$v already exists"; exit 2; fi
   grep -Eq "^## \[$v\]" CHANGELOG.md || { note "CHANGELOG.md has no '## [$v]' section"; exit 2; }
   printf '%s\n' "$v" > VERSION
-  sed -i.bak -E "s/^version: .*/version: \"$v\"/; s/^date-released: .*/date-released: \"$(date +%F)\"/" CITATION.cff && rm -f CITATION.cff.bak
-  git add VERSION CITATION.cff CHANGELOG.md
+  local stage=(VERSION)
+  if [ -f CITATION.cff ]; then
+    sed -i.bak -E "s/^version: .*/version: \"$v\"/; s/^date-released: .*/date-released: \"$(date +%F)\"/" CITATION.cff && rm -f CITATION.cff.bak
+    stage+=(CITATION.cff)
+  fi
+  [ -f CHANGELOG.md ] && stage+=(CHANGELOG.md)
+  git add "${stage[@]}"
   git commit -m "Release v$v" || true
   git tag -a "v$v" -m "v$v"
   git push origin HEAD:main --follow-tags
@@ -115,6 +120,7 @@ case "$ACTION" in
   setup|build|test|lint|bench|clean) dispatch "$ACTION" ;;
   run) ONLY=""; dispatch run "$@" ;;
   release) release "${1:-}" ;;
-  *) sed -n '2,4p' "$0"; exit 0 ;;
+  help|-h|--help) sed -n '2,4p' "$0"; exit 0 ;;
+  *) note "unknown command: $ACTION"; sed -n '2,4p' "$0"; exit 2 ;;
 esac
 exit $STATUS

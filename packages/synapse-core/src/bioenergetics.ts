@@ -38,7 +38,7 @@ export function computeBioenergetics(inp: BioenergeticsInput): BioenergeticsResu
   assertFinite(inp.tempC, 'tempC');
 
   const tempK = Math.max(273.15, inp.tempC + 273.15);
-  const nernstPhMv = (2.302585 * CONSTANTS.R_GAS_J_MOL_K * tempK * 1000) / CONSTANTS.FARADAY_C_PER_MOL;
+  const nernstPhMv = (Math.LN10 * CONSTANTS.R_GAS_J_MOL_K * tempK * 1000) / CONSTANTS.FARADAY_C_PER_MOL;
   const deltaPh = Math.max(0, inp.cytosolicPh - inp.luminalPh);
   const pmfMv = inp.deltaPsiMv + nernstPhMv * deltaPh;
   const estGluQuanta = Math.round(Math.min(5500, Math.max(200, (pmfMv / 145) * 3200)));

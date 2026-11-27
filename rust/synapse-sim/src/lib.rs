@@ -359,6 +359,34 @@ mod tests {
         assert_eq!(compute_peak_epsc_pa(0.0, 37.0).unwrap(), 0.0);
     }
 
+    #[test]
+    fn lean_exported_vectors_match_rust_engine() {
+        let manifest_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+        let vec_path = manifest_dir.join("../../data/lean_engine_vectors.json");
+        let raw = std::fs::read_to_string(&vec_path)
+            .expect("data/lean_engine_vectors.json must exist (exported by lean/ExportVectors.lean)");
+        let data: serde_json::Value = serde_json::from_str(&raw).expect("valid Lean vector JSON");
+
+        for row in data["hill4"].as_array().expect("hill4 array") {
+            let c = row["c"].as_f64().unwrap();
+            let num = row["num"].as_f64().unwrap();
+            let den = row["den"].as_f64().unwrap();
+            let got = compute_release_probability(c).unwrap();
+            assert!((got - num / den).abs() < 1e-12, "Hill4 mismatch at c={c}");
+        }
+
+        for row in data["snare"].as_array().expect("snare array") {
+            let n_snare = row["nSnare"].as_f64().unwrap();
+            let n_ca = row["nCa"].as_f64().unwrap();
+            let clamp = row["clampTenth"].as_f64().unwrap() / 10.0;
+            let zip_exp = row["zipTenth"].as_f64().unwrap() / 10.0;
+            let bar_exp = row["effBarrier50"].as_f64().unwrap() / 50.0;
+            let res = compute_snare_thermodynamics(n_snare, clamp, n_ca, 37.0).unwrap();
+            assert!((res.total_zip_kbt - zip_exp).abs() < 1e-12);
+            assert!((res.effective_barrier_kbt - bar_exp).abs() < 1e-12);
+        }
+    }
+
     proptest! {
         #![proptest_config(ProptestConfig::with_cases(1000))]
         #[test]

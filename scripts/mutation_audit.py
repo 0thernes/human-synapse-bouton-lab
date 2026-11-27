@@ -1,9 +1,13 @@
 # SPDX-License-Identifier: Apache-2.0
-"""Deterministic targeted mutation testing audit (Build Standard B13).
+# Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
+"""Deterministic targeted mutation testing audit (Build Standard B13; hardened F35).
 
 Creates isolated temporary mutated copies of `python/synapse_science/oracle.py`
-(never altering tracked workspace files) and verifies that the existing pytest
-suite kills 100% of planted biophysical invariant mutants.
+(never altering tracked workspace files) and enforces:
+  1. Unmutated baseline control run MUST exit 0 and import `oracle.py` from the temp copy
+     (prevents editable `.venv` shadowing or Windows bracketed-path pytest exit-4 false kills).
+  2. Each mutant counts as KILLED strictly when pytest exits with code 1 (test assertion failure),
+     never on usage/import errors (exit codes 2, 3, 4, 5).
 """
 
 from __future__ import annotations
@@ -18,6 +22,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ORACLE = ROOT / "python" / "synapse_science" / "oracle.py"
+TEST_REL = "python/tests/test_oracle_and_api.py"
 
 
 @dataclass(frozen=True)
@@ -68,43 +73,89 @@ MUTANTS: tuple[Mutant, ...] = (
 )
 
 
+def _run_pytest_against_copy(tmp_dir: Path) -> subprocess.CompletedProcess[str]:
+    env = os.environ.copy()
+    env["PYTHONPATH"] = str(tmp_dir) + os.pathsep + env.get("PYTHONPATH", "")
+    # Verify inside the child interpreter that synapse_science.oracle resolves from tmp_dir
+    probe = subprocess.run(
+        [sys.executable, "-c", "import synapse_science.oracle as o; print(o.__file__)"],
+        cwd=str(ROOT),
+        env=env,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    loaded = Path(probe.stdout.strip()).resolve()
+    expected = (tmp_dir / "synapse_science" / "oracle.py").resolve()
+    if loaded != expected:
+        raise RuntimeError(f"Mutation harness shadowed! Loaded {loaded} instead of {expected}")
+
+    return subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "--no-header",
+            "-k",
+            "not differential",
+            TEST_REL,
+        ],
+        cwd=str(ROOT),
+        env=env,
+        capture_output=True,
+        text=True,
+    )
+
+
 def main() -> int:
     source = ORACLE.read_text(encoding="utf-8")
     killed = 0
     total = len(MUTANTS)
 
     print(f"Running targeted mutation audit (B13) on {ORACLE.name} ({total} mutants)...")
+
+    # Mandatory unmutated baseline control (F35): guarantees zero false kills from harness errors
+    with tempfile.TemporaryDirectory(prefix="mutant_control_") as tmp:
+        tmp_root = Path(tmp)
+        shutil.copytree(ROOT / "python" / "synapse_science", tmp_root / "synapse_science")
+        ctrl = _run_pytest_against_copy(tmp_root)
+        if ctrl.returncode != 0:
+            print(
+                f"  [HARNESS ERROR] Unmutated baseline control failed (rc={ctrl.returncode}):\n"
+                f"{ctrl.stdout}\n{ctrl.stderr}",
+                file=sys.stderr,
+            )
+            return 2
+        print("  [PASS]   CONTROL: Unmutated baseline passed (rc=0; isolated temp import verified)")
+
     for m in MUTANTS:
         if m.target not in source:
             print(f"  [ERROR] {m.id} target not found in oracle.py: {m.target!r}", file=sys.stderr)
             return 2
 
         with tempfile.TemporaryDirectory(prefix=f"mutant_{m.id}_") as tmp:
-            tmp_pkg = Path(tmp) / "synapse_science"
+            tmp_root = Path(tmp)
+            tmp_pkg = tmp_root / "synapse_science"
             shutil.copytree(ROOT / "python" / "synapse_science", tmp_pkg)
             (tmp_pkg / "oracle.py").write_text(source.replace(m.target, m.replacement, 1), encoding="utf-8")
 
-            env_cmd = [
-                sys.executable,
-                "-m",
-                "pytest",
-                "-q",
-                "--no-header",
-                "-k",
-                "not differential",
-                str(ROOT / "python" / "tests" / "test_oracle_and_api.py"),
-            ]
-            env = os.environ.copy()
-            env["PYTHONPATH"] = str(tmp) + os.pathsep + env.get("PYTHONPATH", "")
-            proc = subprocess.run(env_cmd, cwd=str(ROOT), env=env, capture_output=True, text=True)
-            is_killed = proc.returncode != 0
-            status = "KILLED" if is_killed else "SURVIVED"
-            if is_killed:
+            proc = _run_pytest_against_copy(tmp_root)
+            if proc.returncode == 1:
                 killed += 1
-            print(f"  [{status}] {m.id}: {m.description}")
+                print(f"  [KILLED] {m.id}: {m.description}")
+            elif proc.returncode == 0:
+                print(f"  [SURVIVED] {m.id}: {m.description}")
+            else:
+                print(
+                    f"  [HARNESS ERROR] {m.id} exited with unexpected pytest code {proc.returncode}:\n"
+                    f"{proc.stdout}\n{proc.stderr}",
+                    file=sys.stderr,
+                )
+                return 2
 
     rate = 100.0 * killed / total
-    print(f"Mutation audit result: {killed}/{total} mutants killed ({rate:.1f}%).")
+    print(f"Mutation audit result: {killed}/{total} mutants genuinely killed ({rate:.1f}%).")
     return 0 if killed == total else 1
 
 

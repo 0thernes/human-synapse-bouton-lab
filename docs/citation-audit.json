@@ -1,240 +1,631 @@
 {
-  "audited_utc": "2026-11-26T02:52:23Z",
+  "audited_utc": "2026-11-26T23:57:03Z",
   "bib_file": "papers/references.bib",
-  "total_references": 23,
-  "verified_count": 23,
+  "total_references": 29,
+  "verified_crossref_count": 28,
+  "verified_url_count": 0,
+  "verified_metadata_no_doi_count": 1,
+  "mismatch_count": 0,
   "retracted_count": 0,
   "error_count": 0,
+  "checks_enforced": [
+    "http_200",
+    "title_similarity",
+    "first_author_surname",
+    "year",
+    "updated_by_retraction"
+  ],
   "entries": [
     {
       "key": "wilhelm2014composition",
       "bib_year": "2014",
       "bib_title": "Composition of isolated synaptic boutons reveals the amounts of vesicle trafficking proteins",
+      "bib_first_author": "wilhelm",
       "doi": "10.1126/science.1252884",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Composition of isolated synaptic boutons reveals the amounts of vesicle trafficking proteins"
+      "crossref_title": "Composition of isolated synaptic boutons reveals the amounts of vesicle trafficking proteins",
+      "crossref_first_author": "wilhelm",
+      "crossref_years": [
+        "2014"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "yakoubi2019layer4",
       "bib_year": "2019",
       "bib_title": "Ultrastructural heterogeneity of layer 4 excitatory synaptic boutons in the adult human temporal lobe neocortex",
+      "bib_first_author": "yakoubi",
       "doi": "10.7554/eLife.48373",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Ultrastructural heterogeneity of layer 4 excitatory synaptic boutons in the adult human temporal lobe neocortex"
+      "crossref_title": "Ultrastructural heterogeneity of layer 4 excitatory synaptic boutons in the adult human temporal lobe neocortex",
+      "crossref_first_author": "yakoubi",
+      "crossref_years": [
+        "2019"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "rollenhagen2020human",
       "bib_year": "2020",
       "bib_title": "Synaptic Organization of the Human Temporal Lobe Neocortex as Revealed by High-Resolution Transmission, Focused Ion Beam Scanning, and Electron Microscopic Tomography",
+      "bib_first_author": "rollenhagen",
       "doi": "10.3390/ijms21155558",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Synaptic Organization of the Human Temporal Lobe Neocortex as Revealed by High-Resolution Transmission, Focused Ion Beam Scanning, and Electron Microscopic Tomography"
+      "crossref_title": "Synaptic Organization of the Human Temporal Lobe Neocortex as Revealed by High-Resolution Transmission, Focused Ion Beam Scanning, and Electron Microscopic Tomography",
+      "crossref_first_author": "rollenhagen",
+      "crossref_years": [
+        "2020"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "rollenhagen2024l1",
-      "bib_year": "2024",
-      "bib_title": "Ultrastructural sublaminar-specific diversity of excitatory synaptic boutons in {L1} of human temporal lobe neocortex",
-      "doi": null,
-      "status": "verified_url",
+      "bib_year": "2025",
+      "bib_title": "Ultrastructural sublaminar-specific diversity of excitatory synaptic boutons in layer 1 of the adult human temporal lobe neocortex",
+      "bib_first_author": "rollenhagen",
+      "doi": "10.7554/eLife.99473",
+      "http_status": 200,
+      "crossref_title": "Ultrastructural sublaminar-specific diversity of excitatory synaptic boutons in layer 1 of the adult human temporal lobe neocortex",
+      "crossref_first_author": "rollenhagen",
+      "crossref_years": [
+        "2024",
+        "2025"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
       "retracted": false,
-      "url": "https://elifesciences.org/reviewed-preprints/99473v1",
-      "http_status": 200
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "shapsoncoe2024h01",
       "bib_year": "2024",
       "bib_title": "A petavoxel fragment of human cerebral cortex reconstructed at nanoscale resolution",
+      "bib_first_author": "shapson coe",
       "doi": "10.1126/science.adk4858",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "A petavoxel fragment of human cerebral cortex reconstructed at nanoscale resolution"
+      "crossref_title": "A petavoxel fragment of human cerebral cortex reconstructed at nanoscale resolution",
+      "crossref_first_author": "shapson coe",
+      "crossref_years": [
+        "2024"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "wang2024vatpase",
       "bib_year": "2024",
       "bib_title": "Structure and topography of the synaptic {V-ATPase}--synaptophysin complex",
+      "bib_first_author": "wang",
       "doi": "10.1038/s41586-024-07610-x",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Structure and topography of the synaptic V-ATPase\u2013synaptophysin complex"
+      "crossref_title": "Structure and topography of the synaptic V-ATPase\u2013synaptophysin complex",
+      "crossref_first_author": "wang",
+      "crossref_years": [
+        "2024"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [
+        "updated-by:correction:publisher:10.1038/s41586-025-09149-x"
+      ],
+      "mismatches": [],
+      "status": "verified_crossref"
+    },
+    {
+      "key": "coupland2024vatpase",
+      "bib_year": "2024",
+      "bib_title": "High-resolution electron cryomicroscopy of {V-ATPase} in native synaptic vesicles",
+      "bib_first_author": "coupland",
+      "doi": "10.1126/science.adp5577",
+      "http_status": 200,
+      "crossref_title": "High-resolution electron cryomicroscopy of V-ATPase in native synaptic vesicles",
+      "crossref_first_author": "coupland",
+      "crossref_years": [
+        "2024"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "kellogg2018tau",
       "bib_year": "2018",
       "bib_title": "Near-atomic model of microtubule-tau interactions",
+      "bib_first_author": "kellogg",
       "doi": "10.1126/science.aat1780",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Near-atomic model of microtubule-tau interactions"
+      "crossref_title": "Near-atomic model of microtubule-tau interactions",
+      "crossref_first_author": "kellogg",
+      "crossref_years": [
+        "2018"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "liao2019anxa11",
       "bib_year": "2019",
       "bib_title": "{RNA} Granules Hitchhike on Lysosomes for Long-Distance Transport, Using Annexin {A11} as a Molecular Tether",
+      "bib_first_author": "liao",
       "doi": "10.1016/j.cell.2019.08.050",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "RNA Granules Hitchhike on Lysosomes for Long-Distance Transport, Using Annexin A11 as a Molecular Tether"
+      "crossref_title": "RNA Granules Hitchhike on Lysosomes for Long-Distance Transport, Using Annexin A11 as a Molecular Tether",
+      "crossref_first_author": "liao",
+      "crossref_years": [
+        "2019"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "depace2024borc",
       "bib_year": "2024",
-      "bib_title": "Messenger {RNA} transport on lysosomal vesicles maintains axonal homeostasis",
+      "bib_title": "Messenger {RNA} transport on lysosomal vesicles maintains axonal mitochondrial homeostasis and prevents axonal degeneration",
+      "bib_first_author": "de pace",
       "doi": "10.1038/s41593-024-01619-1",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Messenger RNA transport on lysosomal vesicles maintains axonal mitochondrial homeostasis and prevents axonal degeneration"
+      "crossref_title": "Messenger RNA transport on lysosomal vesicles maintains axonal mitochondrial homeostasis and prevents axonal degeneration",
+      "crossref_first_author": "de pace",
+      "crossref_years": [
+        "2024"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "deutsch1981lipids",
       "bib_year": "1981",
       "bib_title": "Lipids of synaptic vesicles: relevance to the mechanism of membrane fusion",
+      "bib_first_author": "deutsch",
       "doi": "10.1021/bi00505a024",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Lipids of synaptic vesicles: relevance to the mechanism of membrane fusion"
+      "crossref_title": "Lipids of synaptic vesicles: relevance to the mechanism of membrane fusion",
+      "crossref_first_author": "deutsch",
+      "crossref_years": [
+        "1981",
+        "2002",
+        "2005"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "rangaraju2014atp",
       "bib_year": "2014",
       "bib_title": "Activity-driven local {ATP} synthesis is required for synaptic function",
+      "bib_first_author": "rangaraju",
       "doi": "10.1016/j.cell.2013.12.042",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Activity-Driven Local ATP Synthesis Is Required for Synaptic Function"
+      "crossref_title": "Activity-Driven Local ATP Synthesis Is Required for Synaptic Function",
+      "crossref_first_author": "rangaraju",
+      "crossref_years": [
+        "2014"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "pulido2021resting",
       "bib_year": "2021",
       "bib_title": "Synaptic vesicle pools are a major hidden resting metabolic burden of nerve terminals",
+      "bib_first_author": "pulido",
       "doi": "10.1126/sciadv.abi9027",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Synaptic vesicle pools are a major hidden resting metabolic burden of nerve terminals"
+      "crossref_title": "Synaptic vesicle pools are a major hidden resting metabolic burden of nerve terminals",
+      "crossref_first_author": "pulido",
+      "crossref_years": [
+        "2021"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "milovanovic2018llps",
       "bib_year": "2018",
       "bib_title": "A liquid phase of synapsin and lipid vesicles",
+      "bib_first_author": "milovanovic",
       "doi": "10.1126/science.aat5671",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "A liquid phase of synapsin and lipid vesicles"
+      "crossref_title": "A liquid phase of synapsin and lipid vesicles",
+      "crossref_first_author": "milovanovic",
+      "crossref_years": [
+        "2018"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "dong2019neurotoxins",
       "bib_year": "2019",
       "bib_title": "Botulinum and Tetanus Neurotoxins",
+      "bib_first_author": "dong",
       "doi": "10.1146/annurev-biochem-013118-111654",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Botulinum and Tetanus Neurotoxins"
+      "crossref_title": "Botulinum and Tetanus Neurotoxins",
+      "crossref_first_author": "dong",
+      "crossref_years": [
+        "2018",
+        "2019"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "reinhardt2023resi",
       "bib_year": "2023",
       "bib_title": "{\\AA}ngstr{\\\"o}m-resolution fluorescence microscopy",
+      "bib_first_author": "reinhardt",
       "doi": "10.1038/s41586-023-05925-9",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "\u00c5ngstr\u00f6m-resolution fluorescence microscopy"
+      "crossref_title": "\u00c5ngstr\u00f6m-resolution fluorescence microscopy",
+      "crossref_first_author": "reinhardt",
+      "crossref_years": [
+        "2023"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "xu2016dnaorigami",
       "bib_year": "2016",
-      "bib_title": "A programmable {DNA} origami platform to organize {SNAREs} for membrane fusion",
-      "doi": "10.1021/jacs.5b12688",
-      "status": "verified_crossref",
-      "retracted": false,
+      "bib_title": "A Programmable {DNA} Origami Platform to Organize {SNAREs} for Membrane Fusion",
+      "bib_first_author": "xu",
+      "doi": "10.1021/jacs.5b13107",
       "http_status": 200,
-      "crossref_title": "Thermal Stabilization of Metal\u2013Organic Framework-Derived Single-Site Catalytic Clusters through Nanocasting"
+      "crossref_title": "A Programmable DNA Origami Platform to Organize SNAREs for Membrane Fusion",
+      "crossref_first_author": "xu",
+      "crossref_years": [
+        "2016"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
+    },
+    {
+      "key": "dodge1967calcium",
+      "bib_year": "1967",
+      "bib_title": "Co-operative action of calcium ions in transmitter release at the neuromuscular junction",
+      "bib_first_author": "dodge",
+      "doi": "10.1113/jphysiol.1967.sp008367",
+      "http_status": 200,
+      "crossref_title": "Co\u2010operative action of calcium ions in transmitter release at the neuromuscular junction",
+      "crossref_first_author": "dodge",
+      "crossref_years": [
+        "1967",
+        "2014"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
+    },
+    {
+      "key": "tsodyks1998dynamic",
+      "bib_year": "1998",
+      "bib_title": "Neural Networks with Dynamic Synapses",
+      "bib_first_author": "tsodyks",
+      "doi": "10.1162/089976698300017502",
+      "http_status": 200,
+      "crossref_title": "Neural Networks with Dynamic Synapses",
+      "crossref_first_author": "tsodyks",
+      "crossref_years": [
+        "1998",
+        "2002"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
+    },
+    {
+      "key": "naraghi1997buffered",
+      "bib_year": "1997",
+      "bib_title": "Linearized Buffered {Ca\\textsuperscript{2+}} Diffusion in Microdomains and Its Implications for Calculation of {[Ca\\textsuperscript{2+}]} at the Mouth of a Calcium Channel",
+      "bib_first_author": "naraghi",
+      "doi": "10.1523/JNEUROSCI.17-18-06961.1997",
+      "http_status": 200,
+      "crossref_title": "Linearized Buffered Ca<sup>2+</sup>Diffusion in Microdomains and Its Implications for Calculation of [Ca<sup>2+</sup>] at the Mouth of a Calcium Channel",
+      "crossref_first_author": "naraghi",
+      "crossref_years": [
+        "1997",
+        "2018"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "jahr1990nmda",
       "bib_year": "1990",
       "bib_title": "Voltage dependence of {NMDA}-activated macroscopic conductances predicted by single-channel kinetics",
+      "bib_first_author": "jahr",
       "doi": "10.1523/JNEUROSCI.10-09-03178.1990",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Voltage dependence of NMDA-activated macroscopic conductances predicted by single-channel kinetics"
+      "crossref_title": "Voltage dependence of NMDA-activated macroscopic conductances predicted by single-channel kinetics",
+      "crossref_first_author": "jahr",
+      "crossref_years": [
+        "1990",
+        "2018"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "hodgkin1952quantitative",
       "bib_year": "1952",
       "bib_title": "A quantitative description of membrane current and its application to conduction and excitation in nerve",
+      "bib_first_author": "hodgkin",
       "doi": "10.1113/jphysiol.1952.sp004764",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "A quantitative description of membrane current and its application to conduction and excitation in nerve"
+      "crossref_title": "A quantitative description of membrane current and its application to conduction and excitation in nerve",
+      "crossref_first_author": "hodgkin",
+      "crossref_years": [
+        "1952",
+        "2014"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "tang2016nanocolumn",
       "bib_year": "2016",
       "bib_title": "A trans-synaptic nanocolumn aligns neurotransmitter release to receptors",
+      "bib_first_author": "tang",
       "doi": "10.1038/nature19058",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "A trans-synaptic nanocolumn aligns neurotransmitter release to receptors"
+      "crossref_title": "A trans-synaptic nanocolumn aligns neurotransmitter release to receptors",
+      "crossref_first_author": "tang",
+      "crossref_years": [
+        "2016"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "watanabe2013ufe",
       "bib_year": "2013",
       "bib_title": "Ultrafast endocytosis at mouse hippocampal synapses",
+      "bib_first_author": "watanabe",
       "doi": "10.1038/nature12809",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Ultrafast endocytosis at mouse hippocampal synapses"
+      "crossref_title": "Ultrafast endocytosis at mouse hippocampal synapses",
+      "crossref_first_author": "watanabe",
+      "crossref_years": [
+        "2013"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
+    },
+    {
+      "key": "brown2010anesthesia",
+      "bib_year": "2010",
+      "bib_title": "General Anesthesia, Sleep, and Coma",
+      "bib_first_author": "brown",
+      "doi": "10.1056/NEJMra0808281",
+      "http_status": 200,
+      "crossref_title": "General Anesthesia, Sleep, and Coma",
+      "crossref_first_author": "brown",
+      "crossref_years": [
+        "2010"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
+    },
+    {
+      "key": "bobbin2024lean",
+      "bib_year": "2024",
+      "bib_title": "Formalizing chemical physics using the {Lean} theorem prover",
+      "bib_first_author": "bobbin",
+      "doi": "10.1039/D3DD00077J",
+      "http_status": 200,
+      "crossref_title": "Formalizing chemical physics using the Lean theorem prover",
+      "crossref_first_author": "bobbin",
+      "crossref_years": [
+        "2023",
+        "2024"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "tegmark2000decoherence",
       "bib_year": "2000",
       "bib_title": "Importance of quantum decoherence in brain processes",
+      "bib_first_author": "tegmark",
       "doi": "10.1103/PhysRevE.61.4194",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Importance of quantum decoherence in brain processes"
+      "crossref_title": "Importance of quantum decoherence in brain processes",
+      "crossref_first_author": "tegmark",
+      "crossref_years": [
+        "2000",
+        "2002"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     },
     {
       "key": "chalmers1995facing",
       "bib_year": "1995",
       "bib_title": "Facing up to the problem of consciousness",
       "doi": null,
-      "status": "verified_metadata_no_doi",
-      "retracted": false,
       "http_status": 200,
-      "crossref_search_top": "Facing Up to the Problem of Consciousness"
+      "crossref_search_top": "Facing Up to the Problem of Consciousness",
+      "retracted": false,
+      "status": "verified_metadata_no_doi"
     },
     {
       "key": "cogitate2025adversarial",
       "bib_year": "2025",
       "bib_title": "Adversarial testing of global neuronal workspace and integrated information theories of consciousness",
+      "bib_first_author": "cogitate consortium",
       "doi": "10.1038/s41586-025-08888-1",
-      "status": "verified_crossref",
-      "retracted": false,
       "http_status": 200,
-      "crossref_title": "Adversarial testing of global neuronal workspace and integrated information theories of consciousness"
+      "crossref_title": "Adversarial testing of global neuronal workspace and integrated information theories of consciousness",
+      "crossref_first_author": "cogitate consortium",
+      "crossref_years": [
+        "2025"
+      ],
+      "title_jaccard": 1.0,
+      "title_match": true,
+      "first_author_match": true,
+      "year_match": true,
+      "retracted": false,
+      "update_notices": [],
+      "mismatches": [],
+      "status": "verified_crossref"
     }
   ]
 }

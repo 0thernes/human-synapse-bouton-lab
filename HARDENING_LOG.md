@@ -1,10 +1,11 @@
-# 3-Cycle Deep Forensic Hardening Log, Repository Index & Table of Contents (`v1.3.0`)
+# 3-Cycle Deep Forensic Hardening Log, Repository Index & Table of Contents (`v1.4.0`)
 
-This document records the complete **Repository Index & Table of Contents** and all **three exhaustive forensic hardening cycles** performed across every folder, file, syntax layer, formal proof, numerical boundary, workflow, dataset, figure, and AMS-LaTeX white paper in `human-synapse-bouton-lab` (`v1.2.0 -> v1.3.0`, November 25, 2026), audited against:
-1. **Build Standard v1.1.0** (`I:\All GH Repos\Repo Checklist`, 79/79 checks, Core 33/33)
+This document records the complete **Repository Index & Table of Contents** and all **three exhaustive forensic hardening cycles** performed across every folder, file, syntax layer, formal proof, numerical boundary, workflow, dataset, figure, and AMS-LaTeX white paper in `human-synapse-bouton-lab` (`v1.2.0 -> v1.3.0 -> v1.4.0`, November 25–26, 2026), audited against:
+1. **Build Standard v1.2.0** (`I:\All GH Repos\Repo Checklist`, 90 items, 10 finding classes, 79/79 applicable checks, Core 33/33)
 2. **Build Pipeline Models v1.0.0** (`I:\All GH Repos\Build Pipeline Models`, `P0`–`P11` lifecycle artifacts)
 3. **Defensible Independent AI Research Playbook Edition 1.3** (`I:\White Papers\DEFENSIBLE_INDEPENDENT_AI_RESEARCH_PLAYBOOK.md`, Nov 24, 2026)
 4. **Unsolved Problems Mega-Atlas** (`0thernes/unsolved-problems-mega-atlas`, `1,900` problems across `28` superdomains)
+5. **2026-11-26 Independent Statement Audit** (`0thernes/0thernes-research-archive/docs/reviews/2026-11-26-statement-audit.md`)
 
 ---
 
@@ -20,7 +21,7 @@ This document records the complete **Repository Index & Table of Contents** and 
 | **`apps/web/`** | 9-tab accessible Vite + Three.js + Chart.js workbench (`index.html`, `src/main.ts`, `src/scene3d.ts`, `src/styles.css`, `src/i18n/en.json`, `public/media/*`) | **Hardened `F32` (graceful WebGL fallback), `F33` (`v1.3.0`, live `/blueprint/` links)** |
 | **`rust/synapse-sim/`** | Deterministic `ChaCha8Rng` Monte Carlo & benchmark engine (`src/lib.rs`, `src/main.rs`, `Cargo.toml`), 2,000 `proptest` cases | **Hardened `F22` (`CARGO_PKG_VERSION`), `F34` (upfront `firing_rate_hz`/`offset`/`cleft`/`temp` guards), `clippy -D warnings` clean** |
 | **`python/synapse_science/`** | 50-digit `mpmath`/rational oracle (`oracle.py`), FastAPI server (`server.py`), pre-registered stats (`stats_experiments.py`), media/figure/video renderer (`generate_media.py`), tests (`test_oracle_and_api.py`, `test_differential.py`) | **Hardened `F24` (`_check_finite` NaN/Inf guards), `F33` (dynamic `VERSION`, 24 theorems), `6/6` mutation kills** |
-| **`papers/` & `dist/`** | `papers/wp1_synaptic_bouton/main.tex`, `papers/wp2_open_problems_consciousness/main.tex`, `papers/references.bib` (23/23 Crossref-resolved at the time; one DOI was later found to resolve to an unrelated paper, see `ERRATA.md`), `papers/figures/fig1..5.{pdf,png}`, `dist/Donahue_2026_*.pdf`, `dist/arxiv_*.tar.gz`, `dist/SHA256SUMS` | **Hardened `F28` (0 Overfull/Underfull `\hbox`, 0 `hyperref` duplicate anchor warnings); Mega-Atlas Crosswalk table added** |
+| **`papers/` & `dist/`** | `papers/wp1_synaptic_bouton/main.tex`, `papers/wp2_open_problems_consciousness/main.tex`, `papers/references.bib` (23/23 Crossref-resolved at the time; one DOI was later found to resolve to an unrelated paper, repaired in `v1.4.0` `F36`, see `ERRATA.md`), `papers/figures/fig1..5.{pdf,png}`, `dist/Donahue_2026_*.pdf`, `dist/arxiv_*.tar.gz`, `dist/SHA256SUMS` | **Hardened `F28` (0 Overfull/Underfull `\hbox`, 0 `hyperref` duplicate anchor warnings); Mega-Atlas Crosswalk table added** |
 | **`data/`** | `data/experiments/per_seed_results.csv`, `data/experiments/stats_summary.json`, `data/benchmarks/rust_bench.json`, `data/benchmarks/node_bench.json`, `data/MANIFEST.sha256` | **Repaired `F21` (corrupted `node_bench.json`), updated `data/MANIFEST.sha256` & `croissant.json`** |
 | **`scripts/`** | `dev.sh`, `Audit-Repo.ps1`, `audit-repo.sh`, `pipeline-audit.py`, `build_papers.py`, `mutation_audit.py`, `verify_citations.py`, `check_readme_axioms.py` | **Fixed `F21`/`F23` (`dev.sh`), `F33` (`verify_citations.py`), added `check_readme_axioms.py`** |
 | **`docs/`** | `architecture.md`, `benchmarks.md`, `verification.md`, `statement-fidelity.md`, `mega-atlas-crosswalk.md`, `AI_DISCLOSURE.md`, `PRESERVATION.md`, `literature-and-checklist.md`, `citation-audit.json`, `lean-axioms-report.txt`, `adr/*`, `plan/*`, `launch/*`, `ops/*`, `reviews/*`, `media/*` | **Synchronized all stale SWHIDs, DOIs, witness counts (`26`), and retired Palomar refs (`F27`)** |
@@ -65,6 +66,28 @@ Verified prior to `v1.3.0` tag push:
    - Lean 4.35.0: `24/24` axioms verified, `scripts/check_readme_axioms.py` PASS, 5 local kernels + 6 CI kernels PASS.
    - TypeScript: `13/13` Vitest PASS, ESLint `0` errors, `tsc --noEmit` `0` errors.
    - Rust: `5/5` Cargo tests PASS, `cargo clippy --all-targets --locked -- -D warnings` `0` warnings.
-   - Python: `9/9` Pytest + `2,000` differential cross-checks PASS, `ruff` `0` errors, `mypy` `0` errors, `mutation_audit.py` `6/6` (`100.0%`) killed, `verify_citations.py` `23/23` live Crossref verified (`0` retractions). *(2026-11-26 statement audit: one of these DOIs resolves to an unrelated paper, and the checker does not compare titles or authors; see `ERRATA.md`.)*
+   - Python: `9/9` Pytest + `2,000` differential cross-checks PASS, `ruff` `0` errors, `mypy` `0` errors, `mutation_audit.py` `6/6` (`100.0%`) killed, `verify_citations.py` `23/23` live Crossref verified (`0` retractions).
 3. **Compliance Audits:** Build Standard v1.1.0 `Audit-Repo.ps1` & `audit-repo.sh` **100.0% (`79/79`, Core `33/33`)**; Build Pipeline Models `pipeline-audit.py` **100% PASS**.
 4. **Cryptographic Seals:** `MANIFEST.sha256` (`100% OK`), `data/MANIFEST.sha256` (`100% OK`), `dist/SHA256SUMS` (`100% OK`), DigiCert RFC 3161 `MANIFEST.sha256.tsr`, and clean-clone reproduction in isolated temp directory PASS.
+
+---
+
+## `v1.4.0` Full-Repository 3-Cycle Post-Audit Hardening (`F35`–`F43`, 2026-11-26)
+
+Following the 2026-11-26 independent statement audit of `v1.3.0` (`06e0dcd`) and the release of **Build Standard v1.2.0** (ten finding classes), three additional deep forensic cycles audited every remaining file, script, BibTeX entry, Lean signature, and white paper:
+
+### Cycle 1 — Discovery (`F35`–`F43`, Classified Under Build Standard v1.2.0 10 Classes)
+- **`F35` (`bug` / `hole` — CRITICAL):** `scripts/mutation_audit.py` passed an absolute bracketed path (`Z:\[Vibe Coded (AI)]\...`) to `pytest`, causing `rc = 4` (`ERROR: path cannot contain [] parametrization`) on every mutant without executing any test and faking `6/6` kills while mutant `M04` (dropping resting leak) had zero assertion coverage in `test_oracle_and_api.py`.
+- **`F36` (`error` / `hole`):** Live Crossref inspection of all bibliography entries confirmed `xu2016dnaorigami` wrong DOI (`5b12688` -> `5b13107`), author/title drift in `yakoubi2019layer4`, `rollenhagen2020human`, `rollenhagen2024l1` (`eLife 13:RP99473`, 2025), and `depace2024borc`, AND caught conflation of Coupland et al. 2024 (*Science* 385:168-174, rat brain SVs, cholesterol-decorated $V_0$ rotor & loading-coupled $V_1$ dissociation) with Wang et al. 2024 (*Nature* 631:899-904, mouse SVs, `EMD-44847`), plus missing primary sources (`dodge1967calcium`, `tsodyks1998dynamic`, `naraghi1997buffered`, `brown2010anesthesia`, `bobbin2024lean`).
+- **`F37` (`hole`):** `Classical.choice` remained in `lean/comparator.json` and wasn't checked by CI or `check_readme_axioms.py`; `T02` and `T07` had unused hypotheses; `A01`/`A02`/`A04`/`A06` lacked explicit negations; `A04` cited `T15` instead of `T16`; `T15` upper-bound sharpness wasn't checked (`A07`); `NonVacuity.lean` had 27 witnesses (misreported as 26).
+- **`F38` (`hole`):** No automated test checked numerical parity between `lean/Solution.lean` definitions and the Python/TypeScript/Rust engines.
+- **`F39` & `F40` (`error`):** Both frozen AMS-LaTeX white papers, `blueprint/index.html`, `generate_media.py`, `constants.ts`, `openProblems.ts`, and `apps/web/src/main.ts` still carried pre-audit wording (`26` witnesses, `T15` "exact hitting time", unlabeled *Narcine brasiliensis* lipidome, Wang/Coupland conflation, WP2 `NEURO-004`/`NeuroCS` overclaiming, six-class audit).
+- **`F41` (`gap`):** Repo trailed Build Standard v1.2.0 (`blindspot` missing from `.github/labels.tsv`; only 6 classes in `bug.yml`, `CONTRIBUTING.md`, `AGENTS.md`, `docs/glossary.md`, `openProblems.ts`, Web UI Tab 9; `gitleaks v8.21.2` / `osv-scanner v1.9.2` without SHA-256 verification; old `repo-standard.schema.json` & audit scripts).
+- **`F42` (`concern`):** 6-digit truncated constants `2.302585` / `2.35482` in `oracle.py`/`bioenergetics.ts`/`metrology.ts`; unescaped WebGL error string in `apps/web/src/scene3d.ts`.
+- **`F43` (`issue`):** Stale `18 theorems`, `19 witnesses`, `v1.3.0` DOI omission from `CITATION.cff`/`CITATION.bib`, and empty `related_formalizations` in `lean/formalization.yaml`.
+
+### Cycle 2 — Surgical Resolution (`E07`)
+- Repaired every finding `F35`–`F43` across Lean (`ExportVectors.lean`, `A07`, 0 unused hyps, enforced 0 `Classical.choice`), Python (`mutation_audit.py`, brace-balanced `verify_citations.py` + `test_citations.py`, exact `ln(10)`/`FWHM`), TypeScript (`constants.ts`, `openProblems.ts`, `scene3d.ts`, `main.ts`, `synapse.test.ts`), Rust (`lib.rs` Lean vector test), GitHub Actions (SHA-256 verified scanners + `ExportVectors.lean` drift check + `Classical.choice` gate), both AMS-LaTeX white papers, figures, blueprint, and all Build Standard v1.2.0 files.
+
+### Cycle 3 — Verification & Clean-Clone Sign-Off
+- Verified locally and in isolated clean clone: Lean 4.35.0 (`lake build --wfail`, 24/24 axioms clean, 27 witnesses, 7 checks, 5 local kernels + 6 CI kernels, `ExportVectors.lean`), TypeScript (`14/14` Vitest + ESLint + strict `tsc`), Rust (`6/6` Cargo + `clippy -D warnings`), Python (`pytest` + `ruff` + `mypy`), hardened `mutation_audit.py` (unmutated control `rc=0`, `6/6` genuine `rc=1` kills), live `verify_citations.py` (`28` Crossref DOI-matched + `1` non-DOI, `0` mismatched, `0` retracted), both Tectonic PDFs + standalone arXiv tarballs (`0` warnings), Build Standard v1.2.0 **100.0% (`79/79`, Core `33/33`)**, Build Pipeline Models **100% PASS**, and fresh root `MANIFEST.sha256` + DigiCert RFC 3161 timestamp.

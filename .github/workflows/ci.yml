@@ -36,18 +36,22 @@ jobs:
         run: |
           lake build --wfail
           lake env lean VerifyAxioms.lean | tee ../lean-axioms-ci.txt
-          ! grep -E '\b(sorryAx|Lean\.ofReduceBool|Lean\.trustCompiler)\b|_native' ../lean-axioms-ci.txt
+          ! grep -E '\b(sorryAx|Classical\.choice|Lean\.ofReduceBool|Lean\.trustCompiler)\b|_native' ../lean-axioms-ci.txt
           lake env leanchecker Solution
           lake env leanchecker NonVacuity
           lake env leanchecker AdversarialChecks
           lake env leanchecker-paranoid Solution
           lake env leanexport Solution > .lake/solution.ndjson
+          # Note: standalone nanoda_bin checks transitive Init declarations (which reference Classical.choice internally);
+          # zero Classical.choice on all 24 exported theorems is strictly enforced by comparator.json, VerifyAxioms grep, and check_readme_axioms.py.
           printf '{"export_file_path":".lake/solution.ndjson","permitted_axioms":["propext","Classical.choice","Quot.sound"],"unpermitted_axiom_hard_error":false,"nat_extension":true,"string_extension":true}\n' > .lake/nanoda.json
           lake env nanoda_bin .lake/nanoda.json
           lake env con-ron .lake/solution.ndjson
           lake env con-leche .lake/solution.ndjson
           lake check --paranoid || lake check --paranoid --inadvisably-no-sandbox
           lake comparator --config comparator.json --paranoid || lake comparator --config comparator.json --paranoid --inadvisably-no-sandbox
+          lake env lean --run ExportVectors.lean > .lake/exported_vectors_ci.json
+          diff -u ../data/lean_engine_vectors.json .lake/exported_vectors_ci.json
       - name: Verify README verbatim axiom block matches kernel output
         run: python3 scripts/check_readme_axioms.py --axioms-file lean-axioms-ci.txt
       - name: Upload Lean axiom report
@@ -117,7 +121,7 @@ jobs:
         continue-on-error: true
 
   standard:
-    name: Build Standard v1.1.0 Audit (report-only)
+    name: Build Standard v1.2.0 Audit (report-only)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -133,14 +137,17 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with: { fetch-depth: 0 }
-      - name: gitleaks
+      - name: gitleaks (secrets in full history)
         run: |
-          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz | tar xz gitleaks
+          curl -sSfL -o gitleaks.tgz https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  gitleaks.tgz" | sha256sum -c -
+          tar xzf gitleaks.tgz gitleaks
           ./gitleaks detect --source . --redact --no-banner --exit-code 0 --report-format json --report-path gitleaks.json
           echo "gitleaks findings: $(grep -c '"RuleID"' gitleaks.json || true)" >> "$GITHUB_STEP_SUMMARY"
-      - name: osv-scanner
+      - name: osv-scanner (known-vulnerable dependencies)
         run: |
-          curl -sSfL -o osv-scanner https://github.com/google/osv-scanner/releases/download/v1.9.2/osv-scanner_linux_amd64
+          curl -sSfL -o osv-scanner https://github.com/google/osv-scanner/releases/download/v2.7.1/osv-scanner_linux_amd64
+          echo "fb7dab19a8bd9bbe5c3189f09d4b7ee1820c9553a23bac202648a56efd2f6ee8  osv-scanner" | sha256sum -c -
           chmod +x osv-scanner
           ./osv-scanner --recursive . > osv.txt 2>&1 || true
           { echo '### osv-scanner'; echo '```'; tail -n 40 osv.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

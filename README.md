@@ -1,18 +1,18 @@
 # Human Synapse Bouton Lab
 
-A multi-language modelling workbench for a human synaptic bouton. It combines Lean 4.35.0 proofs of **24 elementary lemmas + 27 non-vacuity witnesses + 6 sanity checks (`AdversarialChecks`)** about the repository's own model formulas, a deterministic Rust Monte Carlo engine, a 50-digit Python reference oracle + FastAPI backend, an interactive 9-tab WebGL workbench + Lean Proof Blueprint DAG, and two AMS-LaTeX white papers that survey open problems in 11 disciplines (with a crosswalk against the 1,900 entries of [`0thernes/unsolved-problems-mega-atlas`](https://github.com/0thernes/unsolved-problems-mega-atlas)).
+A multi-language modelling workbench for a human synaptic bouton. It combines Lean 4.35.0 proofs of **24 elementary lemmas + 27 concrete non-vacuity witnesses + 7 sanity and sharpness checks (`AdversarialChecks`)** about the repository's own model formulas (0 unused hypotheses, enforced 0 `Classical.choice`, linked to the Python/TypeScript/Rust engines via executable `ExportVectors.lean`), a deterministic Rust Monte Carlo engine, a 50-digit Python reference oracle + FastAPI backend, an interactive 9-tab WebGL workbench + Lean Proof Blueprint DAG, and two AMS-LaTeX white papers that survey open problems in 11 disciplines (with an honest crosswalk against all 1,900 entries of [`0thernes/unsolved-problems-mega-atlas`](https://github.com/0thernes/unsolved-problems-mega-atlas)).
 
-> **Audit status (2026-11-26).** An independent statement audit ([log](https://github.com/0thernes/0thernes-research-archive/blob/main/docs/reviews/2026-11-26-statement-audit.md)) rebuilt the Lean suite and found the 24 lemmas kernel-checked. They are elementary integer inequalities, conservation identities and list-induction facts; none answers a published open question, and textbook versions of these facts are known. The Lean definitions are hand-written integer analogues of the TypeScript/Rust engines, with no tested link between them. Corrections from the audit are listed in [`ERRATA.md`](ERRATA.md#2026-11-26-statement-audit).
+> **Audit & Resolution Status (`v1.4.0`, 2026-11-26).** An independent statement audit of `v1.3.0` (`06e0dcd`, [log](https://github.com/0thernes/0thernes-research-archive/blob/main/docs/reviews/2026-11-26-statement-audit.md)) confirmed the 24 Lean lemmas are kernel-checked elementary integer/list-induction facts (none answers a published open question) and logged unfixed defects in the frozen white papers, BibTeX, Lean files, and scripts. Release `v1.4.0` resolves **every** item from that audit plus newly identified hardening findings (`F35`–`F43`, logged in [`ERRATA.md`](ERRATA.md#e07--v130--v140-complete-resolution-of-2026-11-26-statement-audit-mutation-harness-fix-crossref-repair--build-standard-v120-upgrade-f35f43)): repaired BibTeX & live Crossref title/author/year/retraction verification, enforced zero `Classical.choice`, zero unused Lean hypotheses, Lean-to-engine vector parity tests (`ExportVectors.lean`), repaired mutation harness (`F35`), recompiled White Papers 1 & 2, and full Build Standard v1.2.0 ten-class parity.
 
 [![CI](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/ci.yml)
 [![Pages](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/pages.yml/badge.svg)](https://github.com/0thernes/human-synapse-bouton-lab/actions/workflows/pages.yml)
 [![Release](https://img.shields.io/github/v/release/0thernes/human-synapse-bouton-lab?display_name=tag)](https://github.com/0thernes/human-synapse-bouton-lab/releases)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24477927.svg)](https://doi.org/10.5281/zenodo.24477927) (concept DOI; `v1.3.0` version DOI: [`10.5281/zenodo.24548051`](https://doi.org/10.5281/zenodo.24548051))
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24477927.svg)](https://doi.org/10.5281/zenodo.24477927) (concept DOI; prior `v1.3.0` version DOI: [`10.5281/zenodo.24548051`](https://doi.org/10.5281/zenodo.24548051))
 [![Code License: Apache-2.0](https://img.shields.io/badge/Code-Apache--2.0-blue.svg)](LICENSE)
 [![Content License: CC-BY-4.0](https://img.shields.io/badge/Papers%20%26%20Media-CC--BY--4.0-lightgrey.svg)](docs/LICENSE-CONTENT.md)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39.svg)](https://orcid.org/0009-0006-8168-9648)
 
-**Status:** `active` (`v1.3.0`) · **Live Interactive Workbench:** https://0thernes.github.io/human-synapse-bouton-lab/ · **Interactive Lean 4 Proof Blueprint & DAG:** https://0thernes.github.io/human-synapse-bouton-lab/blueprint/ · **Prior Archival SWHID (`v1.2.0`):** [`swh:1:snp:8ef70f745fae4f91f040720b28e21560c73deffc`](https://archive.softwareheritage.org/swh:1:snp:8ef70f745fae4f91f040720b28e21560c73deffc) · **Supported Locales:** `en-US` (strings externalized in `apps/web/src/i18n/en.json`)
+**Status:** `active` (`v1.4.0`) · **Live Interactive Workbench:** https://0thernes.github.io/human-synapse-bouton-lab/ · **Interactive Lean 4 Proof Blueprint & DAG:** https://0thernes.github.io/human-synapse-bouton-lab/blueprint/ · **Prior Archival SWHID (`v1.2.0`):** [`swh:1:snp:8ef70f745fae4f91f040720b28e21560c73deffc`](https://archive.softwareheritage.org/swh:1:snp:8ef70f745fae4f91f040720b28e21560c73deffc) · **Supported Locales:** `en-US` (strings externalized in `apps/web/src/i18n/en.json`)
 
 ![Synaptic exocytosis real-time simulation generated by `uv run synapse-media`](docs/media/synapse_exocytosis_demo.gif)
 
@@ -22,19 +22,19 @@ A multi-language modelling workbench for a human synaptic bouton. It combines Le
 
 ## White Papers & Unsolved Problems Mega-Atlas Crosswalk
 
-1. **White Paper 1 — Formally Verified Human Synaptic Bouton Biophysics:**
+1. **White Paper 1 — "A Formally Verified, Multi-Scale Computational Framework for the Human Synaptic Bouton: Exact Biophysics, Stochastic Nanocolumn Coupling, Bioenergetics, and DNA-Origami Metrology" (`v1.4.0`):**
    [`dist/Donahue_2026_human_synaptic_bouton_verification.pdf`](dist/Donahue_2026_human_synaptic_bouton_verification.pdf) · Source: [`papers/wp1_synaptic_bouton/main.tex`](papers/wp1_synaptic_bouton/main.tex) · arXiv tarball: [`dist/arxiv_wp1_synaptic_bouton.tar.gz`](dist/arxiv_wp1_synaptic_bouton.tar.gz)
-2. **White Paper 2 — "An 11-Discipline Open Hard Problems Map from Nanoscale Synaptic Biophysics to the Consciousness Frontier: Formal Bounds, Mega-Atlas Crosswalk, Deductive–Inductive–Abductive Epistemology, and a Six-Class Audit":**
+2. **White Paper 2 — "An 11-Discipline Open Hard Problems Map from Nanoscale Synaptic Biophysics to the Consciousness Frontier: Formal Bounds, Mega-Atlas Crosswalk, Deductive–Inductive–Abductive Epistemology, and a Ten-Class Audit" (`v1.4.0`):**
    [`dist/Donahue_2026_open_hard_problems_consciousness_frontier.pdf`](dist/Donahue_2026_open_hard_problems_consciousness_frontier.pdf) · Source: [`papers/wp2_open_problems_consciousness/main.tex`](papers/wp2_open_problems_consciousness/main.tex) · arXiv tarball: [`dist/arxiv_wp2_open_problems_consciousness.tar.gz`](dist/arxiv_wp2_open_problems_consciousness.tar.gz)
-   A companion survey paper (archive entry `0TH-2026-008`) that shares this repository, commit and Lean suite with White Paper 1 (`0TH-2026-007`). Its only formal content is `T22`–`T24` (2×2 integer determinant facts, counted once among the 24) and the example table `A05`; it has no formal result of its own and makes no formal contribution to any problem it surveys. Its crosswalk table (§3, Table 2) heads one column "Verified Partial Contribution" and lists `T22`–`T24` under `NEURO-004`; that wording is withdrawn (see [`ERRATA.md`](ERRATA.md#2026-11-26-statement-audit)). Its "six-class" audit uses the six finding classes of Build Standard v1.1.0.
-3. **Unsolved Problems Mega-Atlas Audit (`0 / 1,900` Fully Solved):**
-   [`docs/mega-atlas-crosswalk.md`](docs/mega-atlas-crosswalk.md) gives an ID-by-ID accounting against the 1,900 entries in [`0thernes/unsolved-problems-mega-atlas`](https://github.com/0thernes/unsolved-problems-mega-atlas): **None of the 1,900 open problems is solved, fully or partially (`0 / 1,900`).** 18 Atlas problems (`NEURO-001`, `NEURO-003`, `NEURO-004`, `NEURO-019`, `NEURO-020`, `NEURO-023`, `NEURO-027`, `MED-001`, `BIO-003`, `CHEM-013`, `CHEM-058`, `AI-004`, `CS-058`, `HW-004`, `LOG-033`, `SUB-036`, `SUB-037`, `SUB-038`) are listed as topically related to parts of this repository, with the remaining barriers. No Lean statement is a case of any of them.
+   A companion survey paper (archive entry `0TH-2026-008`) sharing this repository and Lean suite with White Paper 1 (`0TH-2026-007`). It presents no standalone formal proof or empirical result of its own; its only formal content is `T22`–`T24` (elementary 2×2 integer determinant facts, counted once among the 24) and check `A05`. In `v1.4.0`, Table 2 is explicitly titled "Topically Related Material (No Partial Solution)", `T22`–`T24` are removed from `NEURO-004` and `NeuroCS`, and the audit table is upgraded to all **ten** Build Standard v1.2.0 finding classes.
+3. **Unsolved Problems Mega-Atlas Audit (`0 / 1,900` Solved):**
+   [`docs/mega-atlas-crosswalk.md`](docs/mega-atlas-crosswalk.md) gives an ID-by-ID accounting against all 1,900 entries in [`0thernes/unsolved-problems-mega-atlas`](https://github.com/0thernes/unsolved-problems-mega-atlas): **None of the 1,900 open problems is solved, fully or partially (`0 / 1,900`).** 18 Atlas problems are indexed as topically related to parts of this repository with explicit remaining barriers; no Lean lemma is a case or partial solution of any of them.
 
 ---
 
 ## 5-Second Proof Verification & Multi-Kernel Lean 4.35.0 Audit
 
-Each of the 24 statements is stated in [`lean/Challenge.lean`](lean/Challenge.lean) (24 `sorry` statement stubs, used only by the comparator) and proved in [`lean/Solution.lean`](lean/Solution.lean) over `Nat`/`Int` with denominators cleared. The proof modules contain **zero `sorry`, zero `admit`, zero `native_decide`, and no Mathlib**; no printed axiom list contains `Classical.choice` (this holds at the current commit but is not enforced by a CI gate). They are accompanied by **27 non-vacuity witness theorems** ([`lean/NonVacuity.lean`](lean/NonVacuity.lean)) that evaluate the statements at concrete values, and **6 sanity and sharpness checks** ([`lean/AdversarialChecks.lean`](lean/AdversarialChecks.lean)). The checks do not show that every hypothesis is needed: the hypotheses `kd > 0` of T02 and `u0 > 0` of T07 are unused. T22–T24 (2×2 integer determinant facts) are part of the 24 and are also discussed under companion archive entry `0TH-2026-008`; they are counted once.
+Each of the 24 elementary lemmas is stated in [`lean/Challenge.lean`](lean/Challenge.lean) (24 `sorry` statement stubs, used only by the comparator) and proved in [`lean/Solution.lean`](lean/Solution.lean) over `Nat`/`Int` with denominators cleared. The proof modules contain **zero `sorry`, zero `admit`, zero `native_decide`, zero unused hypotheses, no Mathlib, and strictly enforced zero `Classical.choice`** (enforced by `lean/comparator.json`, CI `VerifyAxioms.lean` grep, and `scripts/check_readme_axioms.py`). They are accompanied by **27 concrete non-vacuity witness theorems** ([`lean/NonVacuity.lean`](lean/NonVacuity.lean)), **7 machine-checked sanity and sharpness checks** ([`lean/AdversarialChecks.lean`](lean/AdversarialChecks.lean), `A01`–`A07`), and an executable Lean vector exporter ([`lean/ExportVectors.lean`](lean/ExportVectors.lean) → [`data/lean_engine_vectors.json`](data/lean_engine_vectors.json)) verified directly against the Python, TypeScript, and Rust engines. `T22`–`T24` (elementary 2×2 integer determinant identities, also exported under generic aliases `outer_product_det_zero`, `det_pos_of_diag_dominance`, and `det_pos_of_diag_excess`) are counted once among the 24.
 
 Exact verbatim output of `cd lean && lake env lean VerifyAxioms.lean` (automatically drift-checked on every CI push by [`scripts/check_readme_axioms.py`](scripts/check_readme_axioms.py)):
 
@@ -67,21 +67,21 @@ Exact verbatim output of `cd lean && lake env lean VerifyAxioms.lean` (automatic
 ```
 <!-- END_AXIOMS -->
 
-*Multi-kernel verification:* In public repository Ubuntu CI (`.github/workflows/ci.yml`), `lake comparator --paranoid` checks `Solution` against `Challenge`, and `lake check --paranoid` replays all default targets on **6 kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda`, `con-leche`, `con-ron`). Statement-by-statement notes: [`docs/statement-fidelity.md`](docs/statement-fidelity.md) · Interactive DAG: [`blueprint/index.html`](blueprint/index.html) · Citations: [`docs/citation-audit.json`](docs/citation-audit.json) records 21 DOIs that resolve on Crossref, 1 entry checked by URL and 1 by metadata only; one of the 21 (`xu2016dnaorigami`) points to an unrelated paper, and the script does not compare titles or authors or read Crossref `updated-by` retraction notices (see [`ERRATA.md`](ERRATA.md#2026-11-26-statement-audit)) · [`HARDENING_LOG.md`](HARDENING_LOG.md) · [`MANIFEST.sha256`](MANIFEST.sha256). **Not proved in Lean:** 4D Hodgkin–Huxley float64 RK4 trajectories, 3D Brownian particle PDEs, any causal statement (`A05` in `AdversarialChecks.lean` evaluates one 2×2 integer determinant; reading that table as a common-cause model is informal), and any claim about phenomenal consciousness.
+*Multi-kernel & citation verification:* In public repository Ubuntu CI (`.github/workflows/ci.yml`), `lake comparator --paranoid` checks `Solution` against `Challenge` (with `permitted_axioms: ["propext", "Quot.sound"]`), and `lake check --paranoid` replays all default targets on **6 kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda`, `con-leche`, `con-ron`). Statement-by-statement notes: [`docs/statement-fidelity.md`](docs/statement-fidelity.md) · Interactive DAG: [`blueprint/index.html`](blueprint/index.html) · Citations: [`docs/citation-audit.json`](docs/citation-audit.json) verifies **28 Crossref DOI-matched entries** (HTTP 200, normalized title Jaccard, first-author surname, publication year, and `updated-by` Retraction Watch status — `0` mismatched, `0` retracted, 1 publisher correction notice on Wang 2024) plus **1 non-DOI metadata-checked entry** (`chalmers1995facing`, total 29) · [`HARDENING_LOG.md`](HARDENING_LOG.md) · [`MANIFEST.sha256`](MANIFEST.sha256). **Not proved in Lean:** 4D Hodgkin–Huxley float64 RK4 trajectories, 3D Brownian particle PDEs, any causal statement (`A05` evaluates `bipartiteCoupling 40 10 10 40 = 1500`; reading that table as a common-cause model is informal), and any claim about phenomenal consciousness.
 
 ---
 
 ## Pre-Registered 30-Seed Monte Carlo Results (Simulator Outputs, Including the Failed H3 Prediction)
 
-These are properties of the repository's simulator and its chosen parameters, not measurements of biological tissue. The hypotheses were registered in [`PREREGISTRATION.md`](PREREGISTRATION.md) (root commit `a1919f2`, before any code was committed; the registration is evidenced only by git commit dates). The registration fixed the hypotheses, seeds and statistics but not the model constants; the ATP constants that decide H3 and H3b (950,000 and 280,000 ATP/s supply, 4,000 ATP/s leak, 32,000 ATP per spike) were set in code after registration, are illustrative, and are not taken from the cited papers. Results were analyzed with 10,000-permutation tests, 10,000-resample 95% bootstrap CIs, and Holm–Bonferroni correction (raw per-seed CSV in [`data/experiments/per_seed_results.csv`](data/experiments/per_seed_results.csv); Croissant 1.0 schema in [`croissant.json`](croissant.json)):
+These are properties of the repository's simulator and its chosen parameters, not measurements of biological tissue. The hypotheses were registered in [`PREREGISTRATION.md`](PREREGISTRATION.md) (root commit `a1919f2`, before any code was committed; the registration is evidenced only by git commit dates). The registration fixed the hypotheses, seeds, and statistics but not the model constants; the illustrative ATP constants that decide H3 and H3b (`950,000` and `280,000 ATP/s` supply, `4,000 ATP/s` leak — compared with `~3,100 ATP/s` in Pulido & Ryan 2021 — and `32,000 ATP/AP`) were set in code after registration. Results were analyzed with 10,000-permutation tests, 10,000-resample 95% bootstrap CIs, and Holm–Bonferroni correction (raw per-seed CSV in [`data/experiments/per_seed_results.csv`](data/experiments/per_seed_results.csv); Croissant 1.0 schema in [`croissant.json`](croissant.json)):
 
 | Hypothesis | Registration | Treatment vs. Control Mean | $\Delta$ (95% Bootstrap CI) | Cliff's $\delta$ | $p_{\text{Holm}}$ | Outcome |
 |---|---|---|---|---|---|---|
 | **H1:** Nanocolumn Alignment ($0$ vs. $80\,$nm) | Pre-registered | $33.81$ vs. $12.28\,$pA | $+21.53\,$pA $[21.42, 21.63]$ | $+1.00$ | `0.0005` | **Holds in the simulator** |
 | **H2:** $\mathrm{Ca}^{2+}$ Coupling ($17$ vs. $60\,$nm) | Pre-registered | $0.569$ vs. $0.0007$ ($\hat{P}_r$) | $+0.568$ $[0.560, 0.577]$ | $+1.00$ | `0.0005` | **Holds in the simulator** |
-| **H3:** Mito vs. Glycolysis ATP (40 Hz) | Pre-registered | $0.00$ vs. $0.00$ | $0.00$ $[0.00, 0.00]$ | $0.00$ | `1.0000` | **Prediction fails in the fixed-parameter simulator** (40 Hz exceeds the model threshold 29.56 Hz set by the post-registration constants; in the mean-rate model the store is 0 by $t = 3\,$s, an upper bound from `T15`; the simulated runs jitter the rate each second) |
+| **H3:** Mito vs. Glycolysis ATP (40 Hz) | Pre-registered | $0.00$ vs. $0.00$ | $0.00$ $[0.00, 0.00]$ | $0.00$ | `1.0000` | **Prediction fails in the fixed-parameter simulator** (40 Hz exceeds the model threshold `29.5625 Hz`; `T15` proves an upper bound `0` by $t \ge 3\,$s under mean rates; `A07` shows exact hitting time can be earlier when $D \mid A_0$) |
 | **H4:** Disjoint-Seed Null Control | Pre-registered | $33.81$ vs. $33.78\,$pA | $+0.024\,$pA $[-0.045, +0.091]$ | $+0.14$ | `0.9963` | **Null Passed** |
-| **H3b:** Mito vs. Glycolysis ATP (20 Hz) | Exploratory ([`DEVIATIONS.md`](DEVIATIONS.md)) | $1.00$ vs. $0.00$ | $+1.00$ $[1.00, 1.00]$ | $+1.00$ | `0.0005` | **Holds in the simulator** (exploratory; fixed by the same constants) |
+| **H3b:** Mito vs. Glycolysis ATP (20 Hz) | Exploratory ([`DEVIATIONS.md`](DEVIATIONS.md)) | $1.00$ vs. $0.00$ | $+1.00$ $[1.00, 1.00]$ | $+1.00$ | `0.0005` | **Holds in the simulator** (exploratory; fixed by the same illustrative constants) |
 
 ---
 
@@ -100,7 +100,7 @@ bash scripts/dev.sh setup
 bash scripts/dev.sh build
 
 # 3. Run all unit, property-based (fast-check, proptest, hypothesis), API contract,
-#    Lean multi-kernel, and 1,000-case cross-language differential tests
+#    Lean multi-kernel, Lean-to-engine vector parity, and 1,000-case differential tests
 bash scripts/dev.sh test
 
 # 4. Launch the interactive 9-tab WebGL workbench locally
@@ -108,10 +108,10 @@ npm run dev
 ```
 
 Expected test summary from a clean clone:
-- Lean 4.35.0: `Build completed successfully`, **24/24 axioms clean** (0 `sorry`, 0 `Classical.choice`), `leanchecker` pass on `Solution`, `NonVacuity`, and `AdversarialChecks`
-- TypeScript (`@synapse/core`): `13 passed (13)` (including 3,600+ `fast-check` property checks & negative boundary guards)
-- Rust (`synapse-sim`): `5 passed` (including 2,000 `proptest` cases & `cargo clippy -D warnings` clean)
-- Python (`synapse_science`): `9 passed` (including 1,000-case Python↔TS & 1,000-case Python↔Rust differential checks, NaN/Inf guards, and `6/6` mutation kills)
+- Lean 4.35.0: `Build completed successfully`, **24/24 axioms clean** (0 `sorry`, 0 unused hypotheses, enforced 0 `Classical.choice`), `leanchecker` pass on `Solution`, `NonVacuity` (27 witnesses), and `AdversarialChecks` (7 checks), plus `ExportVectors.lean` parity
+- TypeScript (`@synapse/core`): `14 passed (14)` (including 3,600+ `fast-check` property checks, negative boundary guards, all 10 Build Standard v1.2.0 classes, and Lean vector parity)
+- Rust (`synapse-sim`): `6 passed` (including 2,000 `proptest` cases, Lean vector parity, and `cargo clippy -D warnings` clean)
+- Python (`synapse_science`): `14 passed` (including 1,000-case Python↔TS & 1,000-case Python↔Rust differential checks, Lean vector parity, negative citation/retraction tests, NaN/Inf guards, and `6/6` control-verified mutation kills)
 
 ---
 
@@ -120,7 +120,7 @@ Expected test summary from a clean clone:
 ### 1. Run the FastAPI 50-Digit Exact Oracle Backend
 ```bash
 uv run synapse-api
-# Health check (expected: {"status":"ok","version":"1.3.0","oracle_precision_digits":"50"})
+# Health check (expected: {"status":"ok","version":"1.4.0","oracle_precision_digits":"50"})
 curl http://127.0.0.1:8000/healthz
 ```
 
@@ -154,7 +154,7 @@ node -e "import('./packages/synapse-core/dist/index.js').then(m => m.analyzeExpe
 - **Architecture & Data Flow:** [`docs/architecture.md`](docs/architecture.md) · **ADRs:** [`docs/adr/README.md`](docs/adr/README.md)
 - **Claims & Falsification Ledger:** [`CLAIMS.md`](CLAIMS.md) · **Pre-Registration & Deviations:** [`PREREGISTRATION.md`](PREREGISTRATION.md), [`DEVIATIONS.md`](DEVIATIONS.md)
 - **Honest Benchmarks & Performance Budgets:** [`docs/benchmarks.md`](docs/benchmarks.md) · **Replication:** [`REPLICATION.md`](REPLICATION.md) · **Audit Trail:** [`docs/run-log.md`](docs/run-log.md)
-- **Red-Team 10-Pass Review & Six-Class Findings (Build Standard v1.1.0 classes):** [`docs/reviews/2026-11-23-redteam.md`](docs/reviews/2026-11-23-redteam.md)
+- **Red-Team 10-Pass Review & Ten-Class Findings (Build Standard v1.2.0):** [`docs/reviews/2026-11-23-redteam.md`](docs/reviews/2026-11-23-redteam.md)
 - **Build Pipeline Models (`P0`–`P11`):** [`project.yaml`](project.yaml), [`docs/plan/checklist.md`](docs/plan/checklist.md), [`api/openapi.yaml`](api/openapi.yaml), [`docs/deploy.md`](docs/deploy.md), [`reports/security/2026-11-23-audit.md`](reports/security/2026-11-23-audit.md)
 - **Security Threat Model, Config, Operations, Accessibility, FAQ & Glossary:** [`docs/threat-model.md`](docs/threat-model.md), [`docs/configuration.md`](docs/configuration.md), [`docs/operations.md`](docs/operations.md), [`docs/accessibility.md`](docs/accessibility.md), [`docs/faq.md`](docs/faq.md), [`docs/glossary.md`](docs/glossary.md)
 
@@ -165,10 +165,11 @@ node -e "import('./packages/synapse-core/dist/index.js').then(m => m.analyzeExpe
 See [`LIMITATIONS.md`](LIMITATIONS.md) for full details. Key boundaries:
 - **Numerical Approximations:** Hodgkin–Huxley 4D RK4 trajectories and Monte Carlo sweeps use IEEE-754 float64 (`numerical_approximation`), not verified Lean interval ODE enclosures.
 - **Visual Schematics:** Embedded 2D/3D visuals and animations are deterministic code-rendered educational models, **not** atomic-coordinate PDB/EMDB renders.
-- **Consciousness & Mega-Atlas Scope:** None of the 1,900 open problems in `unsolved-problems-mega-atlas` is solved, fully or partially; `NEURO-001` and `NEURO-019` remain open. The Lean $2\times 2$ determinant theorems (T22–T24) are facts about four integers; they contain no notion of integration, causality or nanocolumn structure, and they do **not** prove, measure, or create phenomenal consciousness or sentience.
-- **Model constants and Lean–engine link:** The ATP and SNARE constants are the author's, not values from the cited papers. The Lean definitions are hand-written integer analogues of the TypeScript/Rust engines; no test links them.
-- **Prior work:** Formal verification of biological and chemical models predates this repository, for example a Lean 4 formalization of Hill-kinetic gene-regulatory circuits ([marpaia/grn-lean](https://github.com/marpaia/grn-lean)), Bobbin et al., "Formalizing chemical physics using the Lean theorem prover", *Digital Discovery* 3:264 (2024), doi:10.1039/D3DD00077J, and "Modelling and Verifying Neuronal Archetypes in Rocq", arXiv:2505.05362 (identified by the 2026-11-26 audit).
-- **Review Status:** White papers are independent preprints and have not undergone external journal peer review.
+- **Consciousness & Mega-Atlas Scope:** None of the 1,900 open problems in `unsolved-problems-mega-atlas` is solved, fully or partially; `NEURO-001` and `NEURO-019` remain open. The Lean $2\times 2$ determinant lemmas (`T22`–`T24`) are facts about four integers; they contain no notion of integration, causality, or nanocolumn structure, and they do **not** prove, measure, or create phenomenal consciousness or sentience.
+- **Model Constants & Lean–Engine Link:** The ATP and SNARE constants are illustrative model choices, not wet-lab values from the cited papers. While `v1.4.0` adds tested vector parity (`lean/ExportVectors.lean` → `data/lean_engine_vectors.json`) linking Lean's integer formulas to Python, TypeScript, and Rust, Rust's stochastic `run_monte_carlo_bouton` still adds per-second rate jitter beyond Lean's constant-rate `atpStoreAfter`.
+- **Species & Preparation Boundaries:** Not all parameters are human-derived (e.g., vesicle lipidomics derive from *Narcine brasiliensis* electric organ, Deutsch & Kelly 1981; native V-ATPase cryo-EM derives from rat brain in Coupland et al. 2024 and mouse in Wang et al. 2024).
+- **Prior Work:** Formal verification of biological and chemical models predates this repository, including [marpaia/grn-lean](https://github.com/marpaia/grn-lean) (Lean 4 Hill-kinetic gene-regulatory circuits), Bobbin et al., *Digital Discovery* 3:264–280 (2024), `doi:10.1039/D3DD00077J`, and "Modelling and Verifying Neuronal Archetypes in Rocq", `arXiv:2505.05362`.
+- **Review Status:** White papers are independent preprints and have not undergone external journal peer review or unaffiliated human replication.
 
 ## License & Citation
 

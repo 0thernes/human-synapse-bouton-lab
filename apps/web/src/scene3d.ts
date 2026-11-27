@@ -25,9 +25,11 @@ export function mountSynapse3D(container: HTMLElement): Synapse3DHandle {
   try {
     renderer = new THREE.WebGLRenderer({ antialias: true });
   } catch (err) {
+    const rawMsg = err instanceof Error ? err.message : 'unavailable';
+    const safeMsg = rawMsg.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
     container.innerHTML = `<div class="card" role="status" style="margin:18px;">
       <h3>WebGL Context Unavailable</h3>
-      <p class="meta-small">Your browser or headless environment does not expose a WebGL rendering context (${err instanceof Error ? err.message : 'unavailable'}). All 2D nanoscale simulation, Hodgkin-Huxley RK4, formal verification, and open-problems tabs remain fully interactive.</p>
+      <p class="meta-small">Your browser or headless environment does not expose a WebGL rendering context (${safeMsg}). All 2D nanoscale simulation, Hodgkin-Huxley RK4, formal verification, and open-problems tabs remain fully interactive.</p>
     </div>`;
     return {
       triggerFusionBurst() {},

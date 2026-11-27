@@ -6,7 +6,7 @@
 
 - **Common technical & scientific questions:** Read [`docs/faq.md`](docs/faq.md) and [`docs/glossary.md`](docs/glossary.md) first.
 - **Open discussion, methodology questions, or consciousness/biophysics debate:** Use [GitHub Discussions](https://github.com/0thernes/human-synapse-bouton-lab/discussions).
-- **Bugs, calculation errors, Lean fidelity concerns, or gaps:** Open an issue using the structured forms in [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) (select the matching six-class finding label: `bug`, `error`, `issue`, `problem`, `dilemma`, or `conflict`).
+- **Bugs, calculation errors, Lean fidelity concerns, holes, or gaps:** Open an issue using the structured forms in [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) (select one of the ten Build Standard v1.2.0 finding classes: `bug`, `error`, `issue`, `problem`, `concern`, `dilemma`, `conflict`, `gap`, `hole`, or `blindspot`).
 - **Independent replication reports:** Use the **Replication report** issue template (`.github/ISSUE_TEMPLATE/replication.yml`) and follow [`REPLICATION.md`](REPLICATION.md).
 - **Security vulnerabilities:** Report privately per [`SECURITY.md`](SECURITY.md).
 

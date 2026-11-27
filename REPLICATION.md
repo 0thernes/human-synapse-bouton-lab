@@ -44,12 +44,13 @@ uv run synapse-media
 
 | Artifact / Check | Exact Expected Result | Tolerance |
 |---|---|---|
-| Lean `lake build --wfail` | Exit 0, 18 theorems, zero `sorry`, axioms $\subseteq [\text{propext}, \text{Quot.sound}]$ | Exact |
-| `vitest run` (`@synapse/core`) | `12 passed (12)` | Exact |
-| `cargo test` (`synapse-sim`) | `5 passed; 0 failed` | Exact |
-| `pytest python/tests/` | `9 passed` (1,000-case TS & Rust differential matches within `1e-10`) | `rtol <= 1e-10` |
+| Lean `lake build --wfail` | Exit 0, 24 lemmas, 0 unused hyps, 27 witnesses, 7 checks, zero `sorry`, enforced axioms $\subseteq [\text{propext}, \text{Quot.sound}]$ | Exact |
+| `vitest run` (`@synapse/core`) | `14 passed (14)` (incl. 10 finding classes & Lean vector parity) | Exact |
+| `cargo test` (`synapse-sim`) | `6 passed; 0 failed` (incl. 2,000 proptests & Lean vector parity) | Exact |
+| `pytest python/tests/` | `14 passed` (1,000-case TS & Rust diff. within `1e-10`, Lean vector parity, negative citation checks) | `rtol <= 1e-10` |
+| `python scripts/mutation_audit.py` | Unmutated control `rc=0`; `6/6` mutants strictly killed (`rc=1`) | Exact |
 | `data/experiments/per_seed_results.csv` | Byte-identical deterministic `ChaCha8Rng` output across platforms | SHA-256 match (`data/MANIFEST.sha256`) |
-| `H1` / `H2` / `H3` / `H4` / `H3b` `p_holm` | `0.0005` / `0.0005` / `1.0000` (refuted) / `0.9963` / `0.0005` | Exact at `STAT_SEED=20261123` |
+| `H1` / `H2` / `H3` / `H4` / `H3b` `p_holm` | `0.0005` / `0.0005` / `1.0000` (failed in sim.) / `0.9963` / `0.0005` | Exact at `STAT_SEED=20261123` |
 | Rust vs. Node benchmark | Rust median `< Node` median (`~0.3 ms` vs `~1.8 ms` on desktop x86_64) | Hardware-dependent |
 
 ## 4. Reporting an Independent Replication
