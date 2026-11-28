@@ -1,7 +1,9 @@
-import Solution
-
 -- SPDX-License-Identifier: Apache-2.0
 -- Copyright (c) 2026 Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
+
+module
+
+import all Solution
 --
 -- Executable Lean 4 -> Engine test-vector exporter (v1.4.0, F38).
 -- Evaluates the actual `@[expose]` definitions in `Solution.lean` directly inside Lean 4.35.0
@@ -13,7 +15,7 @@ open SynapseBouton
 private def joinComma (xs : List String) : String :=
   String.intercalate ",\n" xs
 
-def main : IO Unit := do
+public def main : IO Unit := do
   -- 1. Hill n=4 vectors (c in uM, kd = 15 uM)
   let hillCs : List Nat := [0, 5, 10, 15, 20, 30, 35, 60]
   let hillJson := hillCs.map fun c =>
